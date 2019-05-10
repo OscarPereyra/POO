@@ -9,32 +9,32 @@ public class FechaTest {
 	@Test
 	public void stringADateIso_ConvierteStringAIso () throws ParseException {
 		Fecha nueva = new Fecha();
-		nueva.stringADateIso("2019/12/01");		
+		nueva.stringADateIso("2019/12/01");
 	}
-	@Test (expected = ParseException.class)
+	@Test
 	public void stringADateIso_ConvierteStringErroneoAIso () throws ParseException {
 		Fecha nueva = new Fecha();
-		nueva.stringADateIso("199a/12/01");		
+		Assert.assertNull("No es un formato compatible", nueva.stringADateIso("2019/1/aa"));
 	}
 	@Test
 	public void stringADateLatino_ConvierteStringALatino () throws ParseException {
 		Fecha nueva = new Fecha();
 		nueva.stringADateLatino("1/02/2019");		
 	}
-	@Test (expected = ParseException.class)
+	@Test 
 	public void stringADateLatino_ConvierteStringErroneoALatino () throws ParseException {
 		Fecha nueva = new Fecha();
-		nueva.stringADateLatino("1/aa/2019");		
+		Assert.assertNull("No es un formato compatible", nueva.stringADateLatino("2019/1/aa"));
 	}
 	@Test
 	public void stringADateNorteamericano_ConvierteStringANorteamericano () throws ParseException {
 		Fecha nueva = new Fecha();
 		nueva.stringADateNorteamericano("12/31/2019");		
 	}
-	@Test (expected = ParseException.class)
+	@Test 
 	public void stringADateNorteamericano_ConvierteStringErroneoANorteamericano () throws ParseException {
-		Fecha nueva = new Fecha();
-		nueva.stringADateNorteamericano("aa/02/2019");		
+		Fecha nueva = new Fecha();		
+		Assert.assertNull("No es un formato compatible", nueva.stringADateNorteamericano("aa/02/2019"));
 	}
 	@Test
 	public void stringADateFlexible_ConvierteStringAIso () throws ParseException {
@@ -51,20 +51,20 @@ public class FechaTest {
 		Fecha nueva = new Fecha();
 		nueva.stringADateIso("31/11/2019");		
 	}
-	@Test (expected = ParseException.class)
+	@Test 
 	public void stringADateFlexible_ConvierteStringErroneoAIso () throws ParseException {
 		Fecha nueva = new Fecha();
-		nueva.stringADateIso("2aa9/12/01");		
+		Assert.assertNull("No es un formato compatible", nueva.stringADateIso("01/a2/2019"));
 	}
-	@Test (expected = ParseException.class)
+	@Test 
 	public void stringADateFlexible_ConvierteStringErroneoALatino () throws ParseException {
-		Fecha nueva = new Fecha();
-		nueva.stringADateIso("01/a2/2019");		
+		Fecha nueva = new Fecha();		
+		Assert.assertNull("No es un formato compatible", nueva.stringADateIso("01/a2/2019"));
 	}
-	@Test (expected = ParseException.class)
+	@Test 
 	public void stringADateFlexible_ConvierteStringErroneoANorteamericano () throws ParseException {
 		Fecha nueva = new Fecha();
-		nueva.stringADateIso("31/a1/2019");		
+		Assert.assertNull("No es un formato compatible", nueva.stringADateIso("31/a1/2019"));
 	}
 	@Test
 	public void fechaAEsAnteriorAFechaB_1DeEnero2019EsAnteriorA1DeFebrero2019() throws ParseException {

@@ -21,9 +21,11 @@ public class Fecha {
     		fecha = formatoIso8601.parse(fechaIso);
     	}
     	catch(ParseException ex) {
-			System.out.println(ex);
+			System.out.println("no es un formato compatible");
+			
 
     	}
+    	//fecha = formatoIso8601.parse(fechaIso);
     	return fecha;
     }
     public Date stringADateLatino(String fechaLatino) throws ParseException {
@@ -33,6 +35,7 @@ public class Fecha {
 		catch(ParseException ex) {
 			System.out.println(ex);
 		}
+		//fecha = formatoLatino.parse(fechaLatino);
     	return fecha;
     }
     public Date stringADateNorteamericano(String fechaNorteamericano) throws ParseException {
@@ -42,6 +45,7 @@ public class Fecha {
 		catch(ParseException ex) {
 			System.out.println(ex);
 		}
+    	//fecha = formatoNorteamericano.parse(fechaNorteamericano);
     	return fecha;
     }
     public Date stringADateFlexible(String fechaFlexible) throws ParseException {
