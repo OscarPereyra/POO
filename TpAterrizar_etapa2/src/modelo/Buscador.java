@@ -16,20 +16,19 @@ public class Buscador {
 		AerolineaLanchita fideo = new  AerolineaLanchita();
 		ArrayList<ArrayList<String>> resultadoBusqueda = new ArrayList<ArrayList<String>>();
 		resultadoBusqueda = fideo.asientosDisponibles(origen,fechaSalida,horaSalida,destino,fechaLlegada,horaLlegada);
-		
+		resultadoBusqueda = filtrarBusqueda(resultadoBusqueda,fideo,clase,ubicacion);
 		return resultadoBusqueda;
 	}
 	
-	private ArrayList<ArrayList<String>> filtrarBusqueda(ArrayList<ArrayList<String>> asientos, String clase, String ubicacion){
+	private ArrayList<ArrayList<String>> filtrarBusqueda(ArrayList<ArrayList<String>> asientos,AerolineaLanchita aerolinea, String clase, String ubicacion){
 		ArrayList<ArrayList<String>> filtrados = null;
 		if(clase!=null) {
-			//filtrados = asientos.stream().filter(asiento -> asiento.get(2).equals(clase)).toArray();
-			//No se como hacer el filtrado de los asientos
+			asientos.removeIf(asiento -> asiento.get(2).equals(clase));
 		}
 		if(ubicacion!=null) {
-			//filtrados = asientos.stream().filter(asiento -> asiento.get(3).equals(ubicacion)).;
-			//No se como hacer el filtrado de los asientos
+			asientos.removeIf(asiento -> asiento.get(3).equals(ubicacion));
 		}
+		asientos.forEach(asiento -> asiento.set(1, Double.toString(precioTotal(asiento,aerolinea))));
 		return filtrados;
 	}
 	
@@ -37,7 +36,7 @@ public class Buscador {
 		return ((asiento.get(2).equals("P") && precioTotal(asiento,aerolinea)<8000)||(asiento.get(2).equals("E") && precioTotal(asiento,aerolinea)<4000));
 	}
 	
-	private double precioTotal(ArrayList<String> asiento,AerolineaLanchita aerolinea) {
+	private Double precioTotal(ArrayList<String> asiento,AerolineaLanchita aerolinea) {
 		return (Double.parseDouble(asiento.get(1)))*(1+aerolinea.porcentajeImpuestos);
 		//Falta considerar el si es el usuario tiene cuenta paga o no (recargo de $20 si no es pago)
 	}
