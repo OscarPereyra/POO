@@ -1,7 +1,8 @@
 package modelo;
 
 import java.util.ArrayList;
-//Datos de asientos = [Codigo asiento,precio asiento,clase,ubicacion(V-C-P),estado(R-D)]
+//Datos de asientos = [Codigo asiento,precio asiento,clase(T-E-P),ubicacion(V-C-P),estado(R-D)]
+
 public class Buscador {
 	/*public Array busqueda(String origen,String destino,String fecha) {
 		AerolineaLanchita fideo = new  AerolineaLanchita();
@@ -23,12 +24,21 @@ public class Buscador {
 		ArrayList<ArrayList<String>> filtrados = null;
 		if(clase!=null) {
 			//filtrados = asientos.stream().filter(asiento -> asiento.get(2).equals(clase)).toArray();
-			//Ese filter anda para el culo, no se como hacer que devuelva el mismo tipo de la lista
+			//No se como hacer el filtrado de los asientos
 		}
 		if(ubicacion!=null) {
 			//filtrados = asientos.stream().filter(asiento -> asiento.get(3).equals(ubicacion)).;
-			//Ese filter anda para el culo, no se como hacer que devuelva el mismo tipo de la lista
+			//No se como hacer el filtrado de los asientos
 		}
 		return filtrados;
+	}
+	
+	private boolean esSuperOferta(ArrayList<String> asiento, AerolineaLanchita aerolinea) {
+		return ((asiento.get(2).equals("P") && precioTotal(asiento,aerolinea)<8000)||(asiento.get(2).equals("E") && precioTotal(asiento,aerolinea)<4000));
+	}
+	
+	private double precioTotal(ArrayList<String> asiento,AerolineaLanchita aerolinea) {
+		return (Double.parseDouble(asiento.get(1)))*(1+aerolinea.porcentajeImpuestos);
+		//Falta considerar el si es el usuario tiene cuenta paga o no (recargo de $20 si no es pago)
 	}
 }
