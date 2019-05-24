@@ -1,6 +1,6 @@
 package modelo;
 
-public class Usuario {
+public abstract class Usuario {
 	private String nombre;
 	private String apellido;
 	private int DNI;
