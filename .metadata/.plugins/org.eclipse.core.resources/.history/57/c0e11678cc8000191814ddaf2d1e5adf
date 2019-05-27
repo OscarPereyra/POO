@@ -4,14 +4,13 @@ import java.util.ArrayList;
 //Datos de asientos = [Codigo asiento,precio asiento,clase(T-E-P),ubicacion(V-C-P),estado(R-D)]
 
 public class Buscador {
-		public ArrayList<ArrayList<String>> busqueda(Usuario usuario,String origen,String fechaSalida, String horaSalida,String destino,String fechaLlegada,String horaLlegada,String clase,String ubicacion) {
+		public ArrayList<ArrayList<String>> busqueda(String origen,String fechaSalida, String horaSalida,String destino,String fechaLlegada,String horaLlegada,String clase,String ubicacion) {
 		AerolineaLanchita aerolinea = new  AerolineaLanchita();
 		ArrayList<Asiento> asientosDisp = new ArrayList<Asiento>();
 		ArrayList<ArrayList<String>> resultadoBusqueda = new ArrayList<ArrayList<String>>();
 		resultadoBusqueda = aerolinea.asientosDisponibles(origen,fechaSalida,horaSalida,destino,fechaLlegada,horaLlegada);
 		resultadoBusqueda.forEach(asiento -> asientosDisp.add(parsearAsiento(asiento)));
 		asientosDisp.forEach(asiento -> actualizarPrecioTotal(asiento, aerolinea));
-		if(!usuario.esVip()) {asientosDisp.removeIf(asiento -> esSuperOferta(asiento,aerolinea));}
 		return resultadoBusqueda;
 	}
 	
