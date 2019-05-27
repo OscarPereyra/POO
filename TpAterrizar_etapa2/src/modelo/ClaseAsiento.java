@@ -2,6 +2,6 @@ package modelo;
 
 public enum ClaseAsiento {
 	T,
-	C,
+	E,
 	P
 }

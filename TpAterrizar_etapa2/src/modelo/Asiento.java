@@ -2,16 +2,16 @@ package modelo;
 
 public class Asiento {
 	private String codigoAsiento;
-	private String precio;
+	private Double precio;
 	private ClaseAsiento clase;
 	private String ubicacion;
 	private String estado;
-	public Asiento(String codAsiento,String costo,ClaseAsiento claseA,String ubicacionA,String estadoA) {
-		codigoAsiento = codAsiento;
-		precio = costo;
-		clase = claseA;
-		ubicacion = ubicacionA;
-		estado = estadoA;
+	public Asiento(String codigoAsiento,Double precio,ClaseAsiento clase,String ubicacion,String estado) {
+		this.codigoAsiento = codigoAsiento;
+		this.precio = precio;
+		this.clase = clase;
+		this.ubicacion = ubicacion;
+		this.estado = estado;
 	}
 	public String getCodigoAsiento() {
 		return codigoAsiento;
@@ -19,10 +19,10 @@ public class Asiento {
 	public void setCodigoAsiento(String codigoAsiento) {
 		this.codigoAsiento = codigoAsiento;
 	}
-	public String getPrecio() {
+	public Double getPrecio() {
 		return precio;
 	}
-	public void setPrecio(String precio) {
+	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
 	public ClaseAsiento getClase() {
