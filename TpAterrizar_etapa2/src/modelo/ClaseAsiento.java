@@ -1,7 +1,7 @@
 package modelo;
 
 public enum ClaseAsiento {
-	Turista,
-	Ejecutiva,
-	Primera
+	TURISTA,
+	EJECUTIVA,
+	PRIMERA
 }

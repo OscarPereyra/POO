@@ -1,5 +1,22 @@
 package modelo;
 
-public class UsuarioEstandar {
-
+public class UsuarioEstandar extends Usuario {
+	private String nombre;
+	private String apellido;
+	private int DNI;
+	private double montoTotalCompras;
+	public UsuarioEstandar() {
+		
+	}
+	@Override
+	public boolean esVip() {
+		return montoTotalCompras>100000;
+	}
+	@Override
+	public boolean esPago() {
+		return true;
+	}
+	@Override
+	public void comprar(Double monto) {
+	}
 }

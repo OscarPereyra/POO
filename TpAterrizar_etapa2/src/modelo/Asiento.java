@@ -4,9 +4,9 @@ public class Asiento {
 	private String codigoAsiento;
 	private Double precio;
 	private ClaseAsiento clase;
-	private String ubicacion;
+	private UbicacionAsiento ubicacion;
 	private String estado;
-	public Asiento(String codigoAsiento,Double precio,ClaseAsiento clase,String ubicacion,String estado) {
+	public Asiento(String codigoAsiento,Double precio,ClaseAsiento clase,UbicacionAsiento ubicacion,String estado) {
 		this.codigoAsiento = codigoAsiento;
 		this.precio = precio;
 		this.clase = clase;
@@ -31,10 +31,10 @@ public class Asiento {
 	public void setClase(ClaseAsiento clase) {
 		this.clase = clase;
 	}
-	public String getUbicacion() {
+	public UbicacionAsiento getUbicacion() {
 		return ubicacion;
 	}
-	public void setUbicacion(String ubicacion) {
+	public void setUbicacion(UbicacionAsiento ubicacion) {
 		this.ubicacion = ubicacion;
 	}
 	public String getEstado() {

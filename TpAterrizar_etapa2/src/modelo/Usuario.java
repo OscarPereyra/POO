@@ -1,9 +1,7 @@
 package modelo;
 
 public abstract class Usuario {
-	private String nombre;
-	private String apellido;
-	private int DNI;
-	private int montoTotalCompras;
-	private double recargo;
+	abstract boolean esVip();
+	abstract boolean esPago();
+	abstract void comprar(Double monto);
 }
