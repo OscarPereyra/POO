@@ -4,8 +4,8 @@ public class UsuarioEstandar extends Usuario {
 	private String nombre;
 	private String apellido;
 	private int DNI;
-	private double montoTotalCompras;
-	public UsuarioEstandar() {
+	private double montoTotalCompras = 0;
+	public UsuarioEstandar(){
 		
 	}
 	@Override
@@ -18,5 +18,6 @@ public class UsuarioEstandar extends Usuario {
 	}
 	@Override
 	public void comprar(Double monto) {
+		montoTotalCompras +=monto;
 	}
 }

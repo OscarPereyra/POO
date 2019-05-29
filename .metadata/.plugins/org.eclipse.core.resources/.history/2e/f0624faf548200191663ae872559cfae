@@ -1,19 +1,20 @@
 package modelo;
 
-public class UsuarioNoPago extends Usuario {
+public class UsuarioEstandar extends Usuario {
 	private String nombre;
 	private String apellido;
 	private int DNI;
-	public UsuarioNoPago() {
+	private double montoTotalCompras;
+	public UsuarioEstandar() {
 		
 	}
 	@Override
 	public boolean esVip() {
-		return false;
+		return montoTotalCompras>100000;
 	}
 	@Override
 	public boolean esPago() {
-		return false;
+		return true;
 	}
 	@Override
 	public void comprar(Double monto) {
