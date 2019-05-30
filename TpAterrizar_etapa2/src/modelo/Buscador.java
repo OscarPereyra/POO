@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class Buscador {
 	private double recargoUsuarioNoPago = 20;
-	public ArrayList<ArrayList<String>> busqueda(Usuario usuario,String origen,String fechaSalida, String horaSalida,String destino,String fechaLlegada,String horaLlegada,ClaseAsiento clase,UbicacionAsiento ubicacion) {
+	public ArrayList<ArrayList<String>> busqueda(Usuario usuario,String origen,String fechaSalida, String horaSalida,String destino,String fechaLlegada,String horaLlegada,TipoClaseAsiento clase,UbicacionAsiento ubicacion) {
 		AerolineaLanchita aerolinea = new  AerolineaLanchita();
-		ArrayList<Asiento> asientosDisp = new ArrayList<Asiento>();
+		ArrayList<TipoAsiento> asientosDisp = new ArrayList<TipoAsiento>();
 		ArrayList<ArrayList<String>> resultadoBusqueda = new ArrayList<ArrayList<String>>();
 		resultadoBusqueda = aerolinea.asientosDisponibles(origen,fechaSalida,horaSalida,destino,fechaLlegada,horaLlegada);
 		resultadoBusqueda.forEach(asiento -> asientosDisp.add(parsearAsiento(asiento)));
@@ -18,36 +18,36 @@ public class Buscador {
 		return resultadoBusqueda;
 	}
 	
-	public void comprarAsiento(Asiento asiento,AerolineaLanchita aerolinea,Usuario usuario) {
+	public void comprarAsiento(TipoAsiento asiento,IAerolineaLanchita aerolinea,Usuario usuario) {
 		aerolinea.comprar(asiento.getCodigoAsiento());
 		usuario.comprar(asiento.getPrecio());		
 	}
 	
-	private void filtrarPorClase(ArrayList<Asiento> asientos,ClaseAsiento clase) {
+	private void filtrarPorClase(ArrayList<TipoAsiento> asientos,TipoClaseAsiento clase) {
 		if(clase!=null) {asientos.removeIf(asiento -> asiento.getClase().equals(clase));}
 	}
 	
-	private void filtrarPorUbicacion(ArrayList<Asiento> asientos,UbicacionAsiento ubicacion) {
+	private void filtrarPorUbicacion(ArrayList<TipoAsiento> asientos,UbicacionAsiento ubicacion) {
 		if(ubicacion!=null) {asientos.removeIf(asiento -> asiento.getUbicacion().equals(ubicacion));}
 	}
 	
-	private Asiento parsearAsiento(ArrayList<String> asiento){
+	private TipoAsiento parsearAsiento(ArrayList<String> asiento){
 		String codigoAsiento = asiento.get(0);
 		Double precio = Double.parseDouble(asiento.get(1));
-		ClaseAsiento clase = tipoAsiento(asiento.get(2));
+		TipoClaseAsiento clase = tipoAsiento(asiento.get(2));
 		UbicacionAsiento ubicacion = ubicacionAsiento(asiento.get(3));
 		String estado = asiento.get(4);
-		return new Asiento(codigoAsiento,precio,clase,ubicacion,estado);
+		return new TipoAsiento(codigoAsiento,precio,clase,ubicacion,estado);
 	}
 	
-	private ClaseAsiento tipoAsiento(String clase) {
+	private TipoClaseAsiento tipoAsiento(String clase) {
 		switch (clase){
 		case "T":
-			return ClaseAsiento.TURISTA;
+			return TipoClaseAsiento.TURISTA;
 		case "E":
-			return ClaseAsiento.EJECUTIVA;
+			return TipoClaseAsiento.EJECUTIVA;
 		case "P":
-			return ClaseAsiento.PRIMERA;
+			return TipoClaseAsiento.PRIMERA;
 		default:
 			return null;
 		}
@@ -66,11 +66,11 @@ public class Buscador {
 		}
 	}
 	
-	private boolean esSuperOferta(Asiento asiento, AerolineaLanchita aerolinea) {
-		return ((asiento.getClase().equals(ClaseAsiento.PRIMERA) && asiento.getPrecio()<8000)||(asiento.getClase().equals(ClaseAsiento.EJECUTIVA) && asiento.getPrecio()<4000));
+	private boolean esSuperOferta(TipoAsiento asiento, IAerolineaLanchita aerolinea) {
+		return ((asiento.getClase().equals(TipoClaseAsiento.PRIMERA) && asiento.getPrecio()<8000)||(asiento.getClase().equals(TipoClaseAsiento.EJECUTIVA) && asiento.getPrecio()<4000));
 	}
 	
-	private void actualizarPrecioTotal(Asiento asiento,AerolineaLanchita aerolinea,Usuario usuario) {
+	private void actualizarPrecioTotal(TipoAsiento asiento,IAerolineaLanchita aerolinea,Usuario usuario) {
 		if(usuario.esPago()) {
 			asiento.setPrecio(asiento.getPrecio()*aerolinea.getImpuesto());
 		}

@@ -1,6 +1,6 @@
 package modelo;
 
-public enum ClaseAsiento {
+public enum TipoClaseAsiento {
 	TURISTA,
 	EJECUTIVA,
 	PRIMERA
