@@ -1,6 +1,6 @@
 package modelo;
 
-public enum UbicacionAsiento {
+public enum TipoUbicacionAsiento {
 	PASILLO,
 	CENTRO,
 	VENTANILLA

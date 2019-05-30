@@ -18,7 +18,8 @@ public class AerolineaLanchita implements IAerolineaLanchita{
 		nuevaBusqueda.setHoraLlegada(horaLlegada);
 		
 		Buscador buscador = new Buscador();
-		
+		Usuario nuevo = new UsuarioEstandar();
+		buscador.busqueda(nuevo, nuevaBusqueda);
 		return null;
 	}
 

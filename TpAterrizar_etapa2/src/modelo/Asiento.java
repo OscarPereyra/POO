@@ -1,12 +1,20 @@
 package modelo;
 
-public class TipoAsiento {
+public class Asiento {
 	private String codigoAsiento;
 	private Double precio;
 	private TipoClaseAsiento clase;
-	private UbicacionAsiento ubicacion;
-	private String estado;
-	public TipoAsiento(String codigoAsiento,Double precio,TipoClaseAsiento clase,UbicacionAsiento ubicacion,String estado) {
+	private TipoUbicacionAsiento ubicacion;
+	private EstadoAsiento estado;
+	
+	public Asiento(String codigoAsiento,Double precio,TipoClaseAsiento clase,TipoUbicacionAsiento ubicacion) {
+		this.codigoAsiento = codigoAsiento;
+		this.precio = precio;
+		this.clase = clase;
+		this.ubicacion = ubicacion;
+		this.estado = new AsientoDisponible();
+	}
+	public Asiento(String codigoAsiento,Double precio,TipoClaseAsiento clase,TipoUbicacionAsiento ubicacion,EstadoAsiento estado) {
 		this.codigoAsiento = codigoAsiento;
 		this.precio = precio;
 		this.clase = clase;
@@ -31,16 +39,16 @@ public class TipoAsiento {
 	public void setClase(TipoClaseAsiento clase) {
 		this.clase = clase;
 	}
-	public UbicacionAsiento getUbicacion() {
+	public TipoUbicacionAsiento getUbicacion() {
 		return ubicacion;
 	}
-	public void setUbicacion(UbicacionAsiento ubicacion) {
+	public void setUbicacion(TipoUbicacionAsiento ubicacion) {
 		this.ubicacion = ubicacion;
 	}
-	public String getEstado() {
+	public EstadoAsiento getEstado() {
 		return estado;
 	}
-	public void setEstado(String estado) {
+	public void setEstado(EstadoAsiento estado) {
 		this.estado = estado;
 	}
 }
