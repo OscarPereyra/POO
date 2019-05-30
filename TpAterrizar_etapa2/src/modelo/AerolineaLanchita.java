@@ -3,7 +3,8 @@ package modelo;
 import java.util.ArrayList;
 
 public class AerolineaLanchita implements IAerolineaLanchita{
-
+	private final double impuesto = 0.15;
+			
 	@Override
 	public ArrayList<ArrayList<String>> asientosDisponibles(String origen, String fechaSalida, String horaSalida,
 			String destino, String fechaLlegada, String horaLlegada) {
@@ -25,6 +26,10 @@ public class AerolineaLanchita implements IAerolineaLanchita{
 	public void comprar(String codigoAsiento) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public double getImpuesto() {
+		return impuesto;
 	}
 	
 

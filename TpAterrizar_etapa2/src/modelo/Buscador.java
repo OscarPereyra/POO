@@ -70,12 +70,12 @@ public class Buscador {
 		return ((asiento.getClase().equals(TipoClaseAsiento.PRIMERA) && asiento.getPrecio()<8000)||(asiento.getClase().equals(TipoClaseAsiento.EJECUTIVA) && asiento.getPrecio()<4000));
 	}
 	
-	private void actualizarPrecioTotal(TipoAsiento asiento,IAerolineaLanchita aerolinea,Usuario usuario) {
+	private void actualizarPrecioTotal(TipoAsiento asiento,AerolineaLanchita aerolinea,Usuario usuario) {
 		if(usuario.esPago()) {
-			asiento.setPrecio(asiento.getPrecio()*aerolinea.getImpuesto());
+			asiento.setPrecio(asiento.getPrecio()+(asiento.getPrecio()*aerolinea.getImpuesto()));
 		}
 		else {
-			asiento.setPrecio((asiento.getPrecio()*aerolinea.getImpuesto())+recargoUsuarioNoPago);
+			asiento.setPrecio((asiento.getPrecio()+(asiento.getPrecio()*aerolinea.getImpuesto())+recargoUsuarioNoPago));
 		}
 	}
 }
