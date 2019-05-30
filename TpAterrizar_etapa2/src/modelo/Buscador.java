@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Buscador {
 	private double recargoUsuarioNoPago = 20;
-		
+	
 	public ArrayList<ArrayList<String>> busqueda(Usuario usuario,Busqueda busqueda) {
 		AerolineaLanchita aerolinea = new  AerolineaLanchita();
 		ArrayList<Asiento> asientosDisp = new ArrayList<Asiento>();
@@ -13,26 +13,23 @@ public class Buscador {
 		resultadoBusqueda = aerolinea.asientosDisponibles(busqueda.getOrigen(),busqueda.getFechaSalida(),busqueda.getHoraSalida(),busqueda.getDestino(),busqueda.getFechaLlegada(),busqueda.getHoraLlegada());
 		resultadoBusqueda.forEach(asiento -> asientosDisp.add(parsearAsiento(asiento)));
 		asientosDisp.forEach(asiento -> actualizarPrecioTotal(asiento, aerolinea,usuario));
-		if(!usuario.esVip()) {asientosDisp.removeIf(asiento -> esSuperOferta(asiento,aerolinea));}
-		return resultadoBusqueda;
-	}
-	
-	public ArrayList<ArrayList<String>> busqueda(Usuario usuario,Busqueda busqueda,TipoClaseAsiento clase,TipoUbicacionAsiento ubicacion) {
-		AerolineaLanchita aerolinea = new  AerolineaLanchita();
-		ArrayList<Asiento> asientosDisp = new ArrayList<Asiento>();
-		ArrayList<ArrayList<String>> resultadoBusqueda = new ArrayList<ArrayList<String>>();
-		resultadoBusqueda = aerolinea.asientosDisponibles(busqueda.getOrigen(),busqueda.getFechaSalida(),busqueda.getHoraSalida(),busqueda.getDestino(),busqueda.getFechaLlegada(),busqueda.getHoraLlegada());
-		resultadoBusqueda.forEach(asiento -> asientosDisp.add(parsearAsiento(asiento)));
-		asientosDisp.forEach(asiento -> actualizarPrecioTotal(asiento, aerolinea,usuario));
-		filtrarPorClase(asientosDisp,clase);
-		filtrarPorUbicacion(asientosDisp,ubicacion);
+		filtrarPorClase(asientosDisp,busqueda.getClase());
+		filtrarPorUbicacion(asientosDisp,busqueda.getUbicacion());
 		if(!usuario.esVip()) {asientosDisp.removeIf(asiento -> esSuperOferta(asiento,aerolinea));}
 		return resultadoBusqueda;
 	}
 	
 	public void comprarAsiento(Asiento asiento,IAerolineaLanchita aerolinea,Usuario usuario) {
-		aerolinea.comprar(asiento.getCodigoAsiento());
-		usuario.comprar(asiento.getPrecio());		
+		
+		//NO hacer lo que sigue si falla la compra
+		
+		try {
+			aerolinea.comprar(asiento.getCodigoAsiento());
+			usuario.comprar(asiento.getPrecio());
+		}
+		catch (AsientoLanchitaNoDisponibleException e) {
+			System.out.println("Error al comprar el asiento");
+		}
 	}
 	
 	private void filtrarPorClase(ArrayList<Asiento> asientos,TipoClaseAsiento clase) {

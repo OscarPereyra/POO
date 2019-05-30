@@ -7,6 +7,30 @@ public class Busqueda {
 	private String destino;
 	private String fechaLlegada; 
 	private String horaLlegada;
+	private TipoClaseAsiento clase = null;
+	private TipoUbicacionAsiento ubicacion = null;	
+	
+	public Busqueda(String origen, String fechaSalida, String horaSalida, String destino, String fechaLlegada,String horaLlegada) {
+		//super();
+		this.origen = origen;
+		this.fechaSalida = fechaSalida;
+		this.horaSalida = horaSalida;
+		this.destino = destino;
+		this.fechaLlegada = fechaLlegada;
+		this.horaLlegada = horaLlegada;
+	}		
+	public Busqueda(String origen, String fechaSalida, String horaSalida, String destino, String fechaLlegada,String horaLlegada, TipoClaseAsiento clase, TipoUbicacionAsiento ubicacion) {
+		super();
+		this.origen = origen;
+		this.fechaSalida = fechaSalida;
+		this.horaSalida = horaSalida;
+		this.destino = destino;
+		this.fechaLlegada = fechaLlegada;
+		this.horaLlegada = horaLlegada;
+		this.clase = clase;
+		this.ubicacion = ubicacion;
+	}
+	
 	public String getOrigen() {
 		return origen;
 	}
@@ -43,6 +67,23 @@ public class Busqueda {
 	public void setHoraLlegada(String horaLlegada) {
 		this.horaLlegada = horaLlegada;
 	}
+
+	public TipoClaseAsiento getClase() {
+		return clase;
+	}
+
+	public void setClase(TipoClaseAsiento clase) {
+		this.clase = clase;
+	}
+
+	public TipoUbicacionAsiento getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(TipoUbicacionAsiento ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+	
 	
 	
 }
