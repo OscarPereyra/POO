@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 public class Buscador {
 	private double recargoUsuarioNoPago = 20;
-	public ArrayList<ArrayList<String>> busqueda(Usuario usuario,String origen,String fechaSalida, String horaSalida,String destino,String fechaLlegada,String horaLlegada,TipoClaseAsiento clase,UbicacionAsiento ubicacion) {
+	public ArrayList<ArrayList<String>> busqueda(Usuario usuario,Busqueda busqueda,TipoClaseAsiento clase,UbicacionAsiento ubicacion) {
 		AerolineaLanchita aerolinea = new  AerolineaLanchita();
 		ArrayList<TipoAsiento> asientosDisp = new ArrayList<TipoAsiento>();
 		ArrayList<ArrayList<String>> resultadoBusqueda = new ArrayList<ArrayList<String>>();
-		resultadoBusqueda = aerolinea.asientosDisponibles(origen,fechaSalida,horaSalida,destino,fechaLlegada,horaLlegada);
+		resultadoBusqueda = aerolinea.asientosDisponibles(busqueda.getOrigen(),busqueda.getFechaSalida(),busqueda.getHoraSalida(),busqueda.getDestino(),busqueda.getFechaLlegada(),busqueda.getHoraLlegada());
 		resultadoBusqueda.forEach(asiento -> asientosDisp.add(parsearAsiento(asiento)));
 		asientosDisp.forEach(asiento -> actualizarPrecioTotal(asiento, aerolinea,usuario));
 		filtrarPorClase(asientosDisp,clase);
