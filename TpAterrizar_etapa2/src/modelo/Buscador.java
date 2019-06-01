@@ -4,10 +4,9 @@ import java.util.ArrayList;
 //Datos de asientos = [Codigo asiento,precio asiento,clase(T-E-P),ubicacion(V-C-P),estado(R-D)]
 
 public class Buscador {
-	private double recargoUsuarioNoPago = 20;
+	private double impuestoLanchita = 0.15;	
 	
-	public ArrayList<ArrayList<String>> busqueda(Usuario usuario,Busqueda busqueda) {
-		AerolineaLanchita aerolinea = new  AerolineaLanchita();
+	public ArrayList<ArrayList<String>> busqueda(IAerolineaLanchita aerolinea,Usuario usuario,Busqueda busqueda) {
 		ArrayList<Asiento> asientosDisp = new ArrayList<Asiento>();
 		ArrayList<ArrayList<String>> resultadoBusqueda = new ArrayList<ArrayList<String>>();
 		resultadoBusqueda = aerolinea.asientosDisponibles(busqueda.getOrigen(),busqueda.getFechaSalida(),busqueda.getHoraSalida(),busqueda.getDestino(),busqueda.getFechaLlegada(),busqueda.getHoraLlegada());
@@ -82,12 +81,12 @@ public class Buscador {
 		return ((asiento.getClase().equals(TipoClaseAsiento.PRIMERA) && asiento.getPrecio()<8000)||(asiento.getClase().equals(TipoClaseAsiento.EJECUTIVA) && asiento.getPrecio()<4000));
 	}
 	
-	private void actualizarPrecioTotal(Asiento asiento,AerolineaLanchita aerolinea,Usuario usuario) {
+	private void actualizarPrecioTotal(Asiento asiento,IAerolineaLanchita aerolinea,Usuario usuario) {
 		if(usuario.esPago()) {
-			asiento.setPrecio(asiento.getPrecio()+(asiento.getPrecio()*aerolinea.getImpuesto()));
+			asiento.setPrecio(asiento.getPrecio()+(asiento.getPrecio()*this.impuestoLanchita));
 		}
 		else {
-			asiento.setPrecio((asiento.getPrecio()+(asiento.getPrecio()*aerolinea.getImpuesto())+recargoUsuarioNoPago));
+			asiento.setPrecio((asiento.getPrecio()+(asiento.getPrecio()*this.impuestoLanchita)+usuario.getRecargo()));
 		}
 	}
 }

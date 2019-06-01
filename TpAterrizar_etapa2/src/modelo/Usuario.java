@@ -14,4 +14,8 @@ public abstract class Usuario {
 	public void agregarBusqueda(Busqueda busqueda) {
 		busquedas.add(busqueda);
 	}
+	public Double getRecargo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
