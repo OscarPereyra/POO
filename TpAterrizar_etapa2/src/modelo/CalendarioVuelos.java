@@ -28,7 +28,7 @@ public class CalendarioVuelos {
 	public ArrayList<ArrayList<String>> busquedaVueloDisponible(Busqueda busqueda){
 		ArrayList<ArrayList<String>> resultado = new ArrayList<ArrayList<String>>();
 		
-		Vuelo vueloDisponible = this.calendarioActual.busquedaVueloDisponible(String. busqueda.getFechaSalida());
+		//Vuelo vueloDisponible = this.calendarioActual.busquedaVueloDisponible(String. busqueda.getFechaSalida());
 		
 		
 		

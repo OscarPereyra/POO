@@ -9,18 +9,8 @@ public class Busqueda {
 	private String horaLlegada;
 	private TipoClaseAsiento clase = null;
 	private TipoUbicacionAsiento ubicacion = null;	
-	
-	public Busqueda(String origen, String fechaSalida, String horaSalida, String destino, String fechaLlegada,String horaLlegada) {
-		//super();
-		this.origen = origen;
-		this.fechaSalida = fechaSalida;
-		this.horaSalida = horaSalida;
-		this.destino = destino;
-		this.fechaLlegada = fechaLlegada;
-		this.horaLlegada = horaLlegada;
-	}		
+		
 	public Busqueda(String origen, String fechaSalida, String horaSalida, String destino, String fechaLlegada,String horaLlegada, TipoClaseAsiento clase, TipoUbicacionAsiento ubicacion) {
-		super();
 		this.origen = origen;
 		this.fechaSalida = fechaSalida;
 		this.horaSalida = horaSalida;

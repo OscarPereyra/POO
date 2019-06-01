@@ -9,7 +9,6 @@ public abstract class Usuario {
 	abstract void comprar(Double monto);
 	
 	public Usuario() {
-		super();
 		this.busquedas = new ArrayList<Busqueda>();
 	}
 	public void agregarBusqueda(Busqueda busqueda) {

@@ -19,10 +19,7 @@ public class Buscador {
 		return resultadoBusqueda;
 	}
 	
-	public void comprarAsiento(Asiento asiento,IAerolineaLanchita aerolinea,Usuario usuario) {
-		
-		//NO hacer lo que sigue si falla la compra
-		
+	public void comprarAsiento(Asiento asiento,IAerolineaLanchita aerolinea,Usuario usuario)throws AsientoLanchitaNoDisponibleException {
 		try {
 			aerolinea.comprar(asiento.getCodigoAsiento());
 			usuario.comprar(asiento.getPrecio());
