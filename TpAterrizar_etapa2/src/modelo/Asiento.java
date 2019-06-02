@@ -5,21 +5,14 @@ public class Asiento {
 	private Double precio;
 	private TipoClaseAsiento clase;
 	private TipoUbicacionAsiento ubicacion;
-	private EstadoAsiento estado;
+	private Boolean estadoReservado;
 	
-	public Asiento(String codigoAsiento,Double precio,TipoClaseAsiento clase,TipoUbicacionAsiento ubicacion) {
+	public Asiento(String codigoAsiento,Double precio,TipoClaseAsiento clase,TipoUbicacionAsiento ubicacion,Boolean estado) {
 		this.codigoAsiento = codigoAsiento;
 		this.precio = precio;
 		this.clase = clase;
 		this.ubicacion = ubicacion;
-		this.estado = new AsientoDisponible();
-	}
-	public Asiento(String codigoAsiento,Double precio,TipoClaseAsiento clase,TipoUbicacionAsiento ubicacion,EstadoAsiento estado) {
-		this.codigoAsiento = codigoAsiento;
-		this.precio = precio;
-		this.clase = clase;
-		this.ubicacion = ubicacion;
-		this.estado = estado;
+		this.estadoReservado = estado;
 	}
 	public String getCodigoAsiento() {
 		return codigoAsiento;
@@ -45,10 +38,10 @@ public class Asiento {
 	public void setUbicacion(TipoUbicacionAsiento ubicacion) {
 		this.ubicacion = ubicacion;
 	}
-	public EstadoAsiento getEstado() {
-		return estado;
+	public Boolean getEstadoReservado() {
+		return estadoReservado;
 	}
-	public void setEstado(EstadoAsiento estado) {
-		this.estado = estado;
+	public void setEstadoReservado(Boolean estado) {
+		this.estadoReservado = estado;
 	}
 }

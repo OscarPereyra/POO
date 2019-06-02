@@ -4,8 +4,8 @@ import java.util.ArrayList;
 //Datos de asientos = [Codigo asiento,precio asiento,clase(T-E-P),ubicacion(V-C-P),estado(R-D)]
 
 public class Buscador {
-	private double impuestoLanchita = 0.15;	
-	
+	private Double impuestoLanchita = 0.15;	
+	private Double recargoUsuarioNoPago = 20.0;
 	public ArrayList<ArrayList<String>> busqueda(IAerolineaLanchita aerolinea,Usuario usuario,Busqueda busqueda) {
 		ArrayList<Asiento> asientosDisp = new ArrayList<Asiento>();
 		ArrayList<ArrayList<String>> resultadoBusqueda = new ArrayList<ArrayList<String>>();
@@ -28,6 +28,10 @@ public class Buscador {
 		}
 	}
 	
+	public void reservarAsiento(Asiento asiento,Usuario usuario,Aerolinea aerolinea) {
+		aerolinea.reservar(usuario, asiento);
+	}
+	
 	private void filtrarPorClase(ArrayList<Asiento> asientos,TipoClaseAsiento clase) {
 		if(clase!=null) {asientos.removeIf(asiento -> asiento.getClase().equals(clase));}
 	}
@@ -41,14 +45,18 @@ public class Buscador {
 		Double precio = Double.parseDouble(asiento.get(1));
 		TipoClaseAsiento clase = tipoAsiento(asiento.get(2));
 		TipoUbicacionAsiento ubicacion = ubicacionAsiento(asiento.get(3));
-		EstadoAsiento estado = null;
-		if(asiento.get(4) == "D") {
-			estado = new AsientoDisponible();
+		Boolean estadoReservado = estadoAsiento(asiento.get(4));
+		return new Asiento(codigoAsiento,precio,clase,ubicacion,estadoReservado);
+	}
+	
+	private Boolean estadoAsiento(String estado) {
+		if(estado == "D") {
+			return true;
 		}
-		else if(asiento.get(4)=="R") {
-			estado = new AsientoReservado();
+		else if(estado =="R") {
+			return false;
 		}
-		return new Asiento(codigoAsiento,precio,clase,ubicacion,estado);
+		return null;
 	}
 	
 	private TipoClaseAsiento tipoAsiento(String clase) {
@@ -86,7 +94,7 @@ public class Buscador {
 			asiento.setPrecio(asiento.getPrecio()+(asiento.getPrecio()*this.impuestoLanchita));
 		}
 		else {
-			asiento.setPrecio((asiento.getPrecio()+(asiento.getPrecio()*this.impuestoLanchita)+usuario.getRecargo()));
+			asiento.setPrecio((asiento.getPrecio()+(asiento.getPrecio()*this.impuestoLanchita)+recargoUsuarioNoPago));
 		}
 	}
 }

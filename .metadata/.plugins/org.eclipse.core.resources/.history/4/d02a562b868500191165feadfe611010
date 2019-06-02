@@ -1,0 +1,20 @@
+package modelo;
+
+public class AerolineaLanchita extends Aerolinea{
+	
+	@Override
+	void reservar(Usuario usuario, Asiento asiento) {
+		
+	}
+
+	@Override
+	void comprar(Usuario usuario, Asiento asiento) {
+		
+	}
+
+	@Override
+	void asientosDisponibles() {
+		
+	}
+
+}

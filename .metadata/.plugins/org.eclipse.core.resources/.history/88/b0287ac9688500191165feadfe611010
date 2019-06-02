@@ -1,0 +1,12 @@
+package modelo;
+
+import java.util.Dictionary;
+
+public abstract class Aerolinea {
+	private double impuestoPasajes;
+	private Dictionary sobrereservas = new Dictionary();
+	abstract void reservar(Usuario usuario,Asiento asiento);
+	abstract void comprar(Usuario usuario,Asiento asiento);
+	abstract void asientosDisponibles();
+	
+}

@@ -1,12 +1,9 @@
 package modelo;
 
 public class UsuarioEstandar extends Usuario {
-	private String nombre;
-	private String apellido;
-	private int DNI;
 	private double montoTotalCompras = 0;
-	public UsuarioEstandar(){
-		
+	public UsuarioEstandar(String DNI){
+		this.DNI = DNI;
 	}
 	@Override
 	public boolean esVip() {

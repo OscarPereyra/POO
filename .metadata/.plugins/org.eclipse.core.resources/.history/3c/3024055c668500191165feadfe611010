@@ -1,0 +1,6 @@
+package modelo;
+
+public abstract class Aerolinea {
+	private double impuestoPasajes;
+	private abstract void reservar(Usuario usuario,Asiento asiento);
+}
