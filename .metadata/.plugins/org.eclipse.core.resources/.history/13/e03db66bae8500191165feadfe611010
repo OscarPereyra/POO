@@ -11,6 +11,7 @@ public class AerolineaLanchita extends Aerolinea{
 		}
 		else {
 			lanchita.reservar(asiento.getCodigoAsiento(),usuario.getDNI());
+			asientosSobreReservados.add(new AsientoReservado(asiento,usuario));
 		}
 	}
 
@@ -19,7 +20,6 @@ public class AerolineaLanchita extends Aerolinea{
 		try {
 			lanchita.comprar(asiento.getCodigoAsiento());
 			usuario.comprar(asiento.getPrecio());
-			limpiarSobreReservas(asiento.getCodigoAsiento());
 		}
 		catch (AsientoLanchitaNoDisponibleException e) {
 			System.out.println("Error al comprar el asiento");
@@ -35,16 +35,15 @@ public class AerolineaLanchita extends Aerolinea{
 	}
 	
 	@Override
-	void actualizarSobreReservas(String codigoAsiento) {
-		ArrayList<AsientoReservado> reservasFiltradas = (ArrayList<AsientoReservado>) asientosSobreReservados.stream().filter(reserva -> reserva.getAsiento().getCodigoAsiento().equals(codigoAsiento));
-		if(!reservasFiltradas.isEmpty()) {
-			lanchita.reservar(reservasFiltradas.get(0).getAsiento().getCodigoAsiento(), reservasFiltradas.get(0).getUsuario().getDNI());
-			asientosSobreReservados.remove(reservasFiltradas.get(0));
-		}
+	void actualizarSobreReservas() {
+		asientosSobreReservados.forEach(asientoReservado -> actualizarReservaIndividual(asientoReservado));
 	}
 	
-	private void limpiarSobreReservas(String codigoAsiento) {
-		asientosSobreReservados.removeIf(reserva -> reserva.getAsiento().getCodigoAsiento().equals(codigoAsiento));
+	private void actualizarReservaIndividual(AsientoReservado asientoReservado) {
+		if(!asientoReservado.getAsiento().getEstadoReservado()) {
+			asientosSobreReservados.remove(asientoReservado);
+			lanchita.reservar(asientoReservado.getAsiento().getCodigoAsiento(),asientoReservado.getUsuario().getDNI());
+		}
 	}
 	
 	private Asiento parsearAsiento(ArrayList<String> asiento){

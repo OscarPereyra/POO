@@ -36,16 +36,15 @@ public class AerolineaLanchita extends Aerolinea{
 	
 	@Override
 	void actualizarSobreReservas(String codigoAsiento) {
-		ArrayList<AsientoReservado> reservasFiltradas = (ArrayList<AsientoReservado>) asientosSobreReservados.stream().filter(reserva -> reserva.getAsiento().getCodigoAsiento().equals(codigoAsiento));
-		if(!reservasFiltradas.isEmpty()) {
-			lanchita.reservar(reservasFiltradas.get(0).getAsiento().getCodigoAsiento(), reservasFiltradas.get(0).getUsuario().getDNI());
-			asientosSobreReservados.remove(reservasFiltradas.get(0));
+		ArrayList<AsientoReservado> asientosFiltrados = (ArrayList<AsientoReservado>) asientosSobreReservados.stream().filter(asiento -> asiento.getAsiento().getCodigoAsiento().equals(codigoAsiento));
+		if(!asientosFiltrados.isEmpty()) {
+			lanchita.reservar(asientosFiltrados.get(0).getAsiento().getCodigoAsiento(), asientosFiltrados.get(0).getUsuario().getDNI());
+			asientosSobreReservados.remove(asientosFiltrados.get(0));
 		}
 	}
 	
 	private void limpiarSobreReservas(String codigoAsiento) {
 		asientosSobreReservados.removeIf(reserva -> reserva.getAsiento().getCodigoAsiento().equals(codigoAsiento));
-	}
 	
 	private Asiento parsearAsiento(ArrayList<String> asiento){
 		String codigoAsiento = asiento.get(0);

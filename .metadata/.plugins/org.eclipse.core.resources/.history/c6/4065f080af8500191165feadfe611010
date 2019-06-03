@@ -25,7 +25,7 @@ public class Buscador {
 	}
 	
 	public void actualizarSobreReservas(Aerolinea aerolinea,String codigoAsiento) {
-		aerolinea.actualizarSobreReservas(codigoAsiento);
+		aerolinea.actu
 	}
 	
 	private void filtrarPorClase(ArrayList<Asiento> asientos,TipoClaseAsiento clase) {

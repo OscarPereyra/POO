@@ -3,48 +3,28 @@ package modelo;
 import java.util.ArrayList;
 
 public class AerolineaLanchita extends Aerolinea{
-	IAerolineaLanchita lanchita;
+	IAerolineaLanchita aerolinea;
 	@Override
 	void reservar(Usuario usuario, Asiento asiento) {
 		if(asiento.getEstadoReservado()) {
-			asientosSobreReservados.add(new AsientoReservado(asiento,usuario));
+			asientosReservados.add(new AsientoReservado(asiento,usuario));
 		}
 		else {
-			lanchita.reservar(asiento.getCodigoAsiento(),usuario.getDNI());
+			aerolinea.reservar(asiento.getCodigoAsiento(),usuario.getDNI());
 		}
 	}
 
 	@Override
 	void comprar(Usuario usuario, Asiento asiento) {
-		try {
-			lanchita.comprar(asiento.getCodigoAsiento());
-			usuario.comprar(asiento.getPrecio());
-			limpiarSobreReservas(asiento.getCodigoAsiento());
-		}
-		catch (AsientoLanchitaNoDisponibleException e) {
-			System.out.println("Error al comprar el asiento");
-		}
+		
 	}
 
 	@Override
 	ArrayList<Asiento> asientosDisponibles(String origen, String fechaSalida, String horaSalida, String destino, String fechaLlegada, String horaLlegada) {
-		ArrayList<ArrayList<String>> resultadoBusqueda = lanchita.asientosDisponibles(horaLlegada, horaLlegada, horaLlegada, horaLlegada, horaLlegada, horaLlegada);
+		ArrayList<ArrayList<String>> resultadoBusqueda = aerolinea.asientosDisponibles(horaLlegada, horaLlegada, horaLlegada, horaLlegada, horaLlegada, horaLlegada);
 		ArrayList<Asiento> asientosDisponibles = new ArrayList<Asiento>();
 		resultadoBusqueda.forEach(asiento -> asientosDisponibles.add(parsearAsiento(asiento)));
 		return asientosDisponibles;
-	}
-	
-	@Override
-	void actualizarSobreReservas(String codigoAsiento) {
-		ArrayList<AsientoReservado> reservasFiltradas = (ArrayList<AsientoReservado>) asientosSobreReservados.stream().filter(reserva -> reserva.getAsiento().getCodigoAsiento().equals(codigoAsiento));
-		if(!reservasFiltradas.isEmpty()) {
-			lanchita.reservar(reservasFiltradas.get(0).getAsiento().getCodigoAsiento(), reservasFiltradas.get(0).getUsuario().getDNI());
-			asientosSobreReservados.remove(reservasFiltradas.get(0));
-		}
-	}
-	
-	private void limpiarSobreReservas(String codigoAsiento) {
-		asientosSobreReservados.removeIf(reserva -> reserva.getAsiento().getCodigoAsiento().equals(codigoAsiento));
 	}
 	
 	private Asiento parsearAsiento(ArrayList<String> asiento){

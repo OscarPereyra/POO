@@ -5,15 +5,16 @@ import java.util.ArrayList;
 
 public class Buscador {	
 	private Double recargoUsuarioNoPago = 20.0;
-	
-	public ArrayList<Asiento> busqueda(Aerolinea aerolinea,Usuario usuario,Busqueda busqueda) {
+	public ArrayList<ArrayList<String>> busqueda(IAerolineaLanchita aerolinea,Usuario usuario,Busqueda busqueda) {
 		ArrayList<Asiento> asientosDisp = new ArrayList<Asiento>();
-		asientosDisp = aerolinea.asientosDisponibles(busqueda.getOrigen(),busqueda.getFechaSalida(),busqueda.getHoraSalida(),busqueda.getDestino(),busqueda.getFechaLlegada(),busqueda.getHoraLlegada());
+		ArrayList<ArrayList<String>> resultadoBusqueda = new ArrayList<ArrayList<String>>();
+		resultadoBusqueda = aerolinea.asientosDisponibles(busqueda.getOrigen(),busqueda.getFechaSalida(),busqueda.getHoraSalida(),busqueda.getDestino(),busqueda.getFechaLlegada(),busqueda.getHoraLlegada());
+		resultadoBusqueda.forEach(asiento -> asientosDisp.add(parsearAsiento(asiento)));
 		asientosDisp.forEach(asiento -> actualizarPrecioTotal(asiento, aerolinea,usuario));
 		filtrarPorClase(asientosDisp,busqueda.getClase());
 		filtrarPorUbicacion(asientosDisp,busqueda.getUbicacion());
 		if(!usuario.esVip()) {asientosDisp.removeIf(asiento -> esSuperOferta(asiento,aerolinea));}
-		return asientosDisp;
+		return resultadoBusqueda;
 	}
 	
 	public void comprarAsiento(Asiento asiento,Aerolinea aerolinea,Usuario usuario)throws AsientoLanchitaNoDisponibleException {
@@ -24,16 +25,57 @@ public class Buscador {
 		aerolinea.reservar(usuario, asiento);
 	}
 	
-	public void actualizarSobreReservas(Aerolinea aerolinea,String codigoAsiento) {
-		aerolinea.actualizarSobreReservas(codigoAsiento);
-	}
-	
 	private void filtrarPorClase(ArrayList<Asiento> asientos,TipoClaseAsiento clase) {
 		if(clase!=null) {asientos.removeIf(asiento -> asiento.getClase().equals(clase));}
 	}
 	
 	private void filtrarPorUbicacion(ArrayList<Asiento> asientos,TipoUbicacionAsiento ubicacion) {
 		if(ubicacion!=null) {asientos.removeIf(asiento -> asiento.getUbicacion().equals(ubicacion));}
+	}
+	
+	private Asiento parsearAsiento(ArrayList<String> asiento){
+		String codigoAsiento = asiento.get(0);
+		Double precio = Double.parseDouble(asiento.get(1));
+		TipoClaseAsiento clase = tipoAsiento(asiento.get(2));
+		TipoUbicacionAsiento ubicacion = ubicacionAsiento(asiento.get(3));
+		Boolean estadoReservado = estadoAsiento(asiento.get(4));
+		return new Asiento(codigoAsiento,precio,clase,ubicacion,estadoReservado);
+	}
+	
+	private Boolean estadoAsiento(String estado) {
+		if(estado == "D") {
+			return true;
+		}
+		else if(estado =="R") {
+			return false;
+		}
+		return null;
+	}
+	
+	private TipoClaseAsiento tipoAsiento(String clase) {
+		switch (clase){
+		case "T":
+			return TipoClaseAsiento.TURISTA;
+		case "E":
+			return TipoClaseAsiento.EJECUTIVA;
+		case "P":
+			return TipoClaseAsiento.PRIMERA;
+		default:
+			return null;
+		}
+	}
+	
+	private TipoUbicacionAsiento ubicacionAsiento(String ubicacion) {
+		switch (ubicacion){
+		case "V":
+			return TipoUbicacionAsiento.VENTANILLA;
+		case "C":
+			return TipoUbicacionAsiento.CENTRO;
+		case "P":
+			return TipoUbicacionAsiento.PASILLO;
+		default:
+			return null;
+		}
 	}
 	
 	private boolean esSuperOferta(Asiento asiento, Aerolinea aerolinea) {

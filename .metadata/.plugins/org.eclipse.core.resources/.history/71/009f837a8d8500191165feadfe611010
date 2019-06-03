@@ -1,0 +1,60 @@
+package modelo;
+
+public class AerolineaLanchita extends Aerolinea{
+	IAerolineaLanchita aerolinea;
+	@Override
+	void reservar(Usuario usuario, Asiento asiento) {
+		if(asiento.getEstadoReservado()) {
+			asientosReservados.add(new AsientoReservado(asiento,usuario));
+		}
+		else {
+			aerolinea.reservar(asiento.getCodigoAsiento(),usuario.getDNI());
+		}
+	}
+
+	@Override
+	void comprar(Usuario usuario, Asiento asiento) {
+		
+	}
+
+	@Override
+	ArrayList<Asiento> asientosDisponibles() {
+		
+	}
+	
+	private Boolean estadoAsiento(String estado) {
+		if(estado == "D") {
+			return true;
+		}
+		else if(estado =="R") {
+			return false;
+		}
+		return null;
+	}
+	
+	private TipoClaseAsiento tipoAsiento(String clase) {
+		switch (clase){
+		case "T":
+			return TipoClaseAsiento.TURISTA;
+		case "E":
+			return TipoClaseAsiento.EJECUTIVA;
+		case "P":
+			return TipoClaseAsiento.PRIMERA;
+		default:
+			return null;
+		}
+	}
+	
+	private TipoUbicacionAsiento ubicacionAsiento(String ubicacion) {
+		switch (ubicacion){
+		case "V":
+			return TipoUbicacionAsiento.VENTANILLA;
+		case "C":
+			return TipoUbicacionAsiento.CENTRO;
+		case "P":
+			return TipoUbicacionAsiento.PASILLO;
+		default:
+			return null;
+		}
+	}
+}

@@ -5,15 +5,15 @@ import java.util.ArrayList;
 
 public class Buscador {	
 	private Double recargoUsuarioNoPago = 20.0;
-	
 	public ArrayList<Asiento> busqueda(Aerolinea aerolinea,Usuario usuario,Busqueda busqueda) {
 		ArrayList<Asiento> asientosDisp = new ArrayList<Asiento>();
 		asientosDisp = aerolinea.asientosDisponibles(busqueda.getOrigen(),busqueda.getFechaSalida(),busqueda.getHoraSalida(),busqueda.getDestino(),busqueda.getFechaLlegada(),busqueda.getHoraLlegada());
+		resultadoBusqueda.forEach(asiento -> asientosDisp.add(parsearAsiento(asiento)));
 		asientosDisp.forEach(asiento -> actualizarPrecioTotal(asiento, aerolinea,usuario));
 		filtrarPorClase(asientosDisp,busqueda.getClase());
 		filtrarPorUbicacion(asientosDisp,busqueda.getUbicacion());
 		if(!usuario.esVip()) {asientosDisp.removeIf(asiento -> esSuperOferta(asiento,aerolinea));}
-		return asientosDisp;
+		return resultadoBusqueda;
 	}
 	
 	public void comprarAsiento(Asiento asiento,Aerolinea aerolinea,Usuario usuario)throws AsientoLanchitaNoDisponibleException {
@@ -22,10 +22,6 @@ public class Buscador {
 	
 	public void reservarAsiento(Asiento asiento,Usuario usuario,Aerolinea aerolinea) {
 		aerolinea.reservar(usuario, asiento);
-	}
-	
-	public void actualizarSobreReservas(Aerolinea aerolinea,String codigoAsiento) {
-		aerolinea.actualizarSobreReservas(codigoAsiento);
 	}
 	
 	private void filtrarPorClase(ArrayList<Asiento> asientos,TipoClaseAsiento clase) {

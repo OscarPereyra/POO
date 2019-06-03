@@ -8,7 +8,7 @@ public abstract class Aerolinea {
 	abstract void reservar(Usuario usuario,Asiento asiento);
 	abstract void comprar(Usuario usuario,Asiento asiento);
 	abstract ArrayList<Asiento> asientosDisponibles(String origen, String fechaSalida, String horaSalida, String destino, String fechaLlegada, String horaLlegada);
-	abstract void actualizarSobreReservas(String codigoAsiento);
+	abstract void actualizarSobreReservas();
 	public double getImpuestoPasajes() {
 		return impuestoPasajes;
 	}
