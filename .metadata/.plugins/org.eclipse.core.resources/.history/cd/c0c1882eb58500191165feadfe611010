@@ -35,7 +35,7 @@ public class AerolineaLanchita extends Aerolinea{
 	}
 	
 	@Override
-	void transferirReserva(String codigoAsiento) {
+	void actualizarSobreReservas(String codigoAsiento) {
 		ArrayList<AsientoReservado> reservasFiltradas = (ArrayList<AsientoReservado>) asientosSobreReservados.stream().filter(reserva -> reserva.getAsiento().getCodigoAsiento().equals(codigoAsiento));
 		if(!reservasFiltradas.isEmpty()) {
 			lanchita.reservar(reservasFiltradas.get(0).getAsiento().getCodigoAsiento(), reservasFiltradas.get(0).getUsuario().getDNI());
