@@ -12,6 +12,7 @@ public class Buscador {
 		asientosDisp.forEach(asiento -> actualizarPrecioTotal(asiento, aerolinea,usuario));
 		filtrarPorClase(asientosDisp,busqueda.getClase());
 		filtrarPorUbicacion(asientosDisp,busqueda.getUbicacion());
+		filtrarPorPrecio(asientosDisp, busqueda.getPreciomin(), busqueda.getPrecioMax);
 		if(!usuario.esVip()) {asientosDisp.removeIf(asiento -> esSuperOferta(asiento,aerolinea));}
 		return asientosDisp;
 	}
@@ -35,7 +36,14 @@ public class Buscador {
 	private void filtrarPorUbicacion(ArrayList<Asiento> asientos,TipoUbicacionAsiento ubicacion) {
 		if(ubicacion!=null) {asientos.removeIf(asiento -> asiento.getUbicacion().equals(ubicacion));}
 	}
-	
+	private void filtrarPorPrecio(ArrayList<Asiento> asientos, Double precioMin, Double precioMax) {
+		if(precioMin<precioMax) {
+			asientos.removeIf(asiento -> noEstaEnRango(asiento.getPrecio(), precioMin, precioMax));
+		}
+	}	
+	private boolean noEstaEnRango(Double precio, Double precioMin, Double precioMax) {
+		return (precioMin<precio && precio<precioMax);
+	}
 	private boolean esSuperOferta(Asiento asiento, Aerolinea aerolinea) {
 		return ((asiento.getClase().equals(TipoClaseAsiento.PRIMERA) && asiento.getPrecio()<8000)||(asiento.getClase().equals(TipoClaseAsiento.EJECUTIVA) && asiento.getPrecio()<4000));
 	}

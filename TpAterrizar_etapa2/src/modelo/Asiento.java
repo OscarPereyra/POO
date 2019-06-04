@@ -17,6 +17,12 @@ public class Asiento {
 	public String getCodigoAsiento() {
 		return codigoAsiento;
 	}
+	public String getVuelo() {
+		return getCodigoAsiento().substring(0, 5);
+	}
+	public int numeroAsiento() {
+		return Integer.parseInt(getCodigoAsiento().substring(7));
+	}
 	public void setCodigoAsiento(String codigoAsiento) {
 		this.codigoAsiento = codigoAsiento;
 	}

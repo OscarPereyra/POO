@@ -7,6 +7,8 @@ public class Busqueda {
 	private String destino;
 	private String fechaLlegada; 
 	private String horaLlegada;
+	private Double precioMin;
+	private Double precioMax;
 	private TipoClaseAsiento clase = null;
 	private TipoUbicacionAsiento ubicacion = null;	
 		
@@ -73,7 +75,29 @@ public class Busqueda {
 	public void setUbicacion(TipoUbicacionAsiento ubicacion) {
 		this.ubicacion = ubicacion;
 	}
-	
-	
+
+	public Double getPrecioMin() {
+		return precioMin;
+	}
+
+	public void setPrecioMin(Double precioMin) {
+		if(precioMin!=null){
+			this.precioMin = precioMin;
+		}else {
+			this.precioMin = 0.0;
+		}		
+	}
+
+	public Double getPrecioMax() {
+		return precioMax;
+	}
+
+	public void setPrecioMax(Double precioMax) {
+		if(precioMax!=null){
+			this.precioMax = precioMax;
+		}else {
+			this.precioMax = 100000.0;
+		}
+	}
 	
 }
