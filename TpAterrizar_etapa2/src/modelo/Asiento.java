@@ -1,18 +1,36 @@
 package modelo;
 
+import java.util.Date;
+
 public class Asiento {
 	private String codigoAsiento;
 	private Double precio;
 	private TipoClaseAsiento clase;
 	private TipoUbicacionAsiento ubicacion;
 	private Boolean estadoReservado;
+	private Date fechaSalida;
+	private Date fechaLlegada;
 	
-	public Asiento(String codigoAsiento,Double precio,TipoClaseAsiento clase,TipoUbicacionAsiento ubicacion,Boolean estado) {
+	public Date getFechaSalida() {
+		return fechaSalida;
+	}
+	public void setFechaSalida(Date fechaSalida) {
+		this.fechaSalida = fechaSalida;
+	}
+	public Date getFechallegada() {
+		return fechaLlegada;
+	}
+	public void setFechallegada(Date fechallegada) {
+		this.fechaLlegada = fechallegada;
+	}
+	public Asiento(String codigoAsiento,Double precio,TipoClaseAsiento clase,TipoUbicacionAsiento ubicacion,Boolean estado,Date fechaSalida,Date fechaLlegada) {
 		this.codigoAsiento = codigoAsiento;
 		this.precio = precio;
 		this.clase = clase;
 		this.ubicacion = ubicacion;
 		this.estadoReservado = estado;
+		this.fechaSalida = fechaSalida;
+		this.fechaLlegada = fechaLlegada;
 	}
 	public String getCodigoAsiento() {
 		return codigoAsiento;
@@ -49,5 +67,8 @@ public class Asiento {
 	}
 	public void setEstadoReservado(Boolean estado) {
 		this.estadoReservado = estado;
+	}
+	public Long getTiempoDeVuelo() {
+		return null;
 	}
 }

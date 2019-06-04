@@ -1,9 +1,12 @@
 package modelo;
 
+import java.sql.Date;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class AerolineaLanchita extends Aerolinea{
 	IAerolineaLanchita lanchita;
+	Fecha fecha = new Fecha();
 	@Override
 	void reservar(Usuario usuario, Asiento asiento) {
 		if(asiento.getEstadoReservado()) {
@@ -31,7 +34,13 @@ public class AerolineaLanchita extends Aerolinea{
 	ArrayList<Asiento> asientosDisponibles(String origen, String fechaSalida, String horaSalida, String destino, String fechaLlegada, String horaLlegada) {
 		ArrayList<ArrayList<String>> resultadoBusqueda = lanchita.asientosDisponibles(horaLlegada, horaLlegada, horaLlegada, horaLlegada, horaLlegada, horaLlegada);
 		ArrayList<Asiento> asientosDisponibles = new ArrayList<Asiento>();
-		resultadoBusqueda.forEach(asiento -> asientosDisponibles.add(parsearAsiento(asiento)));
+		resultadoBusqueda.forEach(asiento -> {
+			try {
+				asientosDisponibles.add(parsearAsiento(asiento));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		});
 		return asientosDisponibles;
 	}
 	
@@ -48,13 +57,15 @@ public class AerolineaLanchita extends Aerolinea{
 		asientosSobreReservados.removeIf(reserva -> reserva.getAsiento().getCodigoAsiento().equals(codigoAsiento));
 	}
 	
-	private Asiento parsearAsiento(ArrayList<String> asiento){
+	private Asiento parsearAsiento(ArrayList<String> asiento) throws ParseException{
 		String codigoAsiento = asiento.get(0);
 		Double precio = Double.parseDouble(asiento.get(1));
 		TipoClaseAsiento clase = tipoAsiento(asiento.get(2));
 		TipoUbicacionAsiento ubicacion = ubicacionAsiento(asiento.get(3));
 		Boolean estadoReservado = estadoAsiento(asiento.get(4));
-		return new Asiento(codigoAsiento,precio,clase,ubicacion,estadoReservado);
+		Date fechaSalida = (Date) fecha.convertirALatinoamericano(asiento.get(5)) ;
+		Date fechaLlegada = (Date) fecha.convertirALatinoamericano(asiento.get(6));
+		return new Asiento(codigoAsiento,precio,clase,ubicacion,estadoReservado,fechaSalida,fechaLlegada);
 	}
 	
 	private Boolean estadoAsiento(String estado) {

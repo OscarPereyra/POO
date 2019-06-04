@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public abstract class Aerolinea {
 	protected double impuestoPasajes;
+	protected Fecha fecha = new Fecha();
 	protected ArrayList<AsientoReservado> asientosSobreReservados = new ArrayList<AsientoReservado>();
 	abstract void reservar(Usuario usuario,Asiento asiento);
 	abstract void comprar(Usuario usuario,Asiento asiento)throws Exception;

@@ -1,5 +1,7 @@
 package modelo;
 
+import java.sql.Date;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class AerolineaOceanic extends Aerolinea{
@@ -14,25 +16,10 @@ public class AerolineaOceanic extends Aerolinea{
 		}
 		return codigo;
 	}
-	
-	public ArrayList<AsientoDTO> asientosDisponiblesPorOrigen(String origen, String fechaSalida){
-		ArrayList<AsientoDTO> disponibles = null;
-		if((origen!=null) && (fechaSalida!=null)) {
-			origen = formatoCiudad(origen);
-			disponibles = oceanic.asientosDisponiblesParaOrigen(origen, fechaSalida);
-		}			
-		return disponibles;		
-	}
-	
-	public ArrayList<AsientoDTO> asientosDisponiblesPorOrigenYDestino(String origen, String fechaSalida, String destino){
-		ArrayList<AsientoDTO> disponibles = null;
-		if((origen!=null) && (fechaSalida!=null) && (destino!=null)) {
-			origen = formatoCiudad(origen);
-			destino = formatoCiudad(destino);
-			disponibles = oceanic.asientosDisponiblesParaOrigenYDestino(origen, fechaSalida, destino);
-		}			
-		return disponibles;		
-	}
+	private Asiento convertir(AsientoDTO asientoDTO) throws ParseException {
+		String codigoAsiento = asientoDTO.getCodigoVuelo().concat(Integer.toString(asientoDTO.getNumeroAsiento()));
+		return new Asiento(codigoAsiento,asientoDTO.getPrecio(),asientoDTO.getClase(),asientoDTO.getUbicacion(),false,(Date) fecha.convertirALatinoamericano(asientoDTO.getFechaSalida()),asientoDTO.getFechaLlegada());		
+	}	
 
 	@Override
 	void reservar(Usuario usuario, Asiento asiento) {
@@ -49,8 +36,32 @@ public class AerolineaOceanic extends Aerolinea{
 	@Override
 	ArrayList<Asiento> asientosDisponibles(String origen, String fechaSalida, String horaSalida, String destino,
 			String fechaLlegada, String horaLlegada) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Asiento> asientosDisponibles = new ArrayList<Asiento>();
+		ArrayList<AsientoDTO> disponibles = null;
+		if((origen!=null) && (fechaSalida!=null) && (destino==null)) {
+			origen = formatoCiudad(origen);
+			disponibles = oceanic.asientosDisponiblesParaOrigen(origen, fechaSalida);
+			disponibles.forEach(asiento -> {
+				try {
+					asientosDisponibles.add(convertir(asiento));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			});
+			
+		}else if((origen!=null) && (fechaSalida!=null) && (destino!=null)) {
+			origen = formatoCiudad(origen);
+			destino = formatoCiudad(destino);
+			disponibles = oceanic.asientosDisponiblesParaOrigenYDestino(origen, fechaSalida, destino);
+			disponibles.forEach(asiento -> {
+				try {
+					asientosDisponibles.add(convertir(asiento));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			});
+		}		
+		return asientosDisponibles;
 	}
 
 	@Override

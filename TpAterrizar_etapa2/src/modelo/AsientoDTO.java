@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.Date;
+
 public class AsientoDTO {
 	private String codigoVuelo;
 	private int numeroAsiento;
@@ -8,9 +10,16 @@ public class AsientoDTO {
 	private double precio;
 	private TipoClaseAsiento clase;
 	private TipoUbicacionAsiento ubicacion;
+	private Date fechaLlegada;
 	
 	public String getCodigoVuelo() {
 		return codigoVuelo;
+	}
+	public Date getFechaLlegada() {
+		return fechaLlegada;
+	}
+	public void setFechaLlegada(Date fechaLlegada) {
+		this.fechaLlegada = fechaLlegada;
 	}
 	public void setCodigoVuelo(String codigoVuelo) {
 		this.codigoVuelo = codigoVuelo;

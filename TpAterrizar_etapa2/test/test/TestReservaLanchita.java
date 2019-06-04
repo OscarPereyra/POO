@@ -16,7 +16,7 @@ public class TestReservaLanchita {
 		Buscador buscador = new Buscador();
 		System.out.println("Creo el buscador");
 		IAerolineaLanchita mockLanchita = mock(IAerolineaLanchita.class);
-		System.out.println("Mocketo lanchita");
+		System.out.println("Mockeo lanchita");
 		ArrayList<ArrayList<String>> asientosLanchita = lanchitaAsientos();
 		when(mockLanchita.asientosDisponibles(anyString(), anyString(), anyString(), anyString(), anyString(), anyString())).thenReturn(asientosLanchita);
 		System.out.println("Agrego comportamiento");

@@ -87,16 +87,16 @@ public class Busqueda {
 			this.precioMin = 0.0;
 		}		
 	}
-
+	
 	public Double getPrecioMax() {
 		return precioMax;
 	}
-
+	
 	public void setPrecioMax(Double precioMax) {
 		if(precioMax!=null){
 			this.precioMax = precioMax;
 		}else {
-			this.precioMax = 100000.0;
+			this.precioMax = -1.0;
 		}
 	}
 	

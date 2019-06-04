@@ -12,8 +12,9 @@ public class Buscador {
 		asientosDisp.forEach(asiento -> actualizarPrecioTotal(asiento, aerolinea,usuario));
 		filtrarPorClase(asientosDisp,busqueda.getClase());
 		filtrarPorUbicacion(asientosDisp,busqueda.getUbicacion());
-		filtrarPorPrecio(asientosDisp, busqueda.getPreciomin(), busqueda.getPrecioMax);
+		filtrarPorPrecio(asientosDisp, busqueda.getPrecioMin(), busqueda.getPrecioMax());
 		if(!usuario.esVip()) {asientosDisp.removeIf(asiento -> esSuperOferta(asiento,aerolinea));}
+		usuario.agregarBusqueda(busqueda);
 		return asientosDisp;
 	}
 	
