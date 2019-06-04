@@ -1,9 +1,13 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class UsuarioEstandar extends Usuario {
 	private double montoTotalCompras = 0;
-	public UsuarioEstandar(String DNI){
+	public UsuarioEstandar(String nombre,String DNI){
+		this.nombre = nombre;
 		this.DNI = DNI;
+		this.busquedas = new ArrayList<Busqueda>();
 	}
 	@Override
 	public boolean esVip() {

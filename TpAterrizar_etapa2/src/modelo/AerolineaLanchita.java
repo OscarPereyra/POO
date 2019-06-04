@@ -11,6 +11,7 @@ public class AerolineaLanchita extends Aerolinea{
 		}
 		else {
 			lanchita.reservar(asiento.getCodigoAsiento(),usuario.getDNI());
+			asientosSobreReservados.add(new AsientoReservado(asiento,usuario));
 		}
 	}
 

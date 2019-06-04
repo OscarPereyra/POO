@@ -11,9 +11,6 @@ public abstract class Usuario {
 	abstract boolean esPago();
 	abstract void comprar(Double monto);
 	
-	public Usuario() {
-		this.busquedas = new ArrayList<Busqueda>();
-	}
 	public void agregarBusqueda(Busqueda busqueda) {
 		busquedas.add(busqueda);
 	}
