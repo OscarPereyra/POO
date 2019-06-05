@@ -5,19 +5,23 @@ import java.util.ArrayList;
 
 public class Buscador {	
 	private Double recargoUsuarioNoPago = 20.0;
-	
+	//lista de aerolineas para todo el buscador
+	//recorrer todas las aerolineas y buscar los asientos disponibles de todas las aerolineas interfaz en comun
 	public ArrayList<Asiento> busqueda(Aerolinea aerolinea,Usuario usuario,Busqueda busqueda) {
 		ArrayList<Asiento> asientosDisp = new ArrayList<Asiento>();
+		//pasarle solo busqueda
+		//test de asientos disponibles con atributos nulos
 		asientosDisp = aerolinea.asientosDisponibles(busqueda.getOrigen(),busqueda.getFechaSalida(),busqueda.getHoraSalida(),busqueda.getDestino(),busqueda.getFechaLlegada(),busqueda.getHoraLlegada());
 		asientosDisp.forEach(asiento -> actualizarPrecioTotal(asiento, aerolinea,usuario));
-		filtrarPorClase(asientosDisp,busqueda.getClase());
+		busqueda.getFiltros().forEach(filtro -> filtro.aplicarFiltro());
+		/*filtrarPorClase(asientosDisp,busqueda.getClase());
 		filtrarPorUbicacion(asientosDisp,busqueda.getUbicacion());
-		filtrarPorPrecio(asientosDisp, busqueda.getPrecioMin(), busqueda.getPrecioMax());
+		filtrarPorPrecio(asientosDisp, busqueda.getPrecioMin(), busqueda.getPrecioMax());*/
 		if(!usuario.esVip()) {asientosDisp.removeIf(asiento -> esSuperOferta(asiento,aerolinea));}
 		usuario.agregarBusqueda(busqueda);
 		return asientosDisp;
 	}
-	
+	//mover comprar y reservar a usuario
 	public void comprarAsiento(Asiento asiento,Aerolinea aerolinea,Usuario usuario) throws Exception {
 		aerolinea.comprar(usuario,asiento);
 	}
@@ -29,26 +33,13 @@ public class Buscador {
 	public void transferirReserva(Aerolinea aerolinea,String codigoAsiento) {
 		aerolinea.transferirReserva(codigoAsiento);
 	}
-	
-	private void filtrarPorClase(ArrayList<Asiento> asientos,TipoClaseAsiento clase) {
-		if(clase!=null) {asientos.removeIf(asiento -> asiento.getClase().equals(clase));}
-	}
-	
-	private void filtrarPorUbicacion(ArrayList<Asiento> asientos,TipoUbicacionAsiento ubicacion) {
-		if(ubicacion!=null) {asientos.removeIf(asiento -> asiento.getUbicacion().equals(ubicacion));}
-	}
-	private void filtrarPorPrecio(ArrayList<Asiento> asientos, Double precioMin, Double precioMax) {
-		if(precioMin<precioMax) {
-			asientos.removeIf(asiento -> noEstaEnRango(asiento.getPrecio(), precioMin, precioMax));
-		}
-	}	
-	private boolean noEstaEnRango(Double precio, Double precioMin, Double precioMax) {
-		return (precioMin<precio && precio<precioMax);
-	}
+		
 	private boolean esSuperOferta(Asiento asiento, Aerolinea aerolinea) {
 		return ((asiento.getClase().equals(TipoClaseAsiento.PRIMERA) && asiento.getPrecio()<8000)||(asiento.getClase().equals(TipoClaseAsiento.EJECUTIVA) && asiento.getPrecio()<4000));
 	}
 	
+	
+	//esto lo deberia hacer el asiento
 	private void actualizarPrecioTotal(Asiento asiento,Aerolinea aerolinea,Usuario usuario) {
 		if(usuario.esPago()) {
 			asiento.setPrecio(asiento.getPrecio()+(asiento.getPrecio()*aerolinea.getImpuestoPasajes()));

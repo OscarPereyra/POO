@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class Busqueda {
 	private String origen;
 	private String fechaSalida; 
@@ -10,9 +12,10 @@ public class Busqueda {
 	private Double precioMin;
 	private Double precioMax;
 	private TipoClaseAsiento clase = null;
-	private TipoUbicacionAsiento ubicacion = null;	
+	private TipoUbicacionAsiento ubicacion = null;
+	private ArrayList<Filtro> filtros;
 		
-	public Busqueda(String origen, String fechaSalida, String horaSalida, String destino, String fechaLlegada,String horaLlegada, TipoClaseAsiento clase, TipoUbicacionAsiento ubicacion) {
+	public Busqueda(String origen, String fechaSalida, String horaSalida, String destino, String fechaLlegada,String horaLlegada, TipoClaseAsiento clase, TipoUbicacionAsiento ubicacion,ArrayList<Filtro> filtros) {
 		this.origen = origen;
 		this.fechaSalida = fechaSalida;
 		this.horaSalida = horaSalida;
@@ -21,8 +24,17 @@ public class Busqueda {
 		this.horaLlegada = horaLlegada;
 		this.clase = clase;
 		this.ubicacion = ubicacion;
+		this.filtros = filtros;
 	}
 	
+	public ArrayList<Filtro> getFiltros() {
+		return filtros;
+	}
+
+	public void setFiltros(ArrayList<Filtro> filtros) {
+		this.filtros = filtros;
+	}
+
 	public String getOrigen() {
 		return origen;
 	}

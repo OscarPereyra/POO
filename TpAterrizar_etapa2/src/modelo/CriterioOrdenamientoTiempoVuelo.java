@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+//para el criterio de popularidad buscar el codigo de vuelto y ordenar por el mas comprado
 public class CriterioOrdenamientoTiempoVuelo extends CriterioOrdenamiento {
 	@Override
 	public void aplicarCriterio(ArrayList<Asiento> asientos) {

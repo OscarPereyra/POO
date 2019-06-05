@@ -20,19 +20,19 @@ public class AerolineaOceanic extends Aerolinea{
 		String codigoAsiento = asientoDTO.getCodigoVuelo().concat(Integer.toString(asientoDTO.getNumeroAsiento()));
 		return new Asiento(codigoAsiento,asientoDTO.getPrecio(),asientoDTO.getClase(),asientoDTO.getUbicacion(),false,(Date) fecha.convertirALatinoamericano(asientoDTO.getFechaSalida()),asientoDTO.getFechaLlegada());		
 	}	
-
+//completar la sobrereserva
 	@Override
 	void reservar(Usuario usuario, Asiento asiento) {
 		if(!oceanic.estaReservado(asiento.getVuelo(),asiento.numeroAsiento())) {
 			oceanic.reservar(usuario.getDNI(), asiento.getVuelo(), asiento.numeroAsiento());
 		}		
 	}
-
+//completar la compra
 	@Override
 	void comprar(Usuario usuario, Asiento asiento) {
 		oceanic.comprarSiHayDisponibilidad(usuario.getDNI(), asiento.getVuelo(),asiento.numeroAsiento());		
 	}
-
+//corregir el e.print
 	@Override
 	ArrayList<Asiento> asientosDisponibles(String origen, String fechaSalida, String horaSalida, String destino,
 			String fechaLlegada, String horaLlegada) {
