@@ -5,13 +5,15 @@ import java.util.ArrayList;
 
 public class Buscador {	
 	private Double recargoUsuarioNoPago = 20.0;
+	private ArrayList<Aerolinea> aerolineas;
 	//lista de aerolineas para todo el buscador
 	//recorrer todas las aerolineas y buscar los asientos disponibles de todas las aerolineas interfaz en comun
-	public ArrayList<Asiento> busqueda(Aerolinea aerolinea,Usuario usuario,Busqueda busqueda) {
+	public ArrayList<Asiento> busqueda(Usuario usuario,Busqueda busqueda) {
 		ArrayList<Asiento> asientosDisp = new ArrayList<Asiento>();
+		ArrayList<Aerolinea> aerolineas = new ArrayList<Aerolinea>();
 		//pasarle solo busqueda
 		//test de asientos disponibles con atributos nulos
-		asientosDisp = aerolinea.asientosDisponibles(busqueda.getOrigen(),busqueda.getFechaSalida(),busqueda.getHoraSalida(),busqueda.getDestino(),busqueda.getFechaLlegada(),busqueda.getHoraLlegada());
+		asientosDisp = aerolineas.asientosDisponibles(busqueda);
 		asientosDisp.forEach(asiento -> actualizarPrecioTotal(asiento, aerolinea,usuario));
 		busqueda.getFiltros().forEach(filtro -> filtro.aplicarFiltro());
 		/*filtrarPorClase(asientosDisp,busqueda.getClase());
