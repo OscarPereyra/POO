@@ -9,4 +9,10 @@ public class FiltroClase extends Filtro {
 			if(criterio!=null) {asientos.removeIf(asiento -> asiento.getClase().equals(criterio));}
 		}
 
+	@Override
+	public void aplicarFiltro(ArrayList<Asiento> asientos, Object criterio1, Object criterio2) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	}

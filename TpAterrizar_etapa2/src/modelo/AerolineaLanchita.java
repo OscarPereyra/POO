@@ -7,6 +7,10 @@ import java.util.ArrayList;
 public class AerolineaLanchita extends Aerolinea{
 	IAerolineaLanchita lanchita;
 	Fecha fecha = new Fecha();
+	
+	public AerolineaLanchita(IAerolineaLanchita lanchita) {
+		this.lanchita = lanchita;
+	}
 	@Override
 	void reservar(Usuario usuario, Asiento asiento) {
 		if(asiento.getEstadoReservado()) {
@@ -14,6 +18,7 @@ public class AerolineaLanchita extends Aerolinea{
 		}
 		else {
 			lanchita.reservar(asiento.getCodigoAsiento(),usuario.getDNI());
+			asiento.setEstadoReservado(true);
 		}
 	}
 
@@ -21,7 +26,6 @@ public class AerolineaLanchita extends Aerolinea{
 	void comprar(Usuario usuario, Asiento asiento) {
 		try {
 			lanchita.comprar(asiento.getCodigoAsiento());
-			usuario.comprar(asiento.getPrecio());
 			limpiarSobreReservas(asiento.getCodigoAsiento());
 		}
 		catch (AsientoLanchitaNoDisponibleException e) {
@@ -30,8 +34,8 @@ public class AerolineaLanchita extends Aerolinea{
 	}
 
 	@Override
-	ArrayList<Asiento> asientosDisponibles(String origen, String fechaSalida, String horaSalida, String destino, String fechaLlegada, String horaLlegada) {
-		ArrayList<ArrayList<String>> resultadoBusqueda = lanchita.asientosDisponibles(horaLlegada, horaLlegada, horaLlegada, horaLlegada, horaLlegada, horaLlegada);
+	ArrayList<Asiento> asientosDisponibles(Busqueda busqueda) {
+		ArrayList<ArrayList<String>> resultadoBusqueda = lanchita.asientosDisponibles(busqueda.getOrigen(),busqueda.getFechaSalida(),busqueda.getHoraSalida(),busqueda.getDestino(),busqueda.getFechaLlegada(),busqueda.getHoraLlegada());
 		ArrayList<Asiento> asientosDisponibles = new ArrayList<Asiento>();
 		resultadoBusqueda.forEach(asiento -> {
 			try {
@@ -64,7 +68,7 @@ public class AerolineaLanchita extends Aerolinea{
 		Boolean estadoReservado = estadoAsiento(asiento.get(4));
 		Date fechaSalida = (Date) fecha.convertirALatinoamericano(asiento.get(5)) ;
 		Date fechaLlegada = (Date) fecha.convertirALatinoamericano(asiento.get(6));
-		return new Asiento(codigoAsiento,precio,clase,ubicacion,estadoReservado,fechaSalida,fechaLlegada);
+		return new Asiento(codigoAsiento,precio,clase,ubicacion,estadoReservado,fechaSalida,fechaLlegada,this);
 	}
 	
 	private Boolean estadoAsiento(String estado) {

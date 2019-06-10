@@ -18,7 +18,16 @@ public class UsuarioEstandar extends Usuario {
 		return true;
 	}
 	@Override
-	public void comprar(Double monto) {
-		montoTotalCompras +=monto;
+	public void comprar(Asiento asiento)throws Exception {
+		asiento.getAerolinea().comprar(this,asiento);
+		montoTotalCompras += asiento.getPrecio();
+	}
+	@Override
+	public void reservarAsiento(Asiento asiento) {
+		asiento.getAerolinea().reservar(this, asiento);
+	}
+	@Override
+	Double getRecargoUsuario() {
+		return 0.0;
 	}
 }

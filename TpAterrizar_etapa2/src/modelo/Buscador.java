@@ -6,6 +6,10 @@ import java.util.ArrayList;
 public class Buscador {	
 	private Double recargoUsuarioNoPago = 20.0;
 	private ArrayList<Aerolinea> aerolineas;
+	
+	public Buscador(ArrayList<Aerolinea> aerolineas) {
+		this.aerolineas = aerolineas;
+	}
 	//lista de aerolineas para todo el buscador
 	//recorrer todas las aerolineas y buscar los asientos disponibles de todas las aerolineas interfaz en comun
 	public ArrayList<Asiento> busqueda(Usuario usuario,Busqueda busqueda) {
@@ -13,41 +17,22 @@ public class Buscador {
 		ArrayList<Aerolinea> aerolineas = new ArrayList<Aerolinea>();
 		//pasarle solo busqueda
 		//test de asientos disponibles con atributos nulos
-		asientosDisp = aerolineas.asientosDisponibles(busqueda);
-		asientosDisp.forEach(asiento -> actualizarPrecioTotal(asiento, aerolinea,usuario));
-		busqueda.getFiltros().forEach(filtro -> filtro.aplicarFiltro());
+		aerolineas.forEach(aerolinea -> asientosDisp.addAll(aerolinea.asientosDisponibles(busqueda)));
+		asientosDisp.forEach(asiento -> asiento.actualizarPrecioTotal(usuario));
+		//busqueda.getFiltros().forEach(filtro -> filtro.aplicarFiltro());
 		/*filtrarPorClase(asientosDisp,busqueda.getClase());
 		filtrarPorUbicacion(asientosDisp,busqueda.getUbicacion());
 		filtrarPorPrecio(asientosDisp, busqueda.getPrecioMin(), busqueda.getPrecioMax());*/
-		if(!usuario.esVip()) {asientosDisp.removeIf(asiento -> esSuperOferta(asiento,aerolinea));}
+		if(!usuario.esVip()) {asientosDisp.removeIf(asiento -> esSuperOferta(asiento));}
 		usuario.agregarBusqueda(busqueda);
 		return asientosDisp;
 	}
-	//mover comprar y reservar a usuario
-	public void comprarAsiento(Asiento asiento,Aerolinea aerolinea,Usuario usuario) throws Exception {
-		aerolinea.comprar(usuario,asiento);
-	}
-	
-	public void reservarAsiento(Asiento asiento,Usuario usuario,Aerolinea aerolinea) {
-		aerolinea.reservar(usuario, asiento);
-	}
-	
-	public void transferirReserva(Aerolinea aerolinea,String codigoAsiento) {
-		aerolinea.transferirReserva(codigoAsiento);
+	//mover comprar y reservar a usuario	
+	public void transferirReserva(String codigoAsiento) {
+		aerolineas.forEach(aerolinea -> aerolinea.transferirReserva(codigoAsiento));
 	}
 		
-	private boolean esSuperOferta(Asiento asiento, Aerolinea aerolinea) {
+	private boolean esSuperOferta(Asiento asiento) {
 		return ((asiento.getClase().equals(TipoClaseAsiento.PRIMERA) && asiento.getPrecio()<8000)||(asiento.getClase().equals(TipoClaseAsiento.EJECUTIVA) && asiento.getPrecio()<4000));
-	}
-	
-	
-	//esto lo deberia hacer el asiento
-	private void actualizarPrecioTotal(Asiento asiento,Aerolinea aerolinea,Usuario usuario) {
-		if(usuario.esPago()) {
-			asiento.setPrecio(asiento.getPrecio()+(asiento.getPrecio()*aerolinea.getImpuestoPasajes()));
-		}
-		else {
-			asiento.setPrecio((asiento.getPrecio()+(asiento.getPrecio()*aerolinea.getImpuestoPasajes())+recargoUsuarioNoPago));
-		}
 	}
 }

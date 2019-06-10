@@ -13,5 +13,10 @@ public class FiltroPrecio extends Filtro {
 	private boolean noEstaEnRango(Double precio, Object precioMin, Object precioMax) {
 		return ((Double)precioMin<precio && precio<(Double)precioMax);
 	}
+	@Override
+	public void aplicarFiltro(ArrayList<Asiento> asientos, Object criterio) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

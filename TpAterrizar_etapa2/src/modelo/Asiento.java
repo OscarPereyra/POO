@@ -10,6 +10,7 @@ public class Asiento {
 	private Boolean estadoReservado;
 	private Date fechaSalida;
 	private Date fechaLlegada;
+	private Aerolinea aerolinea;
 	
 	public Date getFechaSalida() {
 		return fechaSalida;
@@ -23,7 +24,7 @@ public class Asiento {
 	public void setFechallegada(Date fechallegada) {
 		this.fechaLlegada = fechallegada;
 	}
-	public Asiento(String codigoAsiento,Double precio,TipoClaseAsiento clase,TipoUbicacionAsiento ubicacion,Boolean estado,Date fechaSalida,Date fechaLlegada) {
+	public Asiento(String codigoAsiento,Double precio,TipoClaseAsiento clase,TipoUbicacionAsiento ubicacion,Boolean estado,Date fechaSalida,Date fechaLlegada,Aerolinea aerolinea) {
 		this.codigoAsiento = codigoAsiento;
 		this.precio = precio;
 		this.clase = clase;
@@ -31,6 +32,16 @@ public class Asiento {
 		this.estadoReservado = estado;
 		this.fechaSalida = fechaSalida;
 		this.fechaLlegada = fechaLlegada;
+		this.aerolinea = aerolinea;
+	}
+	public void actualizarPrecioTotal(Usuario usuario) {
+		precio += (precio * +aerolinea.getImpuestoPasajes())+usuario.getRecargoUsuario();
+	}	
+	public Aerolinea getAerolinea() {
+		return aerolinea;
+	}
+	public void setAerolinea(Aerolinea aerolinea) {
+		this.aerolinea = aerolinea;
 	}
 	public String getCodigoAsiento() {
 		return codigoAsiento;
