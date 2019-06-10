@@ -1,6 +1,0 @@
-package test;
-
-public class TestReservaLanchita {
-	@Test
-	public void 
-}

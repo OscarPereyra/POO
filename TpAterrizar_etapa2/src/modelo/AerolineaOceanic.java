@@ -18,7 +18,7 @@ public class AerolineaOceanic extends Aerolinea{
 	}
 	private Asiento convertir(AsientoDTO asientoDTO) throws ParseException {
 		String codigoAsiento = asientoDTO.getCodigoVuelo().concat(Integer.toString(asientoDTO.getNumeroAsiento()));
-		return new Asiento(codigoAsiento,asientoDTO.getPrecio(),asientoDTO.getClase(),asientoDTO.getUbicacion(),false,(Date) fecha.convertirALatinoamericano(asientoDTO.getFechaSalida()),asientoDTO.getFechaLlegada());		
+		return new Asiento(codigoAsiento,asientoDTO.getPrecio(),asientoDTO.getClase(),asientoDTO.getUbicacion(),false,fecha.convertirALatinoamericano(asientoDTO.getFechaSalida()),asientoDTO.getFechaLlegada(),this);		
 	}	
 //completar la sobrereserva
 	@Override
@@ -34,13 +34,12 @@ public class AerolineaOceanic extends Aerolinea{
 	}
 //corregir el e.print
 	@Override
-	ArrayList<Asiento> asientosDisponibles(String origen, String fechaSalida, String horaSalida, String destino,
-			String fechaLlegada, String horaLlegada) {
+	ArrayList<Asiento> asientosDisponibles(Busqueda busqueda) {
 		ArrayList<Asiento> asientosDisponibles = new ArrayList<Asiento>();
 		ArrayList<AsientoDTO> disponibles = null;
-		if((origen!=null) && (fechaSalida!=null) && (destino==null)) {
-			origen = formatoCiudad(origen);
-			disponibles = oceanic.asientosDisponiblesParaOrigen(origen, fechaSalida);
+		if((busqueda.getOrigen()!=null) && (busqueda.getFechaSalida()!=null) && (busqueda.getDestino()==null)) {
+			String origen = formatoCiudad(busqueda.getOrigen());
+			disponibles = oceanic.asientosDisponiblesParaOrigen(origen, busqueda.getFechaSalida());
 			disponibles.forEach(asiento -> {
 				try {
 					asientosDisponibles.add(convertir(asiento));
@@ -49,10 +48,10 @@ public class AerolineaOceanic extends Aerolinea{
 				}
 			});
 			
-		}else if((origen!=null) && (fechaSalida!=null) && (destino!=null)) {
-			origen = formatoCiudad(origen);
-			destino = formatoCiudad(destino);
-			disponibles = oceanic.asientosDisponiblesParaOrigenYDestino(origen, fechaSalida, destino);
+		}else if((busqueda.getOrigen()!=null) && (busqueda.getFechaSalida()!=null) && (busqueda.getDestino()!=null)) {
+			String origen = formatoCiudad(busqueda.getOrigen());
+			String destino = formatoCiudad(busqueda.getDestino());
+			disponibles = oceanic.asientosDisponiblesParaOrigenYDestino(origen, busqueda.getFechaSalida(), destino);
 			disponibles.forEach(asiento -> {
 				try {
 					asientosDisponibles.add(convertir(asiento));

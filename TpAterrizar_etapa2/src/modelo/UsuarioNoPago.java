@@ -17,6 +17,15 @@ public class UsuarioNoPago extends Usuario {
 		return false;
 	}
 	@Override
-	public void comprar(Double monto) {
+	public void comprar(Asiento asiento)throws Exception {
+		asiento.getAerolinea().comprar(this,asiento);
+	}
+	@Override
+	public void reservarAsiento(Asiento asiento) {
+		asiento.getAerolinea().reservar(this, asiento);
+	}
+	@Override
+	Double getRecargoUsuario() {
+		return 20.0;
 	}
 }

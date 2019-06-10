@@ -9,8 +9,9 @@ public abstract class Usuario {
 	protected ArrayList<Busqueda> busquedas;
 	abstract boolean esVip();
 	abstract boolean esPago();
-	abstract void comprar(Double monto);
-	
+	abstract void comprar(Asiento asiento)throws Exception;
+	abstract void reservarAsiento(Asiento asiento);
+	abstract Double getRecargoUsuario();
 	public void agregarBusqueda(Busqueda busqueda) {
 		busquedas.add(busqueda);
 	}

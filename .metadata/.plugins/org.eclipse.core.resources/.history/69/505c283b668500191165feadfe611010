@@ -1,7 +1,0 @@
-package modelo;
-
-public abstract class Aerolinea {
-	private double impuestoPasajes;
-	private int diasExpiraReserva;
-	
-}
