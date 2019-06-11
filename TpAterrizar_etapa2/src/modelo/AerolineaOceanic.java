@@ -1,6 +1,5 @@
 package modelo;
 
-import java.sql.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -19,54 +18,66 @@ public class AerolineaOceanic extends Aerolinea{
 	private Asiento convertir(AsientoDTO asientoDTO) throws ParseException {
 		String codigoAsiento = asientoDTO.getCodigoVuelo().concat(Integer.toString(asientoDTO.getNumeroAsiento()));
 		return new Asiento(codigoAsiento,asientoDTO.getPrecio(),asientoDTO.getClase(),asientoDTO.getUbicacion(),false,fecha.convertirALatinoamericano(asientoDTO.getFechaSalida()),asientoDTO.getFechaLlegada(),this);		
-	}	
-//completar la sobrereserva
+	}
+	private ArrayList<Asiento> convertirLista(ArrayList<AsientoDTO> disponibles) throws ParseException {
+		ArrayList<Asiento> asientosDisponibles = new ArrayList<Asiento>();
+		disponibles.forEach(asiento -> {
+			try {
+				asientosDisponibles.add(convertir(asiento));
+			} catch (ParseException e) {
+				System.out.println("Error al convertir");
+			}
+		});
+		return asientosDisponibles;
+	}
+	private boolean busquedaSoloPorOrigen(Busqueda busqueda) {
+		return ((busqueda.getOrigen()!=null) && (busqueda.getFechaSalida()!=null) && (busqueda.getDestino()==null));
+	}
+	private boolean busquedaPorOrigenDestino(Busqueda busqueda) {
+		return ((busqueda.getOrigen()!=null) && (busqueda.getFechaSalida()!=null) && (busqueda.getDestino()!=null));
+	}
 	@Override
 	void reservar(Usuario usuario, Asiento asiento) {
-		if(!oceanic.estaReservado(asiento.getVuelo(),asiento.numeroAsiento())) {
-			oceanic.reservar(usuario.getDNI(), asiento.getVuelo(), asiento.numeroAsiento());
-		}		
+		if(oceanic.estaReservado(asiento.getVuelo(),asiento.numeroAsiento())) {
+			asientosSobreReservados.add(new AsientoReservado(asiento,usuario));
+		}else {
+			if(oceanic.reservar(usuario.getDNI(), asiento.getVuelo(), asiento.numeroAsiento())) {
+				asiento.setEstadoReservado(true);
+			}
+		}
 	}
-//completar la compra
 	@Override
 	void comprar(Usuario usuario, Asiento asiento) {
-		oceanic.comprarSiHayDisponibilidad(usuario.getDNI(), asiento.getVuelo(),asiento.numeroAsiento());		
+		if(oceanic.comprarSiHayDisponibilidad(usuario.getDNI(), asiento.getVuelo(),asiento.numeroAsiento())) {
+			limpiarSobreReservas(asiento.getCodigoAsiento());
+		}
 	}
-//corregir el e.print
 	@Override
-	ArrayList<Asiento> asientosDisponibles(Busqueda busqueda) {
+	ArrayList<Asiento> asientosDisponibles(Busqueda busqueda) throws ParseException {
 		ArrayList<Asiento> asientosDisponibles = new ArrayList<Asiento>();
 		ArrayList<AsientoDTO> disponibles = null;
-		if((busqueda.getOrigen()!=null) && (busqueda.getFechaSalida()!=null) && (busqueda.getDestino()==null)) {
+		if(busquedaSoloPorOrigen(busqueda)) {
 			String origen = formatoCiudad(busqueda.getOrigen());
 			disponibles = oceanic.asientosDisponiblesParaOrigen(origen, busqueda.getFechaSalida());
-			disponibles.forEach(asiento -> {
-				try {
-					asientosDisponibles.add(convertir(asiento));
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-			});
-			
-		}else if((busqueda.getOrigen()!=null) && (busqueda.getFechaSalida()!=null) && (busqueda.getDestino()!=null)) {
+			asientosDisponibles = convertirLista(disponibles);			
+		}else if(busquedaPorOrigenDestino(busqueda)) {
 			String origen = formatoCiudad(busqueda.getOrigen());
 			String destino = formatoCiudad(busqueda.getDestino());
 			disponibles = oceanic.asientosDisponiblesParaOrigenYDestino(origen, busqueda.getFechaSalida(), destino);
-			disponibles.forEach(asiento -> {
-				try {
-					asientosDisponibles.add(convertir(asiento));
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-			});
+			asientosDisponibles = convertirLista(disponibles);
 		}		
 		return asientosDisponibles;
 	}
-
 	@Override
 	void transferirReserva(String codigoAsiento) {
-		// TODO Auto-generated method stub
-		
+		ArrayList<AsientoReservado> reservasFiltradas = (ArrayList<AsientoReservado>) asientosSobreReservados.stream().filter(reserva -> reserva.getAsiento().getCodigoAsiento().equals(codigoAsiento));
+		String dni = reservasFiltradas.get(0).getUsuario().getDNI();
+		String vuelo = reservasFiltradas.get(0).getAsiento().getVuelo();
+		int asiento = reservasFiltradas.get(0).getAsiento().numeroAsiento();
+		if(!reservasFiltradas.isEmpty()) {
+			oceanic.reservar(dni, vuelo, asiento);
+			asientosSobreReservados.remove(reservasFiltradas.get(0));
+		}
 	}
 	
 }
