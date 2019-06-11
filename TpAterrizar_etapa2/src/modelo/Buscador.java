@@ -10,16 +10,16 @@ public class Buscador {
 	public Buscador(ArrayList<Aerolinea> aerolineas) {
 		this.aerolineas = aerolineas;
 	}
-	//lista de aerolineas para todo el buscador
-	//recorrer todas las aerolineas y buscar los asientos disponibles de todas las aerolineas interfaz en comun
+	//lista de aerolineas para todo el buscador YA ESTA
+	//recorrer todas las aerolineas y buscar los asientos disponibles de todas las aerolineas interfaz en comun YA ESTA
 	public ArrayList<Asiento> busqueda(Usuario usuario,Busqueda busqueda) {
 		ArrayList<Asiento> asientosDisp = new ArrayList<Asiento>();
 		ArrayList<Aerolinea> aerolineas = new ArrayList<Aerolinea>();
-		//pasarle solo busqueda
+		//pasarle solo busqueda YA ESTA
 		//test de asientos disponibles con atributos nulos
 		aerolineas.forEach(aerolinea -> asientosDisp.addAll(aerolinea.asientosDisponibles(busqueda)));
 		asientosDisp.forEach(asiento -> asiento.actualizarPrecioTotal(usuario));
-		//busqueda.getFiltros().forEach(filtro -> filtro.aplicarFiltro());
+		busqueda.getFiltros().forEach(filtro -> filtro.aplicarFiltro(asientosDisp,busqueda));
 		/*filtrarPorClase(asientosDisp,busqueda.getClase());
 		filtrarPorUbicacion(asientosDisp,busqueda.getUbicacion());
 		filtrarPorPrecio(asientosDisp, busqueda.getPrecioMin(), busqueda.getPrecioMax());*/
@@ -27,7 +27,7 @@ public class Buscador {
 		usuario.agregarBusqueda(busqueda);
 		return asientosDisp;
 	}
-	//mover comprar y reservar a usuario	
+	//mover comprar y reservar a usuario, YA ESTA	
 	public void transferirReserva(String codigoAsiento) {
 		aerolineas.forEach(aerolinea -> aerolinea.transferirReserva(codigoAsiento));
 	}

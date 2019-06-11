@@ -3,16 +3,12 @@ package modelo;
 import java.util.ArrayList;
 
 public class FiltroClase extends Filtro {
-
-	@Override
-	public void aplicarFiltro(ArrayList<Asiento> asientos,Object criterio) {
-			if(criterio!=null) {asientos.removeIf(asiento -> asiento.getClase().equals(criterio));}
-		}
-
-	@Override
-	public void aplicarFiltro(ArrayList<Asiento> asientos, Object criterio1, Object criterio2) {
-		// TODO Auto-generated method stub
-		
+	private ArrayList<TipoClaseAsiento> clases;
+	public void Filtro (TipoClaseAsiento clase) {
+		this.clase = clase;
 	}
-
-	}
+	@Override
+	public void aplicarFiltro(ArrayList<Asiento> asientos) {
+			if(clase!=null) {asientos.removeIf(asiento -> !(asiento.getClase().equals(clase)));}
+	}			
+}

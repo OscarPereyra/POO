@@ -21,6 +21,7 @@ public class Buscar extends JFrame {
 	private JTextField textFecha;
 	private JTextField textDestino0;
 	private JTable tableResultados;
+	private JTable table;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -110,10 +111,11 @@ public class Buscar extends JFrame {
 		
 		JPanel panelBotones = new JPanel();
 		contentPane.add(panelBotones, BorderLayout.SOUTH);
-		panelBotones.setLayout(new GridLayout(1, 3, 0, 0));
+		panelBotones.setLayout(new GridLayout(1, 3, 15, 15));
 		
 		JButton btnComprar = new JButton("Comprar");
 		panelBotones.add(btnComprar);
+		btnComprar.setBounds(100, 100, 100, 40);
 		
 		JButton btnReservar = new JButton("Reservar");
 		panelBotones.add(btnReservar);
