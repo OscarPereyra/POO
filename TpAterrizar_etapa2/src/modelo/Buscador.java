@@ -1,5 +1,6 @@
 package modelo;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 //Datos de asientos = [Codigo asiento,precio asiento,clase(T-E-P),ubicacion(V-C-P),estado(R-D)]
 
@@ -14,12 +15,18 @@ public class Buscador {
 	//recorrer todas las aerolineas y buscar los asientos disponibles de todas las aerolineas interfaz en comun YA ESTA
 	public ArrayList<Asiento> busqueda(Usuario usuario,Busqueda busqueda) {
 		ArrayList<Asiento> asientosDisp = new ArrayList<Asiento>();
-		ArrayList<Aerolinea> aerolineas = new ArrayList<Aerolinea>();
 		//pasarle solo busqueda YA ESTA
 		//test de asientos disponibles con atributos nulos
-		aerolineas.forEach(aerolinea -> asientosDisp.addAll(aerolinea.asientosDisponibles(busqueda)));
+		aerolineas.forEach(aerolinea -> {
+			try {
+				asientosDisp.addAll(aerolinea.asientosDisponibles(busqueda));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
 		asientosDisp.forEach(asiento -> asiento.actualizarPrecioTotal(usuario));
-		busqueda.getFiltros().forEach(filtro -> filtro.aplicarFiltro(asientosDisp,busqueda));
+		busqueda.getFiltros().forEach(filtro -> filtro.aplicarFiltro(asientosDisp));
 		/*filtrarPorClase(asientosDisp,busqueda.getClase());
 		filtrarPorUbicacion(asientosDisp,busqueda.getUbicacion());
 		filtrarPorPrecio(asientosDisp, busqueda.getPrecioMin(), busqueda.getPrecioMax());*/

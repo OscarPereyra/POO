@@ -82,4 +82,8 @@ public class Asiento {
 	public Long getTiempoDeVuelo() {
 		return null;
 	}
+	public Object getDestino() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

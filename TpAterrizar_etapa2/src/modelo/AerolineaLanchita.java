@@ -56,7 +56,7 @@ public class AerolineaLanchita extends Aerolinea{
 		}
 	}
 	
-	private void limpiarSobreReservas(String codigoAsiento) {
+	protected void limpiarSobreReservas(String codigoAsiento) {
 		asientosSobreReservados.removeIf(reserva -> reserva.getAsiento().getCodigoAsiento().equals(codigoAsiento));
 	}
 	

@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 //Datos de asientos = [Codigo asiento,precio asiento,clase(T-E-P),ubicacion(V-C-P),estado(R-D)]
 
-//@RunWith(MockitoJUnitRunner.class)
 public class TestReservaLanchita {
 	
 	//@Mock IAerolineaLanchita mockLanchita;
@@ -37,10 +36,12 @@ public class TestReservaLanchita {
 		System.out.println("Creo el buscador");
 		ArrayList<ArrayList<String>> asientosLanchita = lanchitaAsientos();
 		System.out.println("Creo asientos");
-		when(mockLanchita.asientosDisponibles(anyString(), anyString(), anyString(), anyString(), anyString(), anyString())).thenReturn(asientosLanchita);
+		when(mockLanchita.asientosDisponibles(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString())).thenReturn(asientosLanchita);
 		System.out.println("Agrego comportamiento");
 		UsuarioEstandar usuario = new UsuarioEstandar("Alejando","40135297");
-		Busqueda busqueda = new Busqueda("", "", "", "", "","", TipoClaseAsiento.PRIMERA, TipoUbicacionAsiento.PASILLO,null);
+		ArrayList clases = new ArrayList();
+		clases.add(TipoClaseAsiento.TURISTA);
+		Busqueda busqueda = new Busqueda("", "", "", "", "","", clases, TipoUbicacionAsiento.PASILLO,null);
 		ArrayList<Asiento> asientosEncontrados = buscador.busqueda(usuario, busqueda);
 		System.out.println(asientosEncontrados);
 		usuario.reservarAsiento(asientosEncontrados.get(0));

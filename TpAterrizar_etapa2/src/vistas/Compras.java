@@ -12,11 +12,15 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Compras extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tableCompras;
+	private JTable table;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -50,22 +54,27 @@ public class Compras extends JFrame {
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
 		panelCompras.add(lblNombre);
 		
-		JPanel panelDatos = new JPanel();
-		contentPane.add(panelDatos);
 		
-		tableCompras = new JTable();
-		panelDatos.add(tableCompras);
 		
 		JPanel panelBoton = new JPanel();
 		contentPane.add(panelBoton);
 		panelBoton.setLayout(new GridLayout(1, 3, 15, 15));
 		
-		JButton btnCerrar = new JButton("Cerrar");
-		panelBoton.add(btnCerrar);		
-		
 		Container cp = getContentPane();
 		cp.add(panelCompras, BorderLayout.NORTH);
-		cp.add(panelDatos, BorderLayout.CENTER);
 		cp.add(panelBoton, BorderLayout.SOUTH);		
+		
+		JScrollPane scrollPaneDatos = new JScrollPane();
+		panelBoton.add(scrollPaneDatos,BorderLayout.CENTER);
+		
+		table = new JTable();
+		scrollPaneDatos.setViewportView(table);
+		
+		JButton btnCerrar = new JButton("Cerrar");
+		contentPane.add(btnCerrar);
+		btnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 	}
 }
