@@ -5,13 +5,24 @@ import java.util.Date;
 public class AsientoDTO {
 	private String codigoVuelo;
 	private int numeroAsiento;
-	private String fechaSalida;
+	private Date fechaSalida;
 	private String horaSalida;
 	private double precio;
 	private TipoClaseAsiento clase;
 	private TipoUbicacionAsiento ubicacion;
 	private Date fechaLlegada;
 	
+	public AsientoDTO(String codigoVuelo, int numeroAsiento, Date fechaSalida, String horaSalida, double precio,
+			TipoClaseAsiento clase, TipoUbicacionAsiento ubicacion, Date fechaLlegada) {
+		this.codigoVuelo = codigoVuelo;
+		this.numeroAsiento = numeroAsiento;
+		this.fechaSalida = fechaSalida;
+		this.horaSalida = horaSalida;
+		this.precio = precio;
+		this.clase = clase;
+		this.ubicacion = ubicacion;
+		this.fechaLlegada = fechaLlegada;
+	}
 	public String getCodigoVuelo() {
 		return codigoVuelo;
 	}
@@ -30,10 +41,10 @@ public class AsientoDTO {
 	public void setNumeroAsiento(int numeroAsiento) {
 		this.numeroAsiento = numeroAsiento;
 	}
-	public String getFechaSalida() {
+	public Date getFechaSalida() {
 		return fechaSalida;
 	}
-	public void setFechaSalida(String fechaSalida) {
+	public void setFechaSalida(Date fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
 	public String getHoraSalida() {
@@ -59,6 +70,5 @@ public class AsientoDTO {
 	}
 	public void setUbicacion(TipoUbicacionAsiento ubicacion) {
 		this.ubicacion = ubicacion;
-	}
-	
+	}	
 }

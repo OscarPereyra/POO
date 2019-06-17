@@ -66,3 +66,13 @@ public class TestReservaLanchita {
 		return asientosLanchita;
 	}
 }
+
+/*
+@Test
+public void asientosDisponiblesPorOrigen_recibedestinoLRy2006porFecha() {
+	
+	IAerolineaOceanic oceanicMock = Mockito.mock(IAerolineaOceanic.class);
+	Mockito.when(oceanicMock.asientosDisponiblesParaOrigen("SLA", "20/06/19")).thenReturn(new ArrayList<AsientoDTO>());
+	Assert.assertThat(oceanicMock.asientosDisponiblesParaOrigen("SLA", "20/06/19"));
+		
+}*/
