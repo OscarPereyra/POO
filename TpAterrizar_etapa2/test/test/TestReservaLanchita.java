@@ -28,9 +28,7 @@ public class TestReservaLanchita {
 	
 	@Test
 	public void reservarAsiento_SeReservaUnAsientoCorrectamente() throws ParseException {
-		System.out.println("Entro al test");
 		IAerolineaLanchita mockLanchita = mock(IAerolineaLanchita.class);
-		System.out.println("Mockeo lanchita");
 		AerolineaLanchita aerolineaLanchita = new AerolineaLanchita(mockLanchita);
 		ArrayList<Aerolinea> aerolineas = new ArrayList<Aerolinea>();
 		aerolineas.add(aerolineaLanchita);
