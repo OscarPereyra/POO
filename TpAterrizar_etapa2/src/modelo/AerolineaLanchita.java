@@ -1,6 +1,6 @@
 package modelo;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -38,7 +38,7 @@ public class AerolineaLanchita extends Aerolinea{
 			try {
 				asientosDisponibles.add(parsearAsiento(asiento));
 			} catch (ParseException e) {
-				e.printStackTrace();
+				System.out.println("Error al parsear la fecha del asiento");
 			}
 		});
 		return asientosDisponibles;
@@ -60,8 +60,8 @@ public class AerolineaLanchita extends Aerolinea{
 		TipoClaseAsiento clase = tipoAsiento(asiento.get(2));
 		TipoUbicacionAsiento ubicacion = ubicacionAsiento(asiento.get(3));
 		Boolean estadoReservado = estadoAsiento(asiento.get(4));
-		Date fechaSalida = (Date) fecha.convertirALatinoamericano(asiento.get(5)) ;
-		Date fechaLlegada = (Date) fecha.convertirALatinoamericano(asiento.get(6));
+		Date fechaSalida = fecha.convertirALatinoamericano(asiento.get(5));
+		Date fechaLlegada = fecha.convertirALatinoamericano(asiento.get(6));
 		return new Asiento(codigoAsiento,precio,clase,ubicacion,estadoReservado,fechaSalida,fechaLlegada,this);
 	}	
 }

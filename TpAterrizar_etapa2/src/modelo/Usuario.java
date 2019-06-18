@@ -6,6 +6,8 @@ public abstract class Usuario {
 	protected String nombre;
 	protected String apellido;
 	protected String DNI;
+	protected ArrayList<Asiento> compras;
+	protected ArrayList<Asiento> reservas;
 	protected ArrayList<Busqueda> busquedas;
 	abstract boolean esVip();
 	abstract boolean esPago();
@@ -20,5 +22,11 @@ public abstract class Usuario {
 	}
 	public void setDNI(String DNI) {
 		this.DNI = DNI;
+	}
+	public ArrayList<Asiento> getCompras() {
+		return compras;
+	}
+	public ArrayList<Asiento> getReservas() {
+		return reservas;
 	}
 }

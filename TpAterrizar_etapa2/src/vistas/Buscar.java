@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.JTable;
+import java.awt.ScrollPane;
+import javax.swing.JScrollPane;
 
 public class Buscar extends JFrame {
 
@@ -20,8 +22,8 @@ public class Buscar extends JFrame {
 	private JTextField textOrigen;
 	private JTextField textFecha;
 	private JTextField textDestino0;
-	private JTable tableResultados;
 	private JTable table;
+	private JTable table_1;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -103,11 +105,11 @@ public class Buscar extends JFrame {
 		textDestino0.setColumns(10);
 		panel.add(textDestino0);
 		
-		JPanel panelResultados = new JPanel();
-		contentPane.add(panelResultados);
+		JScrollPane scrollPane = new JScrollPane();
+		contentPane.add(scrollPane);
 		
-		tableResultados = new JTable();
-		panelResultados.add(tableResultados);
+		table_1 = new JTable();
+		scrollPane.add(table_1);
 		
 		JPanel panelBotones = new JPanel();
 		contentPane.add(panelBotones, BorderLayout.SOUTH);

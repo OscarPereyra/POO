@@ -44,37 +44,37 @@ public class Compras extends JFrame {
 		
 		JPanel panelCompras = new JPanel();
 		contentPane.add(panelCompras);
-		panelCompras.setLayout(new GridLayout(1, 2, 15, 15));
+		panelCompras.setLayout(new GridLayout(1, 1, 15, 15));
 		
-		JLabel lblComprasDe = new JLabel("Compras de");
-		lblComprasDe.setHorizontalAlignment(SwingConstants.CENTER);
-		panelCompras.add(lblComprasDe);
+		JButton btnCerrar = new JButton("Cerrar");
+		panelCompras.add(btnCerrar);
+		btnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		
 		JLabel lblNombre = new JLabel("");
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
 		panelCompras.add(lblNombre);
 		
+		JLabel lblComprasDe = new JLabel("Compras de");
+		contentPane.add(lblComprasDe);
+		lblComprasDe.setHorizontalAlignment(SwingConstants.CENTER);
+		
 		
 		
 		JPanel panelBoton = new JPanel();
 		contentPane.add(panelBoton);
-		panelBoton.setLayout(new GridLayout(1, 3, 15, 15));
-		
-		Container cp = getContentPane();
-		cp.add(panelCompras, BorderLayout.NORTH);
+		panelBoton.setLayout(new GridLayout(1, 1, 15, 15));
 		cp.add(panelBoton, BorderLayout.SOUTH);		
 		
 		JScrollPane scrollPaneDatos = new JScrollPane();
-		panelBoton.add(scrollPaneDatos,BorderLayout.CENTER);
+		panelBoton.add(scrollPaneDatos);
 		
 		table = new JTable();
 		scrollPaneDatos.setViewportView(table);
 		
-		JButton btnCerrar = new JButton("Cerrar");
-		contentPane.add(btnCerrar);
-		btnCerrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		Container cp = getContentPane();
+		cp.add(panelCompras, BorderLayout.NORTH);
 	}
 }

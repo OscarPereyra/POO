@@ -7,6 +7,8 @@ public class UsuarioNoPago extends Usuario {
 		this.nombre = nombre;
 		this.DNI = DNI;
 		this.busquedas = new ArrayList<Busqueda>();
+		this.compras = new ArrayList<Asiento>();
+		this.reservas = new ArrayList<Asiento>();
 	}
 	@Override
 	public boolean esVip() {
@@ -19,10 +21,12 @@ public class UsuarioNoPago extends Usuario {
 	@Override
 	public void comprar(Asiento asiento)throws Exception {
 		asiento.getAerolinea().comprar(this,asiento);
+		compras.add(asiento);
 	}
 	@Override
 	public void reservarAsiento(Asiento asiento) {
 		asiento.getAerolinea().reservar(this, asiento);
+		reservas.add(asiento);
 	}
 	@Override
 	Double getRecargoUsuario() {

@@ -6,6 +6,9 @@ import java.util.ArrayList;
 public class AerolineaOceanic extends Aerolinea{
 	IAerolineaOceanic oceanic;
 	
+	public AerolineaOceanic(IAerolineaOceanic oceanic) {
+		this.oceanic = oceanic;
+	}
 	public String formatoCiudad(String ciudad) {
 		String codigo="";
 		if((ciudad.length()==2)&&(ciudad != "LA") ) {
@@ -53,7 +56,7 @@ public class AerolineaOceanic extends Aerolinea{
 		}
 	}
 	@Override
-	public ArrayList<Asiento> asientosDisponibles(Busqueda busqueda) throws ParseException {
+	public ArrayList<Asiento> asientosDisponibles(Busqueda busqueda) throws ParseException{
 		ArrayList<Asiento> asientosDisponibles = new ArrayList<Asiento>();
 		ArrayList<AsientoDTO> disponibles = null;
 		if(busquedaSoloPorOrigen(busqueda)) {

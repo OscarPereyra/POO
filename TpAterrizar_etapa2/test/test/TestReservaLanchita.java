@@ -11,6 +11,8 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 import static org.mockito.Mockito.*;
+
+import java.text.ParseException;
 import java.util.ArrayList;
 
 //Datos de asientos = [Codigo asiento,precio asiento,clase(T-E-P),ubicacion(V-C-P),estado(R-D)]
@@ -25,7 +27,7 @@ public class TestReservaLanchita {
 	}*/
 	
 	@Test
-	public void reservarAsiento_SeReservaUnAsientoCorrectamente() {
+	public void reservarAsiento_SeReservaUnAsientoCorrectamente() throws ParseException {
 		System.out.println("Entro al test");
 		IAerolineaLanchita mockLanchita = mock(IAerolineaLanchita.class);
 		System.out.println("Mockeo lanchita");
@@ -33,17 +35,13 @@ public class TestReservaLanchita {
 		ArrayList<Aerolinea> aerolineas = new ArrayList<Aerolinea>();
 		aerolineas.add(aerolineaLanchita);
 		Buscador buscador = new Buscador(aerolineas);
-		System.out.println("Creo el buscador");
 		ArrayList<ArrayList<String>> asientosLanchita = lanchitaAsientos();
-		System.out.println("Creo asientos");
 		when(mockLanchita.asientosDisponibles(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString())).thenReturn(asientosLanchita);
-		System.out.println("Agrego comportamiento");
 		UsuarioEstandar usuario = new UsuarioEstandar("Alejando","40135297");
-		ArrayList clases = new ArrayList();
-		clases.add(TipoClaseAsiento.TURISTA);
+		ArrayList<TipoClaseAsiento> clases = new ArrayList<TipoClaseAsiento>();
+		clases.add(TipoClaseAsiento.PRIMERA);
 		Busqueda busqueda = new Busqueda("", "", "", "", "","", clases, TipoUbicacionAsiento.PASILLO,null);
 		ArrayList<Asiento> asientosEncontrados = buscador.busqueda(usuario, busqueda);
-		System.out.println(asientosEncontrados);
 		usuario.reservarAsiento(asientosEncontrados.get(0));
 		AsientoReservado primerAsientoReservado = aerolineaLanchita.getAsientosReservados().get(0);
 		
@@ -57,12 +55,23 @@ public class TestReservaLanchita {
 		asientosLanchita.add((ArrayList<String>) Arrays.asList("EC0344-66","840.50","E","C","D"));
 		asientosLanchita.add((ArrayList<String>) Arrays.asList("EC0344-66","1200.30","P","P","D"));*/
 		ArrayList<String> asiento1 = new ArrayList<String>();
-		asiento1.add("EC0344-66");
-		asiento1.add("565.60");
+		ArrayList<String> asiento2 = new ArrayList<String>();
+		asiento1.add("EC0344-42");
+		asiento1.add("56500.60");
 		asiento1.add("P");
 		asiento1.add("P");
 		asiento1.add("D");
+		asiento1.add("18/06/2019");
+		asiento1.add("25/06/2019");
 		asientosLanchita.add(asiento1);
+		asiento2.add("EC0344-66");
+		asiento2.add("12000.30");
+		asiento2.add("P");
+		asiento2.add("P");
+		asiento2.add("D");
+		asiento2.add("18/06/2019");
+		asiento2.add("25/06/2019");
+		asientosLanchita.add(asiento2);
 		return asientosLanchita;
 	}
 }
