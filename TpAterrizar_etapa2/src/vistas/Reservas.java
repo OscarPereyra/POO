@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.SwingConstants;
@@ -16,6 +17,7 @@ public class Reservas extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tableReservas;
+	private JTable table;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -43,19 +45,19 @@ public class Reservas extends JFrame {
 		contentPane.add(panelReservas);
 		panelReservas.setLayout(new GridLayout(1, 2, 15, 15));
 		
-		JLabel lblComprasDe = new JLabel("Reservas de");
-		lblComprasDe.setHorizontalAlignment(SwingConstants.CENTER);
-		panelReservas.add(lblComprasDe);
+		JLabel lblReservasDe = new JLabel("Reservas de");
+		lblReservasDe.setHorizontalAlignment(SwingConstants.CENTER);
+		panelReservas.add(lblReservasDe);
 		
 		JLabel lblNombre = new JLabel("");
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
 		panelReservas.add(lblNombre);
 		
-		JPanel panelDatos = new JPanel();
-		contentPane.add(panelDatos);
+		JScrollPane scrollPaneDatos = new JScrollPane();
+		contentPane.add(scrollPaneDatos);
 		
-		tableReservas = new JTable();
-		panelDatos.add(tableReservas);
+		table = new JTable();
+		scrollPaneDatos.setViewportView(table);
 		
 		JPanel panelBoton = new JPanel();
 		contentPane.add(panelBoton);
@@ -66,7 +68,7 @@ public class Reservas extends JFrame {
 				
 		Container cp = getContentPane();
 		cp.add(panelReservas, BorderLayout.NORTH);
-		cp.add(panelDatos, BorderLayout.CENTER);
+		cp.add(scrollPaneDatos, BorderLayout.CENTER);
 		cp.add(panelBoton, BorderLayout.SOUTH);
 	}
 }

@@ -1,15 +1,8 @@
 package test;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.Before;
-
+import org.junit.*;
 import modelo.*;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.*;
 import static org.mockito.Mockito.*;
 
 import java.text.ParseException;
@@ -18,14 +11,7 @@ import java.util.ArrayList;
 //Datos de asientos = [Codigo asiento,precio asiento,clase(T-E-P),ubicacion(V-C-P),estado(R-D)]
 
 public class TestReservaLanchita {
-	
-	//@Mock IAerolineaLanchita mockLanchita;
-	
-	/*@Before
-	public void setUp() {
-		MockitoAnnotations.initMocks(this);
-	}*/
-	
+		
 	@Test
 	public void reservarAsiento_SeReservaUnAsientoCorrectamente() throws ParseException {
 		IAerolineaLanchita mockLanchita = mock(IAerolineaLanchita.class);
@@ -54,6 +40,7 @@ public class TestReservaLanchita {
 		asientosLanchita.add((ArrayList<String>) Arrays.asList("EC0344-66","1200.30","P","P","D"));*/
 		ArrayList<String> asiento1 = new ArrayList<String>();
 		ArrayList<String> asiento2 = new ArrayList<String>();
+		
 		asiento1.add("EC0344-42");
 		asiento1.add("56500.60");
 		asiento1.add("P");
@@ -61,7 +48,7 @@ public class TestReservaLanchita {
 		asiento1.add("D");
 		asiento1.add("18/06/2019");
 		asiento1.add("25/06/2019");
-		asientosLanchita.add(asiento1);
+		
 		asiento2.add("EC0344-66");
 		asiento2.add("12000.30");
 		asiento2.add("P");
@@ -69,6 +56,8 @@ public class TestReservaLanchita {
 		asiento2.add("D");
 		asiento2.add("18/06/2019");
 		asiento2.add("25/06/2019");
+
+		asientosLanchita.add(asiento1);
 		asientosLanchita.add(asiento2);
 		return asientosLanchita;
 	}
