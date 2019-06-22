@@ -31,6 +31,27 @@ public class TestReservaLanchita {
 		
 		Assert.assertTrue("El usuario no pudo reservar el asiento",primerAsientoReservado.getAsiento().equals(asientosEncontrados.get(0)));
 	}
+	//deveriamos probar que el primer asiento reservado es igual a nulo pero el test me queda en azul no en verde
+	@Test
+	public void reservarAsiento_SeintentaReservarPeroNoSeObtieneNingunAsiento() throws Exception {
+		IAerolineaLanchita mockLanchita = mock(IAerolineaLanchita.class);
+		AerolineaLanchita aerolineaLanchita = new AerolineaLanchita(mockLanchita);
+		ArrayList<Aerolinea> aerolineas = new ArrayList<Aerolinea>();
+		aerolineas.add(aerolineaLanchita);
+		Buscador buscador = new Buscador(aerolineas);
+		ArrayList<ArrayList<String>> asientosLanchita = lanchitaAsientos();
+		when(mockLanchita.asientosDisponibles(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString())).thenReturn(asientosLanchita);
+		UsuarioEstandar usuario = new UsuarioEstandar("Alejando","40135297");
+		ArrayList<TipoClaseAsiento> clases = new ArrayList<TipoClaseAsiento>();
+		clases.add(TipoClaseAsiento.PRIMERA);
+		Busqueda busqueda = new Busqueda("","","","","","",null,null,null);
+		ArrayList<Asiento> asientosEncontrados = buscador.busqueda(usuario, busqueda);
+		usuario.reservarAsiento(asientosEncontrados.get(0));
+		AsientoReservado primerAsientoReservado = aerolineaLanchita.getAsientosReservados().get(0);
+		
+		Assert.assertTrue("El usuario no pudo reservar el asiento",primerAsientoReservado.getAsiento().equals(asientosEncontrados.get(0)));
+		
+	}
 	
 	private ArrayList<ArrayList<String>> lanchitaAsientos(){
 		ArrayList<ArrayList<String>> asientosLanchita = new ArrayList<ArrayList<String>>();

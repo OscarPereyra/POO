@@ -10,7 +10,7 @@ public class Buscador {
 	public Buscador(ArrayList<Aerolinea> aerolineas) {
 		this.aerolineas = aerolineas;
 	}
-	
+
 	public ArrayList<Asiento> busqueda(Usuario usuario,Busqueda busqueda)throws ParseException {
 		ArrayList<Asiento> asientosDisp = new ArrayList<Asiento>();
 		//test de asientos disponibles con atributos nulos
@@ -32,7 +32,15 @@ public class Buscador {
 		aerolineas.forEach(aerolinea -> aerolinea.transferirReserva(codigoAsiento));
 	}
 		
-	private boolean esSuperOferta(Asiento asiento) {
+	private boolean esSuperOferta(Asiento asiento) { 
 		return ((asiento.getClase().equals(TipoClaseAsiento.PRIMERA) && asiento.getPrecio()<8000)||(asiento.getClase().equals(TipoClaseAsiento.EJECUTIVA) && asiento.getPrecio()<4000));
-	}
+	}	
 }
+/*
+ * private ArrayList<Aerolinea> aerolineas;
+	
+	public Buscador(ArrayList<Aerolinea> aerolineas) {
+		this.aerolineas = aerolineas;
+	}
+ * */
+ 

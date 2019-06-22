@@ -7,12 +7,12 @@ public class AsientoDTO {
 	private int numeroAsiento;
 	private Date fechaSalida;
 	private String horaSalida;
-	private double precio;
+	private Double precio;
 	private TipoClaseAsiento clase;
 	private TipoUbicacionAsiento ubicacion;
 	private Date fechaLlegada;
 	
-	public AsientoDTO(String codigoVuelo, int numeroAsiento, Date fechaSalida, String horaSalida, double precio,
+	public AsientoDTO(String codigoVuelo, int numeroAsiento, Date fechaSalida, String horaSalida, Double precio,
 			TipoClaseAsiento clase, TipoUbicacionAsiento ubicacion, Date fechaLlegada) {
 		this.codigoVuelo = codigoVuelo;
 		this.numeroAsiento = numeroAsiento;

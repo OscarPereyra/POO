@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 public class AerolineaOceanic extends Aerolinea{
-	IAerolineaOceanic oceanic;
+	public IAerolineaOceanic oceanic;
 	
 	public AerolineaOceanic(IAerolineaOceanic oceanic) {
 		this.oceanic = oceanic;
@@ -19,8 +19,12 @@ public class AerolineaOceanic extends Aerolinea{
 		return codigo;
 	}
 	public Asiento convertirAsientoDTOAAsiento(AsientoDTO asientoDTO) throws ParseException {
-		String codigoAsiento = asientoDTO.getCodigoVuelo().concat("-"+Integer.toString(asientoDTO.getNumeroAsiento()));
-		return new Asiento(codigoAsiento,asientoDTO.getPrecio(),asientoDTO.getClase(),asientoDTO.getUbicacion(),false,asientoDTO.getFechaSalida(),asientoDTO.getFechaLlegada(),this);		
+		if(asientoDTO.getCodigoVuelo()!="") {
+			String codigoAsiento = asientoDTO.getCodigoVuelo().concat("-"+Integer.toString(asientoDTO.getNumeroAsiento()));
+			return new Asiento(codigoAsiento,asientoDTO.getPrecio(),asientoDTO.getClase(),asientoDTO.getUbicacion(),false,asientoDTO.getFechaSalida(),asientoDTO.getFechaLlegada(),this);
+		}else {
+			return null;		
+		}
 	}
 	public ArrayList<Asiento> convertirListaAsientosDTOaAsientos(ArrayList<AsientoDTO> disponibles) throws ParseException {
 		ArrayList<Asiento> asientosDisponibles = new ArrayList<Asiento>();

@@ -5,8 +5,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 public class AerolineaLanchita extends Aerolinea{
-	IAerolineaLanchita lanchita;
-	
+	public IAerolineaLanchita lanchita;
 	public AerolineaLanchita(IAerolineaLanchita lanchita) {
 		this.lanchita = lanchita;
 	}
