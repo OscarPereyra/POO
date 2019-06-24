@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.Date;
+import java.util.stream.Collectors;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -44,12 +45,13 @@ public class AerolineaLanchita extends Aerolinea{
 	}	
 	@Override
 	public void transferirReserva(String codigoAsiento) {
-		ArrayList<AsientoReservado> reservasFiltradas = (ArrayList<AsientoReservado>) asientosSobreReservados.stream().filter(reserva -> reserva.getAsiento().getCodigoAsiento().equals(codigoAsiento));
+		ArrayList<AsientoReservado> reservasFiltradas = (ArrayList<AsientoReservado>) asientosSobreReservados.stream().filter(reserva -> reserva.getAsiento().getCodigoAsiento().equals(codigoAsiento)).collect(Collectors.toList());
 		if(!reservasFiltradas.isEmpty()) {
 			lanchita.reservar(reservasFiltradas.get(0).getAsiento().getCodigoAsiento(), reservasFiltradas.get(0).getUsuario().getDNI());
 			asientosSobreReservados.remove(reservasFiltradas.get(0));
 		}
 	}	
+	@Override
 	protected void limpiarSobreReservas(String codigoAsiento) {
 		asientosSobreReservados.removeIf(reserva -> reserva.getAsiento().getCodigoAsiento().equals(codigoAsiento));
 	}	

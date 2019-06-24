@@ -11,7 +11,7 @@ public class FiltroPrecio extends Filtro {
 	}
 	@Override
 	public void aplicarFiltro(ArrayList<Asiento> asientos) {
-		if ((Double)precioMin<(Double)precioMax) {
+		if (precioMin<precioMax) {
 			asientos.removeIf(asiento -> noEstaEnRango(asiento.getPrecio(),precioMin,precioMax));
 		}
 	}

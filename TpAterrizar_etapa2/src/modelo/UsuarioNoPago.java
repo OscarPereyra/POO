@@ -25,8 +25,10 @@ public class UsuarioNoPago extends Usuario {
 	}
 	@Override
 	public void reservarAsiento(Asiento asiento) {
-		asiento.getAerolinea().reservar(this, asiento);
-		reservas.add(asiento);
+		if(!asiento.equals(null)) {
+			asiento.getAerolinea().reservar(this, asiento);
+			reservas.add(asiento);
+		}
 	}
 	@Override
 	Double getRecargoUsuario() {

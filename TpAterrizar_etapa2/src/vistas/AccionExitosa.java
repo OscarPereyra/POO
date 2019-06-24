@@ -1,6 +1,5 @@
 package vistas;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -20,6 +19,7 @@ public class AccionExitosa extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					AccionExitosa frame = new AccionExitosa();

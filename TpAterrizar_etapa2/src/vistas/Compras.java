@@ -13,8 +13,6 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class Compras extends JFrame {
 
@@ -23,6 +21,7 @@ public class Compras extends JFrame {
 	private JTable table;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					Compras frame = new Compras();

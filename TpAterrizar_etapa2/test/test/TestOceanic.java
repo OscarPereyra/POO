@@ -2,11 +2,7 @@ package test;
 
 import org.junit.*;
 import modelo.*;
-import org.mockito.*;
 import static org.mockito.Mockito.*;
-
-import java.text.ParseException;
-import java.util.ArrayList;
 
 // retorno lanchita [["EC0344-42","565.60","P","P","D"], ["EC0344-66","365.60","T","E","D"], … ]
 //asiento
@@ -38,7 +34,7 @@ public class TestOceanic {
 		Fecha fecha = new Fecha();
 		Asiento asientoEsperado = new Asiento("EC0344-42", 1000D, TipoClaseAsiento.TURISTA, TipoUbicacionAsiento.VENTANILLA, false, fecha.convertirALatinoamericano("20/06/19"), fecha.convertirALatinoamericano("21/06/19"), aerolinea);
 		AsientoDTO dto = new AsientoDTO("EC0344",42,fecha.convertirALatinoamericano("20/06/19"),null,1000D,TipoClaseAsiento.TURISTA,TipoUbicacionAsiento.VENTANILLA,fecha.convertirALatinoamericano("21/06/19"));
-		Asiento asiento = (Asiento) aerolinea.convertirAsientoDTOAAsiento(dto);
+		Asiento asiento = aerolinea.convertirAsientoDTOAAsiento(dto);
 		System.out.print(asientoEsperado);
 		System.out.print(asiento);
 		System.out.println();

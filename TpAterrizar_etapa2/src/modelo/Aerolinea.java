@@ -28,10 +28,10 @@ public abstract class Aerolinea {
 	}
 	public Boolean estadoAsiento(String estado) {
 		if(estado == "D") {
-			return true;
+			return false;
 		}
 		else if(estado =="R") {
-			return false;
+			return true;
 		}
 		return null;
 	}	

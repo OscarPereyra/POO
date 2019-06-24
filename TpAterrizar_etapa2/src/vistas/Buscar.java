@@ -13,7 +13,6 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.JTable;
-import java.awt.ScrollPane;
 import javax.swing.JScrollPane;
 
 public class Buscar extends JFrame {
@@ -27,6 +26,7 @@ public class Buscar extends JFrame {
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					Buscar frame = new Buscar();

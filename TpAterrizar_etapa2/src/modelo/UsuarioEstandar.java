@@ -28,8 +28,8 @@ public class UsuarioEstandar extends Usuario {
 	@Override
 	public void reservarAsiento(Asiento asiento) {
 		if(!asiento.equals(null)) {
-		asiento.getAerolinea().reservar(this, asiento);
-		reservas.add(asiento);
+			asiento.getAerolinea().reservar(this, asiento);
+			reservas.add(asiento);
 		}
 	}
 	@Override

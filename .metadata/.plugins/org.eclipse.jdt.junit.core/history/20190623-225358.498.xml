@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestReservaLanchita" project="TpAterrizar_etapa2" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="test.TestReservaLanchita" time="0.347">
+    <testcase name="reservarAsiento_SeintentaReservarPeroNoSeObtieneNingunAsiento" classname="test.TestReservaLanchita" time="0.339"/>
+    <testcase name="reservarAsiento_2PersonasReservanElMismoAsientoYSeSobrereserva" classname="test.TestReservaLanchita" time="0.001"/>
+    <testcase name="reservarAsiento_CaeUnaReservaYSeTransfiereCorrectamente" classname="test.TestReservaLanchita" time="0.006"/>
+    <testcase name="reservarAsiento_SeReservaUnAsientoCorrectamente" classname="test.TestReservaLanchita" time="0.001"/>
+  </testsuite>
+</testrun>

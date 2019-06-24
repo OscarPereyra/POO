@@ -20,16 +20,15 @@ public class TestReservaLanchita {
 		aerolineas.add(aerolineaLanchita);
 		Buscador buscador = new Buscador(aerolineas);
 		ArrayList<ArrayList<String>> asientosLanchita = lanchitaAsientos();
-		when(mockLanchita.asientosDisponibles(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString())).thenReturn(asientosLanchita);
+		when(mockLanchita.asientosDisponibles(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString())).thenReturn(asientosLanchita);
 		UsuarioEstandar usuario = new UsuarioEstandar("Alejando","40135297");
 		ArrayList<TipoClaseAsiento> clases = new ArrayList<TipoClaseAsiento>();
 		clases.add(TipoClaseAsiento.PRIMERA);
 		Busqueda busqueda = new Busqueda("", "", "", "", "","", clases, TipoUbicacionAsiento.PASILLO,null);
 		ArrayList<Asiento> asientosEncontrados = buscador.busqueda(usuario, busqueda);
 		usuario.reservarAsiento(asientosEncontrados.get(0));
-		AsientoReservado primerAsientoReservado = aerolineaLanchita.getAsientosReservados().get(0);
-		
-		Assert.assertTrue("El usuario no pudo reservar el asiento",primerAsientoReservado.getAsiento().equals(asientosEncontrados.get(0)));
+		Asiento primerAsientoReservado = usuario.getReservas().get(0);		
+		Assert.assertTrue("El usuario no pudo reservar el asiento",primerAsientoReservado.equals(asientosEncontrados.get(0)));
 	}
 	//deveriamos probar que el primer asiento reservado es igual a nulo pero el test me queda en azul no en verde
 	@Test
@@ -40,17 +39,80 @@ public class TestReservaLanchita {
 		aerolineas.add(aerolineaLanchita);
 		Buscador buscador = new Buscador(aerolineas);
 		ArrayList<ArrayList<String>> asientosLanchita = lanchitaAsientos();
-		when(mockLanchita.asientosDisponibles(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString())).thenReturn(asientosLanchita);
+		when(mockLanchita.asientosDisponibles(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString())).thenReturn(asientosLanchita);
 		UsuarioEstandar usuario = new UsuarioEstandar("Alejando","40135297");
 		ArrayList<TipoClaseAsiento> clases = new ArrayList<TipoClaseAsiento>();
 		clases.add(TipoClaseAsiento.PRIMERA);
 		Busqueda busqueda = new Busqueda("","","","","","",null,null,null);
 		ArrayList<Asiento> asientosEncontrados = buscador.busqueda(usuario, busqueda);
 		usuario.reservarAsiento(asientosEncontrados.get(0));
-		AsientoReservado primerAsientoReservado = aerolineaLanchita.getAsientosReservados().get(0);
-		
-		Assert.assertTrue("El usuario no pudo reservar el asiento",primerAsientoReservado.getAsiento().equals(asientosEncontrados.get(0)));
-		
+		Asiento primerAsientoReservado = usuario.getReservas().get(0);		
+		Assert.assertTrue("El usuario no pudo reservar el asiento",primerAsientoReservado.equals(asientosEncontrados.get(0)));
+	}
+	
+	@Test
+	public void reservarAsiento_2PersonasReservanElMismoAsientoYSeSobrereserva() throws Exception {
+		IAerolineaLanchita mockLanchita = mock(IAerolineaLanchita.class);
+		AerolineaLanchita aerolineaLanchita = new AerolineaLanchita(mockLanchita);
+		ArrayList<Aerolinea> aerolineas = new ArrayList<Aerolinea>();
+		aerolineas.add(aerolineaLanchita);
+		Buscador buscador = new Buscador(aerolineas);
+		ArrayList<ArrayList<String>> asientosLanchita = lanchitaAsientos();
+		when(mockLanchita.asientosDisponibles(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString())).thenReturn(asientosLanchita);
+		UsuarioEstandar usuario1 = new UsuarioEstandar("Alejando","40135297");
+		UsuarioEstandar usuario2 = new UsuarioEstandar("Pepito","80135297");
+		ArrayList<TipoClaseAsiento> clases = new ArrayList<TipoClaseAsiento>();
+		clases.add(TipoClaseAsiento.PRIMERA);
+		Busqueda busqueda = new Busqueda("","","","","","",null,null,null);
+		ArrayList<Asiento> asientosEncontrados = buscador.busqueda(usuario1, busqueda);
+		usuario1.reservarAsiento(asientosEncontrados.get(0));
+		usuario2.reservarAsiento(asientosEncontrados.get(0));
+		Asiento primerAsientoReservado = aerolineaLanchita.getAsientosReservados().get(0).getAsiento();
+		Assert.assertTrue("El usuario no pudo reservar el asiento",primerAsientoReservado.equals(asientosEncontrados.get(0)));
+	}
+	
+	@Test
+	public void reservarAsiento_CaeUnaReservaYSeTransfiereCorrectamente() throws Exception {
+		IAerolineaLanchita mockLanchita = mock(IAerolineaLanchita.class);
+		AerolineaLanchita aerolineaLanchita = new AerolineaLanchita(mockLanchita);
+		ArrayList<Aerolinea> aerolineas = new ArrayList<Aerolinea>();
+		aerolineas.add(aerolineaLanchita);
+		Buscador buscador = new Buscador(aerolineas);
+		ArrayList<ArrayList<String>> asientosLanchita = lanchitaAsientos();
+		when(mockLanchita.asientosDisponibles(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString())).thenReturn(asientosLanchita);
+		UsuarioEstandar usuario1 = new UsuarioEstandar("Alejando","40135297");
+		UsuarioEstandar usuario2 = new UsuarioEstandar("Pepito","80135297");
+		ArrayList<TipoClaseAsiento> clases = new ArrayList<TipoClaseAsiento>();
+		clases.add(TipoClaseAsiento.PRIMERA);
+		Busqueda busqueda = new Busqueda("","","","","","",null,null,null);
+		ArrayList<Asiento> asientosEncontrados = buscador.busqueda(usuario1, busqueda);
+		usuario1.reservarAsiento(asientosEncontrados.get(0));
+		usuario2.reservarAsiento(asientosEncontrados.get(0));
+		buscador.transferirReserva("EC0344-42");
+		Assert.assertTrue("El usuario no pudo reservar el asiento",aerolineaLanchita.getAsientosReservados().isEmpty());
+	}
+	
+	@Test
+	public void reservarAsiento_CompraAsientoReservadoYCaenTodasLasReservas() throws Exception {
+		IAerolineaLanchita mockLanchita = mock(IAerolineaLanchita.class);
+		AerolineaLanchita aerolineaLanchita = new AerolineaLanchita(mockLanchita);
+		ArrayList<Aerolinea> aerolineas = new ArrayList<Aerolinea>();
+		aerolineas.add(aerolineaLanchita);
+		Buscador buscador = new Buscador(aerolineas);
+		ArrayList<ArrayList<String>> asientosLanchita = lanchitaAsientos();
+		when(mockLanchita.asientosDisponibles(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString())).thenReturn(asientosLanchita);
+		UsuarioEstandar usuario1 = new UsuarioEstandar("Alejando","40135297");
+		UsuarioEstandar usuario2 = new UsuarioEstandar("Pepito","80135297");
+		UsuarioEstandar usuario3 = new UsuarioEstandar("Jorgito","50135297");
+		ArrayList<TipoClaseAsiento> clases = new ArrayList<TipoClaseAsiento>();
+		clases.add(TipoClaseAsiento.PRIMERA);
+		Busqueda busqueda = new Busqueda("","","","","","",null,null,null);
+		ArrayList<Asiento> asientosEncontrados = buscador.busqueda(usuario1, busqueda);
+		usuario1.reservarAsiento(asientosEncontrados.get(0));
+		usuario2.reservarAsiento(asientosEncontrados.get(0));
+		usuario3.reservarAsiento(asientosEncontrados.get(0));
+		usuario1.comprar(asientosEncontrados.get(0));
+		Assert.assertTrue("No se pudo transferir la reserva",aerolineaLanchita.getAsientosReservados().isEmpty());
 	}
 	
 	private ArrayList<ArrayList<String>> lanchitaAsientos(){

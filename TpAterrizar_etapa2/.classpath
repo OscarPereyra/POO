@@ -3,15 +3,11 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="lib" path="C:/Users/dj_on/Documents/GitHub/POO/POO/TpAterrizar_etapa2/mockito-core-2.28.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="C:/Users/dj_on/Desktop/hamcrest-all-1.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dj_on/Desktop/artifacts.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dj_on/Desktop/content.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dj_on/Desktop/tarjetasube.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dj_on/Desktop/byte-buddy-1.9.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dj_on/Desktop/byte-buddy-agent-1.9.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dj_on/Desktop/mockito-core-2.24.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dj_on/Desktop/objenesis-2.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/blaze/Downloads/byte-buddy-1.9.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/blaze/Downloads/byte-buddy-agent-1.9.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/blaze/Downloads/hamcrest-all-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/blaze/Downloads/mockito-core-2.28.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/blaze/Downloads/objenesis-2.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
