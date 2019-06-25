@@ -49,6 +49,11 @@ public class Fecha {
     	return fecha;
     }
     
+    public String convertirAString(Date fecha, String formato) {
+        SimpleDateFormat formater = new SimpleDateFormat(formato);
+        return formater.format(fecha);
+    }
+    
     public int diasEntreFechas(Date fechaA, Date fechaB) {
     	return Math.abs((int) ((fechaA.getTime()-fechaB.getTime())/diaEnMilisegundos));
     }

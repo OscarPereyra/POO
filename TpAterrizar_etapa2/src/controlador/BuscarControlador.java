@@ -1,0 +1,21 @@
+package controlador;
+
+import viewModel.BuscarViewModel;
+
+public class BuscarControlador {
+	public BuscarViewModel modelo;
+	
+	public BuscarControlador(BuscarViewModel modelo) {
+		this.modelo = modelo;
+	}
+
+	public BuscarViewModel getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(BuscarViewModel modelo) {
+		this.modelo = modelo;
+	}
+	
+	
+}

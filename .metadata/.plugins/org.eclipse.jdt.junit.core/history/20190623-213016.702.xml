@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="TestReservaLanchita.reservarAsiento_SeintentaReservarPeroNoSeObtieneNingunAsiento" project="TpAterrizar_etapa2" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="test.TestReservaLanchita" time="0.296" displayname="TestReservaLanchita" uniqueid="[engine:junit-vintage]/[runner:test.TestReservaLanchita]">
-    <testcase name="reservarAsiento_SeintentaReservarPeroNoSeObtieneNingunAsiento" classname="test.TestReservaLanchita" time="0.296" displayname="reservarAsiento_SeintentaReservarPeroNoSeObtieneNingunAsiento" uniqueid="[engine:junit-vintage]/[runner:test.TestReservaLanchita]/[test:reservarAsiento_SeintentaReservarPeroNoSeObtieneNingunAsiento(test.TestReservaLanchita)]"/>
-  </testsuite>
-</testrun>

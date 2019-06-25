@@ -9,6 +9,7 @@ public class AerolineaLanchita extends Aerolinea{
 	public IAerolineaLanchita lanchita;
 	public AerolineaLanchita(IAerolineaLanchita lanchita) {
 		this.lanchita = lanchita;
+		this.nombre = "Lanchita";
 	}
 	@Override
 	public void reservar(Usuario usuario, Asiento asiento) {

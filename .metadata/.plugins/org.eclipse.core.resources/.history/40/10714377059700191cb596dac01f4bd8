@@ -1,0 +1,34 @@
+package viewModel;
+
+import java.util.ArrayList;
+import javax.swing.table.AbstractTableModel;
+import modelo.Asiento;
+
+public class ComprasTableModel extends AbstractTableModel {
+	ArrayList<Asiento> asientos;
+	String[] columnas = {"Salida","Aerolinea","Vuelo","Asiento","Precio"};
+	Class[] clases = {String.class,String.class,String.class,String.class,Double.class};
+	
+	public ComprasTableModel(ComprasViewModel modelo) {
+		asientos = modelo.getUsuario().getCompras();
+	}
+	
+	@Override
+	public int getColumnCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getRowCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Object getValueAt(int arg0, int arg1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
