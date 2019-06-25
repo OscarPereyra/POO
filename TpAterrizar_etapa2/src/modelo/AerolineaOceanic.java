@@ -18,19 +18,19 @@ public class AerolineaOceanic extends Aerolinea{
 		}
 		return codigo;
 	}
-	public Asiento convertirAsientoDTOAAsiento(AsientoDTO asientoDTO) throws ParseException {
+	/*public Asiento convertirAsientoDTOAAsiento(AsientoDTO asientoDTO) throws ParseException {
 		if(asientoDTO.getCodigoVuelo()!="") {
 			String codigoAsiento = asientoDTO.getCodigoVuelo().concat("-"+Integer.toString(asientoDTO.getNumeroAsiento()));
 			return new Asiento(codigoAsiento,asientoDTO.getPrecio(),asientoDTO.getClase(),asientoDTO.getUbicacion(),false,asientoDTO.getFechaSalida(),asientoDTO.getFechaLlegada(),this);
 		}else {
 			return null;		
 		}
-	}
+	}*/
 	public ArrayList<Asiento> convertirListaAsientosDTOaAsientos(ArrayList<AsientoDTO> disponibles) throws ParseException {
 		ArrayList<Asiento> asientosDisponibles = new ArrayList<Asiento>();
 		disponibles.forEach(asiento -> {
 			try {
-				asientosDisponibles.add(convertirAsientoDTOAAsiento(asiento));
+				asientosDisponibles.add(asiento.convertirAsientoDTOAAsiento(asiento,this));
 			} catch (ParseException e) {
 				System.out.println("Error al convertir");
 			}

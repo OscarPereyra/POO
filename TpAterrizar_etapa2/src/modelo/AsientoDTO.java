@@ -1,6 +1,8 @@
 package modelo;
 
+import java.text.ParseException;
 import java.util.Date;
+import modelo.*;
 
 public class AsientoDTO {
 	private String codigoVuelo;
@@ -71,4 +73,12 @@ public class AsientoDTO {
 	public void setUbicacion(TipoUbicacionAsiento ubicacion) {
 		this.ubicacion = ubicacion;
 	}	
+	public Asiento convertirAsientoDTOAAsiento(AsientoDTO asientoDTO,Aerolinea aerolinea) throws ParseException {
+		if(asientoDTO.getCodigoVuelo()!="") {
+			String codigoAsiento = asientoDTO.getCodigoVuelo().concat("-"+Integer.toString(asientoDTO.getNumeroAsiento()));
+			return new Asiento(codigoAsiento,asientoDTO.getPrecio(),asientoDTO.getClase(),asientoDTO.getUbicacion(),false,asientoDTO.getFechaSalida(),asientoDTO.getFechaLlegada(),aerolinea);
+		}else {
+			return null;		
+		}
+	}
 }
