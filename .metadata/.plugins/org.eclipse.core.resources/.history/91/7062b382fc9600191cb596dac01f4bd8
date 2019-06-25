@@ -1,0 +1,11 @@
+package controlador;
+
+import viewModel.*;
+
+public class PrincipalControlador {
+	private PrincipalViewModel modelo;
+	
+	public PrincipalControlador() {
+		this.modelo = new PrincipalViewModel();
+	}
+}

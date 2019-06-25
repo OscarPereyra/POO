@@ -8,6 +8,7 @@ public class AerolineaOceanic extends Aerolinea{
 	
 	public AerolineaOceanic(IAerolineaOceanic oceanic) {
 		this.oceanic = oceanic;
+		this.nombre = "Oceanic";
 	}
 	public String formatoCiudad(String ciudad) {
 		String codigo="";

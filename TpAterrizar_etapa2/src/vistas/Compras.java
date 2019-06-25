@@ -15,26 +15,16 @@ import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import viewModel.*;
 
 public class Compras extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tableCompras;
-	private JTable table;
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					Compras frame = new Compras();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	public Compras() {
+	private ComprasViewModel modelo;
+	
+	public Compras(ComprasViewModel modelo) {
+		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -48,7 +38,7 @@ public class Compras extends JFrame {
 		contentPane.add(panelCompras);
 		panelCompras.setLayout(new GridLayout(1, 2, 15, 15));
 		
-		JLabel lblComprasDe = new JLabel("Compras de");
+		JLabel lblComprasDe = new JLabel("Compras de " + modelo.getUsuario().getNombre());
 		lblComprasDe.setHorizontalAlignment(SwingConstants.CENTER);
 		panelCompras.add(lblComprasDe);
 		
@@ -59,8 +49,9 @@ public class Compras extends JFrame {
 		JScrollPane scrollPaneDatos = new JScrollPane();
 		contentPane.add(scrollPaneDatos);
 		
-		table = new JTable();
-		scrollPaneDatos.setViewportView(table);
+		tableCompras = new JTable();
+		scrollPaneDatos.setViewportView(tableCompras);
+		tableCompras.setModel(new ComprasTableModel(modelo));
 		
 		JPanel panelBoton = new JPanel();
 		contentPane.add(panelBoton);
@@ -73,5 +64,7 @@ public class Compras extends JFrame {
 		cp.add(panelCompras, BorderLayout.NORTH);
 		cp.add(scrollPaneDatos, BorderLayout.CENTER);
 		cp.add(panelBoton, BorderLayout.SOUTH);	
+		
+		
 	}
 }

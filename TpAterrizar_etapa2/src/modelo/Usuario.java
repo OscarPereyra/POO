@@ -29,4 +29,13 @@ public abstract class Usuario {
 	public ArrayList<Asiento> getReservas() {
 		return reservas;
 	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public void agregarReservado(Asiento asiento) {
+		compras.add(asiento);
+	}
 }

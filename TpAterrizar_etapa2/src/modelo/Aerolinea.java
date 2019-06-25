@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 public abstract class Aerolinea {
+	protected String nombre;
 	protected double impuestoPasajes;
 	protected Fecha fecha = new Fecha();
 	protected ArrayList<AsientoReservado> asientosSobreReservados = new ArrayList<AsientoReservado>();
@@ -25,6 +26,12 @@ public abstract class Aerolinea {
 	}
 	public void setAsientosReservados(ArrayList<AsientoReservado> asientosReservados) {
 		this.asientosSobreReservados = asientosReservados;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	public Boolean estadoAsiento(String estado) {
 		if(estado == "D") {

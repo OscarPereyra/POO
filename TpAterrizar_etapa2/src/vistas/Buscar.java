@@ -14,6 +14,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Buscar extends JFrame {
 
@@ -86,6 +88,12 @@ public class Buscar extends JFrame {
 		panelOrigenFecha.add(panelBuscqueda);
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				onBuscar();
+			}
+		});
 		btnBuscar.setHorizontalAlignment(SwingConstants.LEFT);
 		panelBuscqueda.add(btnBuscar);
 		
@@ -124,5 +132,9 @@ public class Buscar extends JFrame {
 		
 		JButton btnCerrar = new JButton("Cerrar");
 		panelBotones.add(btnCerrar);
+	}
+	
+	private void onBuscar() {
+		
 	}
 }
