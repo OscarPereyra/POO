@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="TestReservaLanchita.reservarAsiento_SeReservaUnAsientoCorrectamente" project="TpAterrizar_etapa2" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testcase name="reservarAsiento_SeReservaUnAsientoCorrectamente" classname="test.TestReservaLanchita" time="0.322"/>
-</testrun>

@@ -93,13 +93,6 @@ public class Principal extends JFrame {
 		panelBotones.add(btnReservas);
 		
 		JButton btnAsientos = new JButton("Buscar Asientos");
-		btnAsientos.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Buscar vistaBuscar = new Buscar();
-				vistaBuscar.setVisible(true);
-			}
-		});
 		panelBotones.add(btnAsientos);
 	}
 }

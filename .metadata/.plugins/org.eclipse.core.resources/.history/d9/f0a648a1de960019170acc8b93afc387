@@ -3,28 +3,28 @@ package vistas;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.EventQueue;
-import java.awt.GridLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.border.EmptyBorder;
-import javax.swing.SwingConstants;
 
-public class Reservas extends JFrame {
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.JScrollPane;
+
+public class Compras extends JFrame {
 
 	private JPanel contentPane;
-	private JTable tableReservas;
+	private JTable tableCompras;
 	private JTable table;
-
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					Reservas frame = new Reservas();
+					Compras frame = new Compras();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,8 +32,8 @@ public class Reservas extends JFrame {
 			}
 		});
 	}
-	public Reservas() {
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+	public Compras() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -42,17 +42,17 @@ public class Reservas extends JFrame {
 		GridLayout gl = new GridLayout(3,1,0,0);
 		contentPane.setLayout(gl);
 		
-		JPanel panelReservas = new JPanel();
-		contentPane.add(panelReservas);
-		panelReservas.setLayout(new GridLayout(1, 2, 15, 15));
+		JPanel panelCompras = new JPanel();
+		contentPane.add(panelCompras);
+		panelCompras.setLayout(new GridLayout(1, 2, 15, 15));
 		
-		JLabel lblReservasDe = new JLabel("Reservas de");
-		lblReservasDe.setHorizontalAlignment(SwingConstants.CENTER);
-		panelReservas.add(lblReservasDe);
+		JLabel lblComprasDe = new JLabel("Compras de");
+		lblComprasDe.setHorizontalAlignment(SwingConstants.CENTER);
+		panelCompras.add(lblComprasDe);
 		
 		JLabel lblNombre = new JLabel("");
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
-		panelReservas.add(lblNombre);
+		panelCompras.add(lblNombre);
 		
 		JScrollPane scrollPaneDatos = new JScrollPane();
 		contentPane.add(scrollPaneDatos);
@@ -68,8 +68,8 @@ public class Reservas extends JFrame {
 		panelBoton.add(btnCerrar);
 				
 		Container cp = getContentPane();
-		cp.add(panelReservas, BorderLayout.NORTH);
+		cp.add(panelCompras, BorderLayout.NORTH);
 		cp.add(scrollPaneDatos, BorderLayout.CENTER);
-		cp.add(panelBoton, BorderLayout.SOUTH);
+		cp.add(panelBoton, BorderLayout.SOUTH);	
 	}
 }

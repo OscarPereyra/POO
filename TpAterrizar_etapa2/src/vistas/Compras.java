@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Compras extends JFrame {
 
@@ -33,7 +35,7 @@ public class Compras extends JFrame {
 		});
 	}
 	public Compras() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
