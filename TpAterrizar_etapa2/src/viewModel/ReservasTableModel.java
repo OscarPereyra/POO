@@ -1,5 +1,64 @@
 package viewModel;
 
-public class ReservasTableModel {
+import java.util.ArrayList;
 
+import javax.swing.table.AbstractTableModel;
+
+import modelo.Asiento;
+import modelo.Fecha;
+
+public class ReservasTableModel extends AbstractTableModel {
+	Fecha parserFecha = new Fecha();
+	ArrayList<Asiento> asientos;
+	String[] columnas = {"Salida","Aerolinea","Vuelo","Asiento","Precio"};
+	Class[] clases = {String.class,String.class,String.class,String.class,Double.class};
+	
+	public ReservasTableModel(ReservasViewModel modelo) {
+		asientos = modelo.getUsuario().getReservas();
+	}
+	
+	 public Asiento obtenerAsiento(int indice) {
+	        try {
+	            return asientos.get(indice);
+	        } catch (IndexOutOfBoundsException e) {
+	            return null;
+	        }
+	    }
+	
+	@Override
+	public int getColumnCount() {
+		return clases.length;
+	}
+
+	@Override
+	public int getRowCount() {
+		return asientos.size();
+	}
+
+	@Override
+	public Object getValueAt(int row, int column) {
+		Asiento asiento = null;
+        asiento = asientos.get(row);
+
+        switch (column) {
+            case 0:
+                return parserFecha.convertirAString(asiento.getFechaSalida(), "dd/MM/yyyy");
+            case 1:
+                return asiento.getAerolinea().getNombre();
+            case 2:
+                String codigoVuelo = asiento.getCodigoAsiento().split("-")[0];
+                return codigoVuelo;
+            case 3:
+                String nroAsiento = asiento.getCodigoAsiento().split("-")[1];
+                return nroAsiento;
+            case 4:
+                return asiento.getPrecio();
+            default:
+                return "";
+        }
+	}
+	
+	public String getColumnName(int columna) {
+		return columnas[columna];
+	}
 }

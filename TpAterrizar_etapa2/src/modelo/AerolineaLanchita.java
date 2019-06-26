@@ -17,7 +17,11 @@ public class AerolineaLanchita extends Aerolinea{
 			asientosSobreReservados.add(new AsientoReservado(asiento,usuario));
 		}
 		else {
-			lanchita.reservar(asiento.getCodigoAsiento(),usuario.getDNI());
+			try {
+				lanchita.reservar(asiento.getCodigoAsiento(),usuario.getDNI());
+			} catch (AsientoLanchitaNoDisponibleException e) {
+				System.out.println("Error para reservar");
+			}
 			asiento.setEstadoReservado(true);
 		}
 	}
@@ -48,7 +52,11 @@ public class AerolineaLanchita extends Aerolinea{
 	public void transferirReserva(String codigoAsiento) {
 		ArrayList<AsientoReservado> reservasFiltradas = (ArrayList<AsientoReservado>) asientosSobreReservados.stream().filter(reserva -> reserva.getAsiento().getCodigoAsiento().equals(codigoAsiento)).collect(Collectors.toList());
 		if(!reservasFiltradas.isEmpty()) {
-			lanchita.reservar(reservasFiltradas.get(0).getAsiento().getCodigoAsiento(), reservasFiltradas.get(0).getUsuario().getDNI());
+			try {
+				lanchita.reservar(reservasFiltradas.get(0).getAsiento().getCodigoAsiento(), reservasFiltradas.get(0).getUsuario().getDNI());
+			} catch (AsientoLanchitaNoDisponibleException e) {
+				System.out.println("Error para reservar");
+			}
 			asientosSobreReservados.remove(reservasFiltradas.get(0));
 		}
 	}	

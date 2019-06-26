@@ -10,31 +10,15 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import modelo.Asiento;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 public class AccionConError extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					AccionConError frame = new AccionConError();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public AccionConError() {
+	public AccionConError(String descripcionDelError,String accion) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 150);
 		contentPane = new JPanel();
@@ -45,13 +29,19 @@ public class AccionConError extends JFrame {
 		JPanel panelMensaje = new JPanel();
 		contentPane.add(panelMensaje);
 		
-		JLabel lblMensaje = new JLabel("");
+		JLabel lblMensaje = new JLabel("Ha ocurrido un error en su " + accion + " " + descripcionDelError + ". Por favor intente nuevamente");
 		panelMensaje.add(lblMensaje);
 		
 		JPanel panelBoton = new JPanel();
 		contentPane.add(panelBoton);
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
 		btnAceptar.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnAceptar.setHorizontalAlignment(SwingConstants.LEFT);
 		panelBoton.add(btnAceptar);

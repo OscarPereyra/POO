@@ -11,8 +11,8 @@ public abstract class Usuario {
 	protected ArrayList<Busqueda> busquedas;
 	abstract boolean esVip();
 	abstract boolean esPago();
-	abstract void comprar(Asiento asiento)throws Exception;
-	abstract void reservarAsiento(Asiento asiento);
+	public abstract void comprar(Asiento asiento)throws Exception;
+	public abstract void reservarAsiento(Asiento asiento);
 	abstract Double getRecargoUsuario();
 	public void agregarBusqueda(Busqueda busqueda) {
 		busquedas.add(busqueda);
@@ -35,7 +35,11 @@ public abstract class Usuario {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public void agregarReservado(Asiento asiento) {
+	public void agregarCompra(Asiento asiento) {
 		compras.add(asiento);
 	}
+	public void agregarReserva(Asiento asiento) {
+		reservas.add(asiento);
+	}
+	
 }

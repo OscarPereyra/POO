@@ -5,36 +5,22 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Asiento;
+import modelo.Usuario;
+
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AccionExitosa extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					AccionExitosa frame = new AccionExitosa();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public AccionExitosa() {
+	public AccionExitosa(Asiento asiento,String accion) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 150);
 		contentPane = new JPanel();
@@ -45,13 +31,19 @@ public class AccionExitosa extends JFrame {
 		JPanel panelMensaje = new JPanel();
 		contentPane.add(panelMensaje);
 		
-		JLabel lblMensaje = new JLabel("");
+		JLabel lblMensaje = new JLabel("El asiento " + asiento.getCodigoAsiento() + " ha sido " + accion + " exitosamente");
 		panelMensaje.add(lblMensaje);
 		
 		JPanel panelBoton = new JPanel();
 		contentPane.add(panelBoton);
 		
 		JButton btnSeguirBuscando = new JButton("Seguir buscando");
+		btnSeguirBuscando.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
 		btnSeguirBuscando.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnSeguirBuscando.setHorizontalAlignment(SwingConstants.LEFT);
 		panelBoton.add(btnSeguirBuscando);

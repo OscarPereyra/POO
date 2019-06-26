@@ -1,6 +1,7 @@
 package modelo;
 
 public class AsientoLanchitaNoDisponibleException extends Exception {
-	public AsientoLanchitaNoDisponibleException() {
+	public AsientoLanchitaNoDisponibleException(String texto) {
+		
 	}
 }

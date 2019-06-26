@@ -89,7 +89,7 @@ public class TestReservaLanchita {
 		usuario1.reservarAsiento(asientosEncontrados.get(0));
 		usuario2.reservarAsiento(asientosEncontrados.get(0));
 		buscador.transferirReserva("EC0344-42");
-		Assert.assertTrue("El usuario no pudo reservar el asiento",aerolineaLanchita.getAsientosReservados().isEmpty());
+		Assert.assertTrue("El usuario no pudo reservar el asiento",!usuario2.getReservas().isEmpty());
 	}
 	
 	@Test

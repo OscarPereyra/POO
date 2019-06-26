@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -21,10 +22,8 @@ public class Compras extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tableCompras;
-	private ComprasViewModel modelo;
 	
 	public Compras(ComprasViewModel modelo) {
-		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -38,11 +37,11 @@ public class Compras extends JFrame {
 		contentPane.add(panelCompras);
 		panelCompras.setLayout(new GridLayout(1, 2, 15, 15));
 		
-		JLabel lblComprasDe = new JLabel("Compras de " + modelo.getUsuario().getNombre());
+		JLabel lblComprasDe = new JLabel("Compras de " );
 		lblComprasDe.setHorizontalAlignment(SwingConstants.CENTER);
 		panelCompras.add(lblComprasDe);
 		
-		JLabel lblNombre = new JLabel("");
+		JLabel lblNombre = new JLabel(modelo.getUsuario().getNombre());
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
 		panelCompras.add(lblNombre);
 		
@@ -58,8 +57,14 @@ public class Compras extends JFrame {
 		panelBoton.setLayout(new GridLayout(1, 3, 15, 15));
 		
 		JButton btnCerrar = new JButton("Cerrar");
+		btnCerrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+					dispose();
+				} 	
+		});
 		panelBoton.add(btnCerrar);
-				
+	
 		Container cp = getContentPane();
 		cp.add(panelCompras, BorderLayout.NORTH);
 		cp.add(scrollPaneDatos, BorderLayout.CENTER);

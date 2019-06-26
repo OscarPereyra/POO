@@ -29,9 +29,6 @@ public class Principal extends JFrame {
 	private JPanel contentPane;
 	private PrincipalControlador controlador;
 	
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
@@ -67,7 +64,7 @@ public class Principal extends JFrame {
 		lblHola.setHorizontalAlignment(SwingConstants.CENTER);
 		panelSaludo.add(lblHola);
 		
-		JLabel lblNombre = new JLabel("");
+		JLabel lblNombre = new JLabel( controlador.getModelo().getUsuario().getNombre());
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
 		panelSaludo.add(lblNombre);
 		
@@ -101,7 +98,7 @@ public class Principal extends JFrame {
 		btnReservas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Reservas vistaReservas = new Reservas();
+				Reservas vistaReservas = new Reservas(new ReservasViewModel(controlador.getModelo().getUsuario()));
 				vistaReservas.setVisible(true);
 			}
 		});
@@ -111,7 +108,7 @@ public class Principal extends JFrame {
 		btnAsientos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Buscar vistaBuscar = new Buscar();
+				Buscar vistaBuscar = new Buscar(new BuscarViewModel(controlador.getModelo().getUsuario()));
 				vistaBuscar.setVisible(true);
 			}
 		});
@@ -121,14 +118,6 @@ public class Principal extends JFrame {
 	private void crearControlador() {
 		this.controlador = new PrincipalControlador();
 		PrincipalViewModel modelo = this.controlador.getModelo();
-		UsuarioEstandar usuario = new UsuarioEstandar("Alejando","40135297");
-		modelo.setUsuario(usuario);
-		//Prueba turbia para ver si muestra los asientos comprados de el usuario
-		try {
-			usuario.agregarReservado(new Asiento("EC0344-42",56500.60,TipoClaseAsiento.PRIMERA,TipoUbicacionAsiento.PASILLO,false,parserFecha.convertirALatinoamericano("18/06/2019"),parserFecha.convertirALatinoamericano("25/06/2019"),new AerolineaLanchita(null)));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		modelo.setUsuario(new UsuarioEstandar("Alejando","40135297"));
 	}
 }

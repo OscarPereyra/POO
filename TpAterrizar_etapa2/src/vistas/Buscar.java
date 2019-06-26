@@ -6,16 +6,26 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Asiento;
+import viewModel.BuscarTableModel;
+import viewModel.BuscarViewModel;
+import viewModel.ComprasTableModel;
+import viewModel.ComprasViewModel;
+
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.JTextPane;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.util.ArrayList;
 
 public class Buscar extends JFrame {
 
@@ -23,23 +33,11 @@ public class Buscar extends JFrame {
 	private JTextField textOrigen;
 	private JTextField textFecha;
 	private JTextField textDestino0;
-	private JTable table;
-	private JTable table_1;
+	private JTable tableBuscar;
+	private BuscarViewModel modelo;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					Buscar frame = new Buscar();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	public Buscar() {
+	public Buscar(BuscarViewModel modelo) {
+		this.modelo = modelo;
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 450, 500);
 		contentPane = new JPanel();
@@ -51,6 +49,7 @@ public class Buscar extends JFrame {
 		contentPane.add(panelErrores);
 		
 		JTextPane textPaneErrores = new JTextPane();
+		textPaneErrores.setEditable(false);
 		panelErrores.add(textPaneErrores);
 		
 		JPanel panelFiltros = new JPanel();
@@ -91,7 +90,17 @@ public class Buscar extends JFrame {
 		btnBuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				onBuscar();
+				try {
+					modelo.buscar(textDestino0.getText(),textOrigen.getText(), textFecha.getText());
+					BuscarTableModel mod = new BuscarTableModel(modelo.getAsientos());
+					tableBuscar.setModel(mod);
+			        tableBuscar.revalidate();
+			        tableBuscar.repaint();
+			        tableBuscar.clearSelection();
+			        mod.fireTableDataChanged();
+				} catch (ParseException e) {
+					System.out.println("Error en la busqueda");
+				}
 			}
 		});
 		btnBuscar.setHorizontalAlignment(SwingConstants.LEFT);
@@ -115,26 +124,64 @@ public class Buscar extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane);
-		
-		table_1 = new JTable();
-		scrollPane.add(table_1);
-		
+
+		tableBuscar = new JTable();
+		scrollPane.setViewportView(tableBuscar);
+		tableBuscar.setModel(new BuscarTableModel());
+		tableBuscar.getSelectionModel().addListSelectionListener(e -> onSeleccionar());
 		JPanel panelBotones = new JPanel();
 		contentPane.add(panelBotones, BorderLayout.SOUTH);
 		panelBotones.setLayout(new GridLayout(1, 3, 15, 15));
 		
 		JButton btnComprar = new JButton("Comprar");
 		panelBotones.add(btnComprar);
+		btnComprar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					modelo.comprar(modelo.getAsientoSeleccionado());
+					AccionExitosa comproBien = new AccionExitosa(modelo.getAsientoSeleccionado(),"comprado");
+					comproBien.setVisible(true);
+				} catch (Exception e) {	
+					AccionConError comproMal = new AccionConError("Error al realizar la compra","compra");
+					comproMal.setVisible(true);
+				}
+			} 
+		});
 		btnComprar.setBounds(100, 100, 100, 40);
 		
 		JButton btnReservar = new JButton("Reservar");
+		btnReservar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					modelo.reservar(modelo.getAsientoSeleccionado());
+					AccionExitosa reservoBien = new AccionExitosa(modelo.getAsientoSeleccionado(),"reservado");
+					reservoBien.setVisible(true);
+				} catch (Exception e) {	
+					AccionConError reservoMal = new AccionConError("Error al realizar la reserva","reserva");
+					reservoMal.setVisible(true);
+				}
+			} 
+		});
 		panelBotones.add(btnReservar);
 		
 		JButton btnCerrar = new JButton("Cerrar");
+		btnCerrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+					dispose();
+				} 	
+		});
 		panelBotones.add(btnCerrar);
 	}
 	
-	private void onBuscar() {
-		
+	private void onSeleccionar() {
+		int row = tableBuscar.convertRowIndexToModel(tableBuscar.getSelectedRow());
+        if(row > -1) {
+            BuscarTableModel model = (BuscarTableModel) tableBuscar.getModel();
+            Asiento seleccionado = model.getRowAt(row);
+            modelo.setAsientoSeleccionado(seleccionado);
+        }
 	}
 }
