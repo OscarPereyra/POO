@@ -20,7 +20,6 @@ import com.sun.glass.ui.Window;
 import modelo.Usuario;
 import viewModel.ComprasTableModel;
 import viewModel.ReservasTableModel;
-import viewModel.ReservasViewModel;
 
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -29,7 +28,7 @@ public class Reservas extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tableReservas;
-	private Usuario usuario;
+	private static Usuario usuario;
 
 	public Reservas() {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -58,7 +57,7 @@ public class Reservas extends JFrame {
 		
 		tableReservas = new JTable();
 		scrollPaneDatos.setViewportView(tableReservas);
-		tableReservas.setModel(new ReservasTableModel(modelo));
+		tableReservas.setModel(new ReservasTableModel());
 		
 		JPanel panelBoton = new JPanel();
 		contentPane.add(panelBoton);
@@ -78,4 +77,9 @@ public class Reservas extends JFrame {
 		cp.add(scrollPaneDatos, BorderLayout.CENTER);
 		cp.add(panelBoton, BorderLayout.SOUTH);
 	}
+
+	public static Usuario getUsuario() {
+		return usuario;
+	}
+
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 import modelo.Asiento;
 import modelo.Fecha;
+import vistas.Compras;
+import vistas.Reservas;
 
 public class ComprasTableModel extends AbstractTableModel {
 	Fecha parserFecha = new Fecha();
@@ -11,8 +13,8 @@ public class ComprasTableModel extends AbstractTableModel {
 	String[] columnas = {"Salida","Aerolinea","Vuelo","Asiento","Precio"};
 	Class[] clases = {String.class,String.class,String.class,String.class,Double.class};
 	
-	public ComprasTableModel(ComprasViewModel modelo) {
-		asientos = modelo.getUsuario().getCompras();
+	public ComprasTableModel() {
+		asientos = Compras.getUsuario().getCompras();
 	}
 	
 	 public Asiento obtenerAsiento(int indice) {

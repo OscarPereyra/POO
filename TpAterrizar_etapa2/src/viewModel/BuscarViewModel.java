@@ -42,7 +42,7 @@ public class BuscarViewModel {
 	}
 
 	public void buscar(String destino, String origen, String fecha) throws ParseException{
-		Busqueda busqueda = new Busqueda(origen, fecha, "", destino, "", "", null, null, null);
+		Busqueda busqueda = new Busqueda(origen, fecha, "", destino, "", "", null, null, null, null);
 		this.asientos = buscador.busqueda(usuario, busqueda);
 	}
 	

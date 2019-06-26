@@ -21,7 +21,7 @@ import java.awt.event.MouseEvent;
 import viewModel.*;
 
 public class Compras extends JFrame {
-	private Usuario usuario;
+	private static Usuario usuario;
 	private JPanel contentPane;
 	private JTable tableCompras;
 	
@@ -69,4 +69,9 @@ public class Compras extends JFrame {
 		
 		
 	}
+
+	public static Usuario getUsuario() {
+		return usuario;
+	}
+
 }

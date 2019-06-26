@@ -24,7 +24,7 @@ public class TestReservaLanchita {
 		UsuarioEstandar usuario = new UsuarioEstandar("Alejando","40135297");
 		ArrayList<TipoClaseAsiento> clases = new ArrayList<TipoClaseAsiento>();
 		clases.add(TipoClaseAsiento.PRIMERA);
-		Busqueda busqueda = new Busqueda("", "", "", "", "","", clases, TipoUbicacionAsiento.PASILLO,null);
+		Busqueda busqueda = new Busqueda("", "", "", "", "","", clases, TipoUbicacionAsiento.PASILLO,null, null);
 		ArrayList<Asiento> asientosEncontrados = buscador.busqueda(usuario, busqueda);
 		usuario.reservarAsiento(asientosEncontrados.get(0));
 		Asiento primerAsientoReservado = usuario.getReservas().get(0);		
@@ -43,7 +43,7 @@ public class TestReservaLanchita {
 		UsuarioEstandar usuario = new UsuarioEstandar("Alejando","40135297");
 		ArrayList<TipoClaseAsiento> clases = new ArrayList<TipoClaseAsiento>();
 		clases.add(TipoClaseAsiento.PRIMERA);
-		Busqueda busqueda = new Busqueda("","","","","","",null,null,null);
+		Busqueda busqueda = new Busqueda("","","","","","",null,null,null, null);
 		ArrayList<Asiento> asientosEncontrados = buscador.busqueda(usuario, busqueda);
 		usuario.reservarAsiento(asientosEncontrados.get(0));
 		Asiento primerAsientoReservado = usuario.getReservas().get(0);		
@@ -63,7 +63,7 @@ public class TestReservaLanchita {
 		UsuarioEstandar usuario2 = new UsuarioEstandar("Pepito","80135297");
 		ArrayList<TipoClaseAsiento> clases = new ArrayList<TipoClaseAsiento>();
 		clases.add(TipoClaseAsiento.PRIMERA);
-		Busqueda busqueda = new Busqueda("","","","","","",null,null,null);
+		Busqueda busqueda = new Busqueda("","","","","","",null,null,null, null);
 		ArrayList<Asiento> asientosEncontrados = buscador.busqueda(usuario1, busqueda);
 		usuario1.reservarAsiento(asientosEncontrados.get(0));
 		usuario2.reservarAsiento(asientosEncontrados.get(0));
@@ -84,7 +84,7 @@ public class TestReservaLanchita {
 		UsuarioEstandar usuario2 = new UsuarioEstandar("Pepito","80135297");
 		ArrayList<TipoClaseAsiento> clases = new ArrayList<TipoClaseAsiento>();
 		clases.add(TipoClaseAsiento.PRIMERA);
-		Busqueda busqueda = new Busqueda("","","","","","",null,null,null);
+		Busqueda busqueda = new Busqueda("","","","","","",null,null,null, null);
 		ArrayList<Asiento> asientosEncontrados = buscador.busqueda(usuario1, busqueda);
 		usuario1.reservarAsiento(asientosEncontrados.get(0));
 		usuario2.reservarAsiento(asientosEncontrados.get(0));
@@ -106,7 +106,7 @@ public class TestReservaLanchita {
 		UsuarioEstandar usuario3 = new UsuarioEstandar("Jorgito","50135297");
 		ArrayList<TipoClaseAsiento> clases = new ArrayList<TipoClaseAsiento>();
 		clases.add(TipoClaseAsiento.PRIMERA);
-		Busqueda busqueda = new Busqueda("","","","","","",null,null,null);
+		Busqueda busqueda = new Busqueda("","","","","","",null,null,null, null);
 		ArrayList<Asiento> asientosEncontrados = buscador.busqueda(usuario1, busqueda);
 		usuario1.reservarAsiento(asientosEncontrados.get(0));
 		usuario2.reservarAsiento(asientosEncontrados.get(0));

@@ -28,7 +28,6 @@ public class Principal extends JFrame {
 	private Usuario usuario;
 	Fecha parserFecha = new Fecha();
 	private JPanel contentPane;
-	private PrincipalControlador controlador;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -45,7 +44,6 @@ public class Principal extends JFrame {
 	}
 	
 	public Principal() {
-		crearControlador();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -65,7 +63,7 @@ public class Principal extends JFrame {
 		lblHola.setHorizontalAlignment(SwingConstants.CENTER);
 		panelSaludo.add(lblHola);
 		
-		JLabel lblNombre = new JLabel("");
+		JLabel lblNombre = new JLabel(usuario.getNombre());
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
 		panelSaludo.add(lblNombre);
 		
@@ -89,7 +87,7 @@ public class Principal extends JFrame {
 		btnCompras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Compras vistaCompras = new Compras(new ComprasViewModel(usuario));
+				Compras vistaCompras = new Compras();
 				vistaCompras.setVisible(true);
 			}
 		});
@@ -116,17 +114,4 @@ public class Principal extends JFrame {
 		panelBotones.add(btnAsientos);
 	}
 	
-	private void crearControlador() {
-		this.controlador = new PrincipalControlador();
-		//PrincipalViewModel modelo = this.controlador.getModelo();
-		UsuarioEstandar usuario = new UsuarioEstandar("Alejando","40135297");
-		//modelo.setUsuario(usuario);
-		//Prueba turbia para ver si muestra los asientos comprados de el usuario
-		try {
-			usuario.agregarReserva(new Asiento("EC0344-42",56500.60,TipoClaseAsiento.PRIMERA,TipoUbicacionAsiento.PASILLO,false,parserFecha.convertirALatinoamericano("18/06/2019"),parserFecha.convertirALatinoamericano("25/06/2019"),new AerolineaLanchita(null)));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 }
