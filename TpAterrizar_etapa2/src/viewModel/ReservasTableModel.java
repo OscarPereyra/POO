@@ -9,6 +9,7 @@ import modelo.Fecha;
 import vistas.Reservas;
 
 public class ReservasTableModel extends AbstractTableModel {
+	private static final long serialVersionUID = 1L;
 	Fecha parserFecha = new Fecha();
 	ArrayList<Asiento> asientos;
 	String[] columnas = {"Salida","Aerolinea","Vuelo","Asiento","Precio"};

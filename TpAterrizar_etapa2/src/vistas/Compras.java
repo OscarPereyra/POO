@@ -2,7 +2,6 @@ package vistas;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,11 +15,10 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import viewModel.*;
 
 public class Compras extends JFrame {
+	private static final long serialVersionUID = 1L;
 	private static Usuario usuario;
 	private JPanel contentPane;
 	private JTable tableCompras;

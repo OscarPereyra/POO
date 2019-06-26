@@ -1,13 +1,11 @@
 package vistas;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import modelo.Asiento;
-import modelo.Usuario;
 
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -17,7 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class AccionExitosa extends JFrame {
-
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	public AccionExitosa(Asiento asiento,String accion) {

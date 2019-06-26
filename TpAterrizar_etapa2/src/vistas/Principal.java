@@ -11,20 +11,13 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.ParseException;
-import java.util.ArrayList;
 
-import controlador.*;
-import modelo.AerolineaLanchita;
-import modelo.Asiento;
 import modelo.Fecha;
-import modelo.TipoClaseAsiento;
-import modelo.TipoUbicacionAsiento;
 import modelo.Usuario;
-import modelo.UsuarioEstandar;
 import viewModel.BuscarViewModel;
 
 public class Principal extends JFrame {
+	private static final long serialVersionUID = 1L;
 	private Usuario usuario;
 	Fecha parserFecha = new Fecha();
 	private JPanel contentPane;

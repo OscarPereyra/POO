@@ -2,9 +2,7 @@ package viewModel;
 
 import java.util.ArrayList;
 
-import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 
 import modelo.Asiento;
 import modelo.Fecha;
@@ -12,6 +10,7 @@ import modelo.TipoClaseAsiento;
 import modelo.TipoUbicacionAsiento;
 
 public class BuscarTableModel extends AbstractTableModel  {
+	private static final long serialVersionUID = 1L;
 	Fecha parserFecha = new Fecha();
 	ArrayList<Asiento> asientos;
 	String[] columnas = {"Aerolinea","Codigo Vuelo","Codigo Asiento","Precio","Ubicacion","Clase"};

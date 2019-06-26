@@ -1,7 +1,6 @@
 package vistas;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,24 +9,21 @@ import javax.swing.border.EmptyBorder;
 import modelo.Asiento;
 import viewModel.BuscarTableModel;
 import viewModel.BuscarViewModel;
-import viewModel.ComprasTableModel;
 
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.JTextPane;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
-import java.util.ArrayList;
 
 public class Buscar extends JFrame {
-
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textOrigen;
 	private JTextField textFecha;

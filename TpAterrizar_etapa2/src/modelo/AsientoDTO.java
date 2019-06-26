@@ -2,7 +2,6 @@ package modelo;
 
 import java.text.ParseException;
 import java.util.Date;
-import modelo.*;
 
 public class AsientoDTO {
 	private String codigoVuelo;

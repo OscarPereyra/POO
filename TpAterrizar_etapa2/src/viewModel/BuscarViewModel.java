@@ -12,7 +12,6 @@ import modelo.LanchitaDummy;
 import modelo.Usuario;
 
 public class BuscarViewModel {
-	private Busqueda busqueda;
 	private Buscador buscador;
 	private Usuario usuario;
 	private ArrayList<Asiento> asientos = new ArrayList<Asiento>();
