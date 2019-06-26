@@ -22,9 +22,10 @@ import modelo.TipoClaseAsiento;
 import modelo.TipoUbicacionAsiento;
 import modelo.Usuario;
 import modelo.UsuarioEstandar;
-import viewModel.*;
+import viewModel.BuscarViewModel;
 
 public class Principal extends JFrame {
+	private Usuario usuario;
 	Fecha parserFecha = new Fecha();
 	private JPanel contentPane;
 	private PrincipalControlador controlador;
@@ -64,7 +65,7 @@ public class Principal extends JFrame {
 		lblHola.setHorizontalAlignment(SwingConstants.CENTER);
 		panelSaludo.add(lblHola);
 		
-		JLabel lblNombre = new JLabel( controlador.getModelo().getUsuario().getNombre());
+		JLabel lblNombre = new JLabel("");
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
 		panelSaludo.add(lblNombre);
 		
@@ -88,7 +89,7 @@ public class Principal extends JFrame {
 		btnCompras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Compras vistaCompras = new Compras(new ComprasViewModel(controlador.getModelo().getUsuario()));
+				Compras vistaCompras = new Compras(new ComprasViewModel(usuario));
 				vistaCompras.setVisible(true);
 			}
 		});
@@ -98,7 +99,7 @@ public class Principal extends JFrame {
 		btnReservas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Reservas vistaReservas = new Reservas(new ReservasViewModel(controlador.getModelo().getUsuario()));
+				Reservas vistaReservas = new Reservas();
 				vistaReservas.setVisible(true);
 			}
 		});
@@ -108,7 +109,7 @@ public class Principal extends JFrame {
 		btnAsientos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Buscar vistaBuscar = new Buscar(new BuscarViewModel(controlador.getModelo().getUsuario()));
+				Buscar vistaBuscar = new Buscar(new BuscarViewModel(usuario));
 				vistaBuscar.setVisible(true);
 			}
 		});
@@ -117,7 +118,15 @@ public class Principal extends JFrame {
 	
 	private void crearControlador() {
 		this.controlador = new PrincipalControlador();
-		PrincipalViewModel modelo = this.controlador.getModelo();
-		modelo.setUsuario(new UsuarioEstandar("Alejando","40135297"));
+		//PrincipalViewModel modelo = this.controlador.getModelo();
+		UsuarioEstandar usuario = new UsuarioEstandar("Alejando","40135297");
+		//modelo.setUsuario(usuario);
+		//Prueba turbia para ver si muestra los asientos comprados de el usuario
+		try {
+			usuario.agregarReserva(new Asiento("EC0344-42",56500.60,TipoClaseAsiento.PRIMERA,TipoUbicacionAsiento.PASILLO,false,parserFecha.convertirALatinoamericano("18/06/2019"),parserFecha.convertirALatinoamericano("25/06/2019"),new AerolineaLanchita(null)));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

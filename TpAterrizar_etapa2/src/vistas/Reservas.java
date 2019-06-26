@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.sun.glass.ui.Window;
 
+import modelo.Usuario;
 import viewModel.ComprasTableModel;
 import viewModel.ReservasTableModel;
 import viewModel.ReservasViewModel;
@@ -28,8 +29,9 @@ public class Reservas extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tableReservas;
+	private Usuario usuario;
 
-	public Reservas(ReservasViewModel modelo) {
+	public Reservas() {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -47,7 +49,7 @@ public class Reservas extends JFrame {
 		lblReservasDe.setHorizontalAlignment(SwingConstants.CENTER);
 		panelReservas.add(lblReservasDe);
 		
-		JLabel lblNombre = new JLabel( modelo.getUsuario().getNombre());
+		JLabel lblNombre = new JLabel(usuario.getNombre());
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
 		panelReservas.add(lblNombre);
 		

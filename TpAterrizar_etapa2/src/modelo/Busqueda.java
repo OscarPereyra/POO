@@ -14,8 +14,9 @@ public class Busqueda {
 	private ArrayList<TipoClaseAsiento> clases = null;
 	private TipoUbicacionAsiento ubicacion = null;
 	private ArrayList<Filtro> filtros;
+	private ArrayList<CriterioOrdenamiento> criterios;
 		
-	public Busqueda(String origen, String fechaSalida, String horaSalida, String destino, String fechaLlegada,String horaLlegada, ArrayList<TipoClaseAsiento> clases, TipoUbicacionAsiento ubicacion,ArrayList<Filtro> filtros) {
+	public Busqueda(String origen, String fechaSalida, String horaSalida, String destino, String fechaLlegada,String horaLlegada, ArrayList<TipoClaseAsiento> clases, TipoUbicacionAsiento ubicacion,ArrayList<Filtro> filtros, ArrayList<CriterioOrdenamiento> criterios) {
 		this.origen = origen;
 		this.fechaSalida = fechaSalida;
 		this.horaSalida = horaSalida;
@@ -25,6 +26,7 @@ public class Busqueda {
 		this.clases = clases;
 		this.ubicacion = ubicacion;
 		this.filtros = filtros;
+		this.criterios = criterios;
 	}
 	
 	public ArrayList<Filtro> getFiltros() {
@@ -111,5 +113,13 @@ public class Busqueda {
 			this.precioMax = -1.0;
 		}
 	}
-	
+
+	public ArrayList<CriterioOrdenamiento> getCriterios() {
+		return criterios;
+	}
+
+	public void setCriterios(ArrayList<CriterioOrdenamiento> criterios) {
+		this.criterios = criterios;
+	}
+
 }

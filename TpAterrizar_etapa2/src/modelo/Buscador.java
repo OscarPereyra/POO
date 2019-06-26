@@ -24,6 +24,7 @@ public class Buscador {
 		asientosDisp.forEach(asiento -> asiento.actualizarPrecioTotal(usuario));
 		if(busqueda.getFiltros()!=null)busqueda.getFiltros().forEach(filtro -> filtro.aplicarFiltro(asientosDisp));
 		if(!usuario.esVip())asientosDisp.removeIf(asiento -> esSuperOferta(asiento));
+		if(busqueda.getCriterios()!=null)busqueda.getCriterios().forEach(criterio -> criterio.aplicarCriterio(asientosDisp));
 		usuario.agregarBusqueda(busqueda);
 		return asientosDisp;
 	}

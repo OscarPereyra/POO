@@ -11,7 +11,6 @@ import modelo.Asiento;
 import viewModel.BuscarTableModel;
 import viewModel.BuscarViewModel;
 import viewModel.ComprasTableModel;
-import viewModel.ComprasViewModel;
 
 import java.awt.GridLayout;
 import javax.swing.JLabel;
