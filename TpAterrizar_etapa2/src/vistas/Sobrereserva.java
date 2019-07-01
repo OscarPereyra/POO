@@ -3,15 +3,20 @@ package vistas;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Asiento;
+
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Sobrereserva extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	public Sobrereserva() {
+	public Sobrereserva(Asiento asiento) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 200);
 		contentPane = new JPanel();
@@ -22,7 +27,7 @@ public class Sobrereserva extends JFrame {
 		JPanel panelMensajeAsiento = new JPanel();
 		contentPane.add(panelMensajeAsiento);
 		
-		JLabel lblMensajeAsiento = new JLabel("");
+		JLabel lblMensajeAsiento = new JLabel("El asiento " + asiento.getCodigoAsiento() + " ya se encuentra reservado");
 		panelMensajeAsiento.add(lblMensajeAsiento);
 		
 		JPanel panelPregunta = new JPanel();
@@ -35,9 +40,23 @@ public class Sobrereserva extends JFrame {
 		contentPane.add(panelBotones);
 		
 		JButton btnSobrereservar = new JButton("Sobrereservar");
+		btnSobrereservar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AccionExitosa reservoBien = new AccionExitosa(asiento,"sobrereservado");
+				reservoBien.setVisible(true);
+				dispose();
+			}
+		});
 		panelBotones.add(btnSobrereservar);
 		
 		JButton btnSeguirBuscando = new JButton("Seguir buscando");
+		btnSeguirBuscando.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
 		panelBotones.add(btnSeguirBuscando);
 	}
 
