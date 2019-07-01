@@ -5,12 +5,24 @@ import java.util.ArrayList;
 //Datos de asientos = [Codigo asiento,precio asiento,clase(T-E-P),ubicacion(V-C-P),estado(R-D)]
 
 public class Buscador {
+	private static Buscador buscador = new Buscador();
 	private ArrayList<Aerolinea> aerolineas;
 	
+	public Buscador() {
+	}
 	public Buscador(ArrayList<Aerolinea> aerolineas) {
 		this.aerolineas = aerolineas;
 	}
-
+	public static Buscador getInstance() {
+		if (buscador == null) {
+            buscador = new Buscador();
+       }
+       else {
+           System.out.println("Ya existe el objeto");
+       }
+        return buscador;
+	}
+	
 	public ArrayList<Asiento> busqueda(Usuario usuario,Busqueda busqueda)throws ParseException {
 		ArrayList<Asiento> asientosDisp = new ArrayList<Asiento>();
 		//test de asientos disponibles con atributos nulos
