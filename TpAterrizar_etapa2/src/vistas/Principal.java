@@ -14,11 +14,12 @@ import java.awt.event.MouseEvent;
 
 import modelo.Fecha;
 import modelo.Usuario;
+import modelo.UsuarioEstandar;
 import viewModel.BuscarViewModel;
 
 public class Principal extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private Usuario usuario;
+	private Usuario usuario = new UsuarioEstandar("Alejandro","40135297");
 	Fecha parserFecha = new Fecha();
 	private JPanel contentPane;
 	
@@ -80,7 +81,7 @@ public class Principal extends JFrame {
 		btnCompras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Compras vistaCompras = new Compras();
+				Operacion vistaCompras = new Operacion(usuario,usuario.getCompras(),"Compras");
 				vistaCompras.setVisible(true);
 			}
 		});
@@ -90,7 +91,7 @@ public class Principal extends JFrame {
 		btnReservas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Reservas vistaReservas = new Reservas();
+				Operacion vistaReservas = new Operacion(usuario,usuario.getReservas(),"Resevas");
 				vistaReservas.setVisible(true);
 			}
 		});
