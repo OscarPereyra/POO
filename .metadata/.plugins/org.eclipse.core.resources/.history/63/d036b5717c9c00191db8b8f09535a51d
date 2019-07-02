@@ -14,7 +14,10 @@ public class Buscador {
 	public static Buscador getInstance(ArrayList<Aerolinea> aerolineas) {
 		if (buscador == null) {
             buscador = new Buscador(aerolineas);
-		}
+       }
+       else {
+           System.out.println("Ya existe el objeto");
+       }
         return buscador;
 	}
 	

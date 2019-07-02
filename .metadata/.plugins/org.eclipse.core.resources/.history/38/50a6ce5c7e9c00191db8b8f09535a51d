@@ -57,6 +57,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 	    @Override
 	    public void comprar(String codigoAsiento) throws AsientoLanchitaNoDisponibleException {
 	        ArrayList<String> asiento = getAsiento(codigoAsiento);
+	        System.out.println("Obtiene el asiento");
 	        if(estaDisponible(asiento)) {
 	            actualizarRegistro(asiento, "C");
 	        } else {

@@ -52,13 +52,7 @@ public class BuscarViewModel {
 	}
 
 	public void comprar(Asiento asientoSeleccionado) throws Exception {
-		if (asientoSeleccionado!=null) {
-			usuario.comprar(asientoSeleccionado);
-		}
-		else {
-			System.out.println("Seleccione un asiento");
-		}
-		
+		usuario.comprar(asientoSeleccionado);
 	}
 	
 	public void reservar(Asiento asientoSeleccionado) throws Exception {

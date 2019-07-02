@@ -19,16 +19,17 @@ public class AerolineaLanchita extends Aerolinea{
 		else {
 			try {
 				lanchita.reservar(asiento.getCodigoAsiento(),usuario.getDNI());
-				asiento.setEstadoReservado(true);
 			} catch (AsientoLanchitaNoDisponibleException e) {
 				System.out.println("Error para reservar");
 			}
+			asiento.setEstadoReservado(true);
 		}
 	}
 	@Override
 	public void comprar(Usuario usuario, Asiento asiento) {
 		try {
 			lanchita.comprar(asiento.getCodigoAsiento());
+			System.out.println("Paso el lanchita comprar");
 			limpiarSobreReservas(asiento.getCodigoAsiento());
 		}
 		catch (AsientoLanchitaNoDisponibleException e) {
@@ -62,7 +63,9 @@ public class AerolineaLanchita extends Aerolinea{
 	}	
 	@Override
 	protected void limpiarSobreReservas(String codigoAsiento) {
+		System.out.println("Entro a limpiar sobre");
 		asientosSobreReservados.removeIf(reserva -> reserva.getAsiento().getCodigoAsiento().equals(codigoAsiento));
+		System.out.println("Paso la limpieza");
 	}	
 	private Asiento parsearAsiento(ArrayList<String> asiento) throws ParseException{
 		String codigoAsiento = asiento.get(0);

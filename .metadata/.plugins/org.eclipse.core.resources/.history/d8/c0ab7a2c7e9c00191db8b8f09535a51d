@@ -78,7 +78,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 	    }
 
 	    private boolean estaDisponible(ArrayList<String> asiento) {
-	        return (asiento.get(4).equals("D") | asiento.get(4).equals("R"));
+	        return asiento.get(4).equals("D");
 	    }
 
 	    private ArrayList<String> getAsiento(String codigoAsiento) {

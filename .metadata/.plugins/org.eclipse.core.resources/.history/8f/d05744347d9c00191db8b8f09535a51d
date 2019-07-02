@@ -137,7 +137,6 @@ public class Buscar extends JFrame {
 					modelo.comprar(modelo.getAsientoSeleccionado());
 					AccionExitosa comproBien = new AccionExitosa(modelo.getAsientoSeleccionado(),"comprado");
 					comproBien.setVisible(true);
-					modelo.setAsientoSeleccionado(null);
 				} catch (Exception e) {	
 					AccionConError comproMal = new AccionConError("Error al realizar la compra","compra");
 					comproMal.setVisible(true);

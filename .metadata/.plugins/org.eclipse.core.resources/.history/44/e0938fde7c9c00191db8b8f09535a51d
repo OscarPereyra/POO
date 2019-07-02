@@ -8,13 +8,16 @@ public class Buscador {
 	private static Buscador buscador = null;
 	private ArrayList<Aerolinea> aerolineas;
 	
-	public Buscador(ArrayList<Aerolinea> aerolineas) {
+	private Buscador(ArrayList<Aerolinea> aerolineas) {
 		this.aerolineas = aerolineas;
 	}
 	public static Buscador getInstance(ArrayList<Aerolinea> aerolineas) {
 		if (buscador == null) {
             buscador = new Buscador(aerolineas);
-		}
+       }
+       else {
+           System.out.println("Ya existe el buscador");
+       }
         return buscador;
 	}
 	

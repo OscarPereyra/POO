@@ -39,7 +39,7 @@ public class BuscarViewModel {
 		this.usuario = usuario;
 		ArrayList<Aerolinea> aerolineas = new ArrayList<Aerolinea>();
 		aerolineas.add(new AerolineaLanchita(new LanchitaDummy()));
-		this.buscador = Buscador.getInstance(aerolineas);
+		this.buscador = buscador.getInstance();
 	}
 
 	public void buscar(String destino, String origen, String fecha) throws ParseException{
@@ -52,13 +52,7 @@ public class BuscarViewModel {
 	}
 
 	public void comprar(Asiento asientoSeleccionado) throws Exception {
-		if (asientoSeleccionado!=null) {
-			usuario.comprar(asientoSeleccionado);
-		}
-		else {
-			System.out.println("Seleccione un asiento");
-		}
-		
+		usuario.comprar(asientoSeleccionado);
 	}
 	
 	public void reservar(Asiento asientoSeleccionado) throws Exception {
