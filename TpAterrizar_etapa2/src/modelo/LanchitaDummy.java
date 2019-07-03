@@ -17,6 +17,121 @@ public class LanchitaDummy implements IAerolineaLanchita {
 	        diccionarioDestinos.put("BRZ", "753");
 	        diccionarioDestinos.put("ESP", "954");
 	        diccionarioDestinos.put("COL", "742");
+	        
+	        /*this.asientos = new ArrayList<ArrayList<String>>();
+	        for(int nAsiento = 1; nAsiento <= 300 ; nAsiento++)
+	        {
+	        	for(nAsiento = 1; nAsiento <= 48 ; nAsiento+=3)
+	          	{
+	          	ArrayList<String> asiento1 = new ArrayList<String>();
+	          	asiento1.add("EC0 123-".concat(Integer.toString(nAsiento)));
+				asiento1.add("56500.60");
+				asiento1.add("P");
+				asiento1.add("V");
+				asiento1.add("D");
+				asiento1.add("18/06/2019");
+				asiento1.add("25/06/2019");
+				asientos.add(asiento1);
+	          	}
+	        	for(nAsiento = 2; nAsiento <= 48 ; nAsiento+=3)
+	          	{
+	          	ArrayList<String> asiento2 = new ArrayList<String>();
+	          	asiento2.add("EC0 123-".concat(Integer.toString(nAsiento)));
+				asiento2.add("56500.60");
+				asiento2.add("P");
+				asiento2.add("C");
+				asiento2.add("D");
+				asiento2.add("18/06/2019");
+				asiento2.add("25/06/2019");
+				asientos.add(asiento2);
+	          	}
+	        	for(nAsiento = 3; nAsiento <= 48 ; nAsiento+=3)
+	          	{
+	          	ArrayList<String> asiento3 = new ArrayList<String>();
+	          	asiento3.add("EC0 123-".concat(Integer.toString(nAsiento)));
+				asiento3.add("56500.60");
+				asiento3.add("P");
+				asiento3.add("P");
+				asiento3.add("D");
+				asiento3.add("18/06/2019");
+				asiento3.add("25/06/2019");
+				asientos.add(asiento3);
+	          	}
+	        	for(nAsiento = 49; nAsiento <= 198 ; nAsiento+=3)
+	          	{
+	          	ArrayList<String> asiento1 = new ArrayList<String>();
+	          	asiento1.add("EC0 123-".concat(Integer.toString(nAsiento)));
+				asiento1.add("56500.60");
+				asiento1.add("E");
+				asiento1.add("V");
+				asiento1.add("D");
+				asiento1.add("18/06/2019");
+				asiento1.add("25/06/2019");
+				asientos.add(asiento1);
+	          	}
+	        	for(nAsiento = 50; nAsiento <= 198 ; nAsiento+=3)
+	          	{
+	          	ArrayList<String> asiento2 = new ArrayList<String>();
+	          	asiento2.add("EC0 123-".concat(Integer.toString(nAsiento)));
+				asiento2.add("56500.60");
+				asiento2.add("E");
+				asiento2.add("C");
+				asiento2.add("D");
+				asiento2.add("18/06/2019");
+				asiento2.add("25/06/2019");
+				asientos.add(asiento2);
+	          	}
+	        	for(nAsiento = 51; nAsiento <= 198 ; nAsiento+=3)
+	          	{
+	          	ArrayList<String> asiento3 = new ArrayList<String>();
+	          	asiento3.add("EC0 123-".concat(Integer.toString(nAsiento)));
+				asiento3.add("56500.60");
+				asiento3.add("E");
+				asiento3.add("P");
+				asiento3.add("D");
+				asiento3.add("18/06/2019");
+				asiento3.add("25/06/2019");
+				asientos.add(asiento3);
+	          	}
+	        	for(nAsiento = 199; nAsiento <= 300 ; nAsiento+=3)
+	          	{
+	          	ArrayList<String> asiento1 = new ArrayList<String>();
+	          	asiento1.add("EC0 123-".concat(Integer.toString(nAsiento)));
+				asiento1.add("56500.60");
+				asiento1.add("E");
+				asiento1.add("V");
+				asiento1.add("D");
+				asiento1.add("18/06/2019");
+				asiento1.add("25/06/2019");
+				asientos.add(asiento1);
+	          	}
+	        	for(nAsiento = 200; nAsiento <= 300 ; nAsiento+=3)
+	          	{
+	          	ArrayList<String> asiento2 = new ArrayList<String>();
+	          	asiento2.add("EC0 123-".concat(Integer.toString(nAsiento)));
+				asiento2.add("56500.60");
+				asiento2.add("E");
+				asiento2.add("C");
+				asiento2.add("D");
+				asiento2.add("18/06/2019");
+				asiento2.add("25/06/2019");
+				asientos.add(asiento2);
+	          	}
+	        	for(nAsiento = 201; nAsiento <= 300 ; nAsiento+=3)
+	          	{
+	          	ArrayList<String> asiento3 = new ArrayList<String>();
+	          	asiento3.add("EC0 123-".concat(Integer.toString(nAsiento)));
+				asiento3.add("56500.60");
+				asiento3.add("E");
+				asiento3.add("P");
+				asiento3.add("D");
+				asiento3.add("18/06/2019");
+				asiento3.add("25/06/2019");
+				asientos.add(asiento3);
+	          	}
+	          
+	          }
+	         */
 
 	        this.asientos = new ArrayList<ArrayList<String>>();
 	        ArrayList<String> asiento1 = new ArrayList<String>();
