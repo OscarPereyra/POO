@@ -41,5 +41,10 @@ public abstract class Usuario {
 	public void agregarReserva(Asiento asiento) {
 		reservas.add(asiento);
 	}
-	
+	public ArrayList<Busqueda> getBusquedas() {
+		return busquedas;
+	}
+	public void setBusquedas(ArrayList<Busqueda> busquedas) {
+		this.busquedas = busquedas;
+	}
 }

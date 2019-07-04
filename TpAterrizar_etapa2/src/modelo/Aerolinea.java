@@ -7,10 +7,15 @@ public abstract class Aerolinea {
 	protected String nombre;
 	protected double impuestoPasajes;
 	protected Fecha fecha = new Fecha();
+	
 	protected ArrayList<AsientoReservado> asientosSobreReservados = new ArrayList<AsientoReservado>();
+	
 	public abstract void reservar(Usuario usuario,Asiento asiento);
+	
 	public abstract void comprar(Usuario usuario,Asiento asiento)throws Exception;
+	
 	public abstract ArrayList<Asiento> asientosDisponibles(Busqueda busqueda) throws ParseException;
+	
 	protected void limpiarSobreReservas(String codigoAsiento) {
 		asientosSobreReservados.removeIf(reserva -> reserva.getAsiento().getCodigoAsiento().equals(codigoAsiento));
 	}
