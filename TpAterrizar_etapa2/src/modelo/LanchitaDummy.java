@@ -8,7 +8,20 @@ import java.util.stream.Collectors;
 
 public class LanchitaDummy implements IAerolineaLanchita {
 	    private ArrayList<ArrayList<String>> asientos;
-	    private Map<String, String> diccionarioDestinos;
+	    public ArrayList<ArrayList<String>> getAsientos() {
+			return asientos;
+		}
+		public void setAsientos(ArrayList<ArrayList<String>> asientos) {
+			this.asientos = asientos;
+		}
+		public Map<String, String> getDiccionarioDestinos() {
+			return diccionarioDestinos;
+		}
+		public void setDiccionarioDestinos(Map<String, String> diccionarioDestinos) {
+			this.diccionarioDestinos = diccionarioDestinos;
+		}
+
+		private Map<String, String> diccionarioDestinos;
 
 	    public LanchitaDummy() {
 
@@ -18,122 +31,14 @@ public class LanchitaDummy implements IAerolineaLanchita {
 	        diccionarioDestinos.put("ESP", "954");
 	        diccionarioDestinos.put("COL", "742");
 	        
-	        /*this.asientos = new ArrayList<ArrayList<String>>();
-	        for(int nAsiento = 1; nAsiento <= 300 ; nAsiento++)
-	        {
-	        	for(nAsiento = 1; nAsiento <= 48 ; nAsiento+=3)
-	          	{
-	          	ArrayList<String> asiento1 = new ArrayList<String>();
-	          	asiento1.add("EC0 123-".concat(Integer.toString(nAsiento)));
-				asiento1.add("56500.60");
-				asiento1.add("P");
-				asiento1.add("V");
-				asiento1.add("D");
-				asiento1.add("18/06/2019");
-				asiento1.add("25/06/2019");
-				asientos.add(asiento1);
-	          	}
-	        	for(nAsiento = 2; nAsiento <= 48 ; nAsiento+=3)
-	          	{
-	          	ArrayList<String> asiento2 = new ArrayList<String>();
-	          	asiento2.add("EC0 123-".concat(Integer.toString(nAsiento)));
-				asiento2.add("56500.60");
-				asiento2.add("P");
-				asiento2.add("C");
-				asiento2.add("D");
-				asiento2.add("18/06/2019");
-				asiento2.add("25/06/2019");
-				asientos.add(asiento2);
-	          	}
-	        	for(nAsiento = 3; nAsiento <= 48 ; nAsiento+=3)
-	          	{
-	          	ArrayList<String> asiento3 = new ArrayList<String>();
-	          	asiento3.add("EC0 123-".concat(Integer.toString(nAsiento)));
-				asiento3.add("56500.60");
-				asiento3.add("P");
-				asiento3.add("P");
-				asiento3.add("D");
-				asiento3.add("18/06/2019");
-				asiento3.add("25/06/2019");
-				asientos.add(asiento3);
-	          	}
-	        	for(nAsiento = 49; nAsiento <= 198 ; nAsiento+=3)
-	          	{
-	          	ArrayList<String> asiento1 = new ArrayList<String>();
-	          	asiento1.add("EC0 123-".concat(Integer.toString(nAsiento)));
-				asiento1.add("56500.60");
-				asiento1.add("E");
-				asiento1.add("V");
-				asiento1.add("D");
-				asiento1.add("18/06/2019");
-				asiento1.add("25/06/2019");
-				asientos.add(asiento1);
-	          	}
-	        	for(nAsiento = 50; nAsiento <= 198 ; nAsiento+=3)
-	          	{
-	          	ArrayList<String> asiento2 = new ArrayList<String>();
-	          	asiento2.add("EC0 123-".concat(Integer.toString(nAsiento)));
-				asiento2.add("56500.60");
-				asiento2.add("E");
-				asiento2.add("C");
-				asiento2.add("D");
-				asiento2.add("18/06/2019");
-				asiento2.add("25/06/2019");
-				asientos.add(asiento2);
-	          	}
-	        	for(nAsiento = 51; nAsiento <= 198 ; nAsiento+=3)
-	          	{
-	          	ArrayList<String> asiento3 = new ArrayList<String>();
-	          	asiento3.add("EC0 123-".concat(Integer.toString(nAsiento)));
-				asiento3.add("56500.60");
-				asiento3.add("E");
-				asiento3.add("P");
-				asiento3.add("D");
-				asiento3.add("18/06/2019");
-				asiento3.add("25/06/2019");
-				asientos.add(asiento3);
-	          	}
-	        	for(nAsiento = 199; nAsiento <= 300 ; nAsiento+=3)
-	          	{
-	          	ArrayList<String> asiento1 = new ArrayList<String>();
-	          	asiento1.add("EC0 123-".concat(Integer.toString(nAsiento)));
-				asiento1.add("56500.60");
-				asiento1.add("E");
-				asiento1.add("V");
-				asiento1.add("D");
-				asiento1.add("18/06/2019");
-				asiento1.add("25/06/2019");
-				asientos.add(asiento1);
-	          	}
-	        	for(nAsiento = 200; nAsiento <= 300 ; nAsiento+=3)
-	          	{
-	          	ArrayList<String> asiento2 = new ArrayList<String>();
-	          	asiento2.add("EC0 123-".concat(Integer.toString(nAsiento)));
-				asiento2.add("56500.60");
-				asiento2.add("E");
-				asiento2.add("C");
-				asiento2.add("D");
-				asiento2.add("18/06/2019");
-				asiento2.add("25/06/2019");
-				asientos.add(asiento2);
-	          	}
-	        	for(nAsiento = 201; nAsiento <= 300 ; nAsiento+=3)
-	          	{
-	          	ArrayList<String> asiento3 = new ArrayList<String>();
-	          	asiento3.add("EC0 123-".concat(Integer.toString(nAsiento)));
-				asiento3.add("56500.60");
-				asiento3.add("E");
-				asiento3.add("P");
-				asiento3.add("D");
-				asiento3.add("18/06/2019");
-				asiento3.add("25/06/2019");
-				asientos.add(asiento3);
-	          	}
-	          
-	          }
-	         */
-
 	        this.asientos = new ArrayList<ArrayList<String>>();
+	        crearVuelo("123");
+	        crearVuelo("753");
+	        crearVuelo("954");
+	        crearVuelo("742");
+
+
+	        /*this.asientos = new ArrayList<ArrayList<String>>();
 	        ArrayList<String> asiento1 = new ArrayList<String>();
 			ArrayList<String> asiento2 = new ArrayList<String>();
 			
@@ -154,9 +59,122 @@ public class LanchitaDummy implements IAerolineaLanchita {
 			asiento2.add("25/06/2019");
 
 			asientos.add(asiento1);
-			asientos.add(asiento2);
+			asientos.add(asiento2);*/
 	  	    }
-
+	    private void crearVuelo(String codigoVuelo){
+	    	
+	    	for(int nAsiento = 1; nAsiento <= 300 ; nAsiento++)
+		        {
+		        	for(nAsiento = 1; nAsiento <= 48 ; nAsiento+=3)
+		          	{
+		          	ArrayList<String> asiento1 = new ArrayList<String>();
+		          	asiento1.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
+					asiento1.add("30000.0");
+					asiento1.add("P");
+					asiento1.add("V");
+					asiento1.add("D");
+					asiento1.add("18/06/2019");
+					asiento1.add("25/06/2019");
+					asientos.add(asiento1);
+		          	}
+		        	for(nAsiento = 2; nAsiento <= 48 ; nAsiento+=3)
+		          	{
+		          	ArrayList<String> asiento2 = new ArrayList<String>();
+		          	asiento2.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
+					asiento2.add("30000.0");
+					asiento2.add("P");
+					asiento2.add("C");
+					asiento2.add("D");
+					asiento2.add("18/06/2019");
+					asiento2.add("25/06/2019");
+					asientos.add(asiento2);
+		          	}
+		        	for(nAsiento = 3; nAsiento <= 48 ; nAsiento+=3)
+		          	{
+		          	ArrayList<String> asiento3 = new ArrayList<String>();
+		          	asiento3.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
+					asiento3.add("30000.0");
+					asiento3.add("P");
+					asiento3.add("P");
+					asiento3.add("D");
+					asiento3.add("18/06/2019");
+					asiento3.add("25/06/2019");
+					asientos.add(asiento3);
+		          	}
+		        	for(nAsiento = 49; nAsiento <= 198 ; nAsiento+=3)
+		          	{
+		          	ArrayList<String> asiento1 = new ArrayList<String>();
+		          	asiento1.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
+					asiento1.add("12000.0");
+					asiento1.add("E");
+					asiento1.add("V");
+					asiento1.add("D");
+					asiento1.add("18/06/2019");
+					asiento1.add("25/06/2019");
+					asientos.add(asiento1);
+		          	}
+		        	for(nAsiento = 50; nAsiento <= 198 ; nAsiento+=3)
+		          	{
+		          	ArrayList<String> asiento2 = new ArrayList<String>();
+		          	asiento2.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
+					asiento2.add("12000.0");
+					asiento2.add("E");
+					asiento2.add("C");
+					asiento2.add("D");
+					asiento2.add("18/06/2019");
+					asiento2.add("25/06/2019");
+					asientos.add(asiento2);
+		          	}
+		        	for(nAsiento = 51; nAsiento <= 198 ; nAsiento+=3)
+		          	{
+		          	ArrayList<String> asiento3 = new ArrayList<String>();
+		          	asiento3.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
+					asiento3.add("12000.0");
+					asiento3.add("E");
+					asiento3.add("P");
+					asiento3.add("D");
+					asiento3.add("18/06/2019");
+					asiento3.add("25/06/2019");
+					asientos.add(asiento3);
+		          	}
+		        	for(nAsiento = 199; nAsiento <= 300 ; nAsiento+=3)
+		          	{
+		          	ArrayList<String> asiento1 = new ArrayList<String>();
+		          	asiento1.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
+					asiento1.add("20000.0");
+					asiento1.add("T");
+					asiento1.add("V");
+					asiento1.add("D");
+					asiento1.add("18/06/2019");
+					asiento1.add("25/06/2019");
+					asientos.add(asiento1);
+		          	}
+		        	for(nAsiento = 200; nAsiento <= 300 ; nAsiento+=3)
+		          	{
+		          	ArrayList<String> asiento2 = new ArrayList<String>();
+		          	asiento2.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
+					asiento2.add("20000.0");
+					asiento2.add("T");
+					asiento2.add("C");
+					asiento2.add("D");
+					asiento2.add("18/06/2019");
+					asiento2.add("25/06/2019");
+					asientos.add(asiento2);
+		          	}
+		        	for(nAsiento = 201; nAsiento <= 300 ; nAsiento+=3)
+		          	{
+		          	ArrayList<String> asiento3 = new ArrayList<String>();
+		          	asiento3.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
+					asiento3.add("20000.0");
+					asiento3.add("T");
+					asiento3.add("P");
+					asiento3.add("D");
+					asiento3.add("18/06/2019");
+					asiento3.add("25/06/2019");
+					asientos.add(asiento3);
+		          	}		          
+		          }	
+	    }
 	    @Override
 	    public ArrayList<ArrayList<String>> asientosDisponibles(String origen,String fechaSalida,String horaSalida,String destino,String fechaLlegada,String horaLlegada) {
 	        return (ArrayList<ArrayList<String>>) this.asientos

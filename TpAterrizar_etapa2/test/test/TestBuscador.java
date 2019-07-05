@@ -21,6 +21,7 @@ import modelo.TipoClaseAsiento;
 import modelo.TipoUbicacionAsiento;
 import modelo.Usuario;
 import modelo.UsuarioEstandar;
+import modelo.LanchitaDummy;
 
 public class TestBuscador {
 	
@@ -31,16 +32,18 @@ public class TestBuscador {
 		ArrayList<Aerolinea> aerolineas = new ArrayList<Aerolinea>();
 		aerolineas.add(aerolineaLanchita);
 		Buscador buscador = new Buscador(aerolineas);
-		ArrayList<ArrayList<String>> asientosLanchita = lanchitaAsientos();
+		ArrayList<ArrayList<String>> asientosLanchita = new LanchitaDummy().getAsientos();
 		when(mockLanchita.asientosDisponibles(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyString())).thenReturn(asientosLanchita);
 		UsuarioEstandar usuario = new UsuarioEstandar("Alejando","40135297");
 		Busqueda busqueda = new Busqueda(null,null, null, null, null,null,null,null, null, null);
 		ArrayList<Asiento> asientosEncontrados = buscador.busqueda(usuario, busqueda);
-		System.out.println(asientosEncontrados);
-		Assert.assertEquals("La busqueda no acepta atributos nulos",usuario.,asientosEncontrados);
+		System.out.println(asientosLanchita.size());
+		System.out.println(asientosEncontrados.size());
+		System.out.println(new LanchitaDummy().getAsientos().size());
+		Assert.assertEquals("La busqueda no acepta atributos nulos",new LanchitaDummy().getAsientos().size(),asientosEncontrados.size());
 	}
 	
-	private ArrayList<ArrayList<String>> lanchitaAsientos(){
+	/*private ArrayList<ArrayList<String>> lanchitaAsientos(){
 		ArrayList<ArrayList<String>> asientosLanchita = new ArrayList<ArrayList<String>>();
 		
 		ArrayList<String> asiento1 = new ArrayList<String>();
@@ -74,6 +77,6 @@ public class TestBuscador {
 		asientosEsperados.add(asiento1);
 		asientosEsperados.add(asiento2);
 		return asientosEsperados;
-	}
+	}*/
 }
 
