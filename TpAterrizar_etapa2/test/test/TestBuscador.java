@@ -11,6 +11,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.ArgumentMatchers;
 
+import dummys.LanchitaDummy;
 import modelo.Aerolinea;
 import modelo.AerolineaLanchita;
 import modelo.Asiento;
@@ -21,7 +22,6 @@ import modelo.TipoClaseAsiento;
 import modelo.TipoUbicacionAsiento;
 import modelo.Usuario;
 import modelo.UsuarioEstandar;
-import modelo.LanchitaDummy;
 
 public class TestBuscador {
 	

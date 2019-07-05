@@ -3,12 +3,12 @@ package viewModel;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+import dummys.LanchitaDummy;
 import modelo.Aerolinea;
 import modelo.AerolineaLanchita;
 import modelo.Asiento;
 import modelo.Buscador;
 import modelo.Busqueda;
-import modelo.LanchitaDummy;
 import modelo.Usuario;
 import vistas.AccionExitosa;
 import vistas.Sobrereserva;

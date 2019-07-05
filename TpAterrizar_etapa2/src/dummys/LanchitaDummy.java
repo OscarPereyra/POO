@@ -1,10 +1,13 @@
-package modelo;
+package dummys;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import modelo.AsientoLanchitaNoDisponibleException;
+import modelo.IAerolineaLanchita;
 
 public class LanchitaDummy implements IAerolineaLanchita {
 	    private ArrayList<ArrayList<String>> asientos;
@@ -82,7 +85,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 		          	ArrayList<String> asiento1 = new ArrayList<String>();
 		          	asiento1.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
 					asiento1.add("12000.0");
-					asiento1.add("E");
+					asiento1.add("T");
 					asiento1.add("V");
 					asiento1.add("D");
 					asiento1.add("18/06/2019");
@@ -94,7 +97,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 		          	ArrayList<String> asiento2 = new ArrayList<String>();
 		          	asiento2.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
 					asiento2.add("12000.0");
-					asiento2.add("E");
+					asiento2.add("T");
 					asiento2.add("C");
 					asiento2.add("D");
 					asiento2.add("18/06/2019");
@@ -106,7 +109,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 		          	ArrayList<String> asiento3 = new ArrayList<String>();
 		          	asiento3.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
 					asiento3.add("12000.0");
-					asiento3.add("E");
+					asiento3.add("T");
 					asiento3.add("P");
 					asiento3.add("D");
 					asiento3.add("18/06/2019");
@@ -118,7 +121,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 		          	ArrayList<String> asiento1 = new ArrayList<String>();
 		          	asiento1.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
 					asiento1.add("20000.0");
-					asiento1.add("T");
+					asiento1.add("E");
 					asiento1.add("V");
 					asiento1.add("D");
 					asiento1.add("18/06/2019");
@@ -130,7 +133,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 		          	ArrayList<String> asiento2 = new ArrayList<String>();
 		          	asiento2.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
 					asiento2.add("20000.0");
-					asiento2.add("T");
+					asiento2.add("E");
 					asiento2.add("C");
 					asiento2.add("D");
 					asiento2.add("18/06/2019");
@@ -142,7 +145,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 		          	ArrayList<String> asiento3 = new ArrayList<String>();
 		          	asiento3.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
 					asiento3.add("20000.0");
-					asiento3.add("T");
+					asiento3.add("E");
 					asiento3.add("P");
 					asiento3.add("D");
 					asiento3.add("18/06/2019");
