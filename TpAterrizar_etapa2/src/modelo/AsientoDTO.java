@@ -22,8 +22,9 @@ public class AsientoDTO {
 		this.precio = precio;
 		this.clase = clase;
 		this.ubicacion = ubicacion;
-		this.fechaLlegada = fechaLlegada;
+		this.fechaLlegada = fechaLlegada;	
 	}
+	
 	public String getCodigoVuelo() {
 		return codigoVuelo;
 	}

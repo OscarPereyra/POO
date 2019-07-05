@@ -36,30 +36,6 @@ public class LanchitaDummy implements IAerolineaLanchita {
 	        crearVuelo("753");
 	        crearVuelo("954");
 	        crearVuelo("742");
-
-
-	        /*this.asientos = new ArrayList<ArrayList<String>>();
-	        ArrayList<String> asiento1 = new ArrayList<String>();
-			ArrayList<String> asiento2 = new ArrayList<String>();
-			
-			asiento1.add("EC0 123-42");
-			asiento1.add("56500.60");
-			asiento1.add("T");
-			asiento1.add("V");
-			asiento1.add("D");
-			asiento1.add("18/06/2019");
-			asiento1.add("25/06/2019");
-			
-			asiento2.add("EC0 742-66");
-			asiento2.add("12000.30");
-			asiento2.add("P");
-			asiento2.add("P");
-			asiento2.add("D");
-			asiento2.add("18/06/2019");
-			asiento2.add("25/06/2019");
-
-			asientos.add(asiento1);
-			asientos.add(asiento2);*/
 	  	    }
 	    private void crearVuelo(String codigoVuelo){
 	    	
