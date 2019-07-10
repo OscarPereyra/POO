@@ -20,7 +20,6 @@ public class Buscador {
 	
 	public ArrayList<Asiento> busqueda(Usuario usuario,Busqueda busqueda)throws ParseException {
 		ArrayList<Asiento> asientosDisp = new ArrayList<Asiento>();
-		//test de asientos disponibles con atributos nulos
 		aerolineas.forEach(aerolinea -> {
 			try {
 				asientosDisp.addAll(aerolinea.asientosDisponibles(busqueda));

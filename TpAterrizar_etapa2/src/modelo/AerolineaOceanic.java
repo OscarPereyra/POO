@@ -55,7 +55,7 @@ public class AerolineaOceanic extends Aerolinea{
 	@Override
 	public ArrayList<Asiento> asientosDisponibles(Busqueda busqueda) throws ParseException{
 		ArrayList<Asiento> asientosDisponibles = new ArrayList<Asiento>();
-		ArrayList<AsientoDTO> disponibles = null;
+		ArrayList<AsientoDTO> disponibles = new ArrayList<AsientoDTO>();
 		if(busquedaSoloPorOrigen(busqueda)) {
 			String origen = formatoCiudad(busqueda.getOrigen());
 			disponibles = oceanic.asientosDisponiblesParaOrigen(origen, busqueda.getFechaSalida());

@@ -10,6 +10,12 @@ import modelo.TipoUbicacionAsiento;
 
 public class OceanicDummy {
 	private ArrayList<AsientoDTO> asientos;
+	public ArrayList<AsientoDTO> getAsientos() {
+		return asientos;
+	}
+	public void setAsientos(ArrayList<AsientoDTO> asientos) {
+		this.asientos = asientos;
+	}
 	private Fecha fecha = new Fecha();
 	
 	public OceanicDummy() throws ParseException
