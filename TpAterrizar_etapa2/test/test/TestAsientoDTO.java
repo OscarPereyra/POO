@@ -20,8 +20,8 @@ public class TestAsientoDTO {
 		AerolineaOceanic aerolinea = new AerolineaOceanic(mockOceanic);
 		Fecha fecha = new Fecha();
 		Asiento asientoEsperado = new Asiento("EC0344-42", 1000D, TipoClaseAsiento.TURISTA, TipoUbicacionAsiento.VENTANILLA, false, fecha.convertirALatinoamericano("20/06/19"), fecha.convertirALatinoamericano("21/06/19"), aerolinea);
-		AsientoDTO dto = new AsientoDTO("EC0344",42,fecha.convertirALatinoamericano("20/06/19"),null,1000D,TipoClaseAsiento.TURISTA,TipoUbicacionAsiento.VENTANILLA,fecha.convertirALatinoamericano("21/06/19"));
-		Asiento asiento = dto.convertirAsientoDTOAAsiento(dto,new AerolineaOceanic(mockOceanic));
+		AsientoDTO dto = new AsientoDTO("EC0344",42,fecha.convertirALatinoamericano("20/06/19"),"",1000D,TipoClaseAsiento.TURISTA,TipoUbicacionAsiento.VENTANILLA,fecha.convertirALatinoamericano("21/06/19"),"");
+		Asiento asiento = dto.convertirAsientoDTOAAsiento(dto,aerolinea);
 		System.out.print(asientoEsperado);
 		System.out.print(asiento);
 		System.out.println();

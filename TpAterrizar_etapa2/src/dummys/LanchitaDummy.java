@@ -47,7 +47,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 		        	for(nAsiento = 1; nAsiento <= 48 ; nAsiento+=3)
 		          	{
 		          	ArrayList<String> asiento1 = new ArrayList<String>();
-		          	asiento1.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
+		          	asiento1.add("EC0"+codigoVuelo+"-"+Integer.toString(nAsiento));
 					asiento1.add("30000.0");
 					asiento1.add("P");
 					asiento1.add("V");
@@ -59,7 +59,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 		        	for(nAsiento = 2; nAsiento <= 48 ; nAsiento+=3)
 		          	{
 		          	ArrayList<String> asiento2 = new ArrayList<String>();
-		          	asiento2.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
+		          	asiento2.add("EC0"+codigoVuelo+"-"+Integer.toString(nAsiento));
 					asiento2.add("30000.0");
 					asiento2.add("P");
 					asiento2.add("C");
@@ -71,7 +71,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 		        	for(nAsiento = 3; nAsiento <= 48 ; nAsiento+=3)
 		          	{
 		          	ArrayList<String> asiento3 = new ArrayList<String>();
-		          	asiento3.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
+		          	asiento3.add("EC0"+codigoVuelo+"-"+Integer.toString(nAsiento));
 					asiento3.add("30000.0");
 					asiento3.add("P");
 					asiento3.add("P");
@@ -83,7 +83,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 		        	for(nAsiento = 49; nAsiento <= 198 ; nAsiento+=3)
 		          	{
 		          	ArrayList<String> asiento1 = new ArrayList<String>();
-		          	asiento1.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
+		          	asiento1.add("EC0"+codigoVuelo+"-"+Integer.toString(nAsiento));
 					asiento1.add("12000.0");
 					asiento1.add("T");
 					asiento1.add("V");
@@ -95,7 +95,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 		        	for(nAsiento = 50; nAsiento <= 198 ; nAsiento+=3)
 		          	{
 		          	ArrayList<String> asiento2 = new ArrayList<String>();
-		          	asiento2.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
+		          	asiento2.add("EC0"+codigoVuelo+"-"+Integer.toString(nAsiento));
 					asiento2.add("12000.0");
 					asiento2.add("T");
 					asiento2.add("C");
@@ -107,7 +107,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 		        	for(nAsiento = 51; nAsiento <= 198 ; nAsiento+=3)
 		          	{
 		          	ArrayList<String> asiento3 = new ArrayList<String>();
-		          	asiento3.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
+		          	asiento3.add("EC0"+codigoVuelo+"-"+Integer.toString(nAsiento));
 					asiento3.add("12000.0");
 					asiento3.add("T");
 					asiento3.add("P");
@@ -119,7 +119,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 		        	for(nAsiento = 199; nAsiento <= 300 ; nAsiento+=3)
 		          	{
 		          	ArrayList<String> asiento1 = new ArrayList<String>();
-		          	asiento1.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
+		          	asiento1.add("EC0"+codigoVuelo+"-"+Integer.toString(nAsiento));
 					asiento1.add("20000.0");
 					asiento1.add("E");
 					asiento1.add("V");
@@ -131,7 +131,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 		        	for(nAsiento = 200; nAsiento <= 300 ; nAsiento+=3)
 		          	{
 		          	ArrayList<String> asiento2 = new ArrayList<String>();
-		          	asiento2.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
+		          	asiento2.add("EC0"+codigoVuelo+"-"+Integer.toString(nAsiento));
 					asiento2.add("20000.0");
 					asiento2.add("E");
 					asiento2.add("C");
@@ -143,7 +143,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 		        	for(nAsiento = 201; nAsiento <= 300 ; nAsiento+=3)
 		          	{
 		          	ArrayList<String> asiento3 = new ArrayList<String>();
-		          	asiento3.add("EC0 "+codigoVuelo+"-"+Integer.toString(nAsiento));
+		          	asiento3.add("EC0"+codigoVuelo+"-"+Integer.toString(nAsiento));
 					asiento3.add("20000.0");
 					asiento3.add("E");
 					asiento3.add("P");
@@ -163,7 +163,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 	    }
 
 	    private boolean contiene(ArrayList<String> asiento, String destino) {
-	        return asiento.get(0).contains("EC0 " + this.diccionarioDestinos.getOrDefault(destino, "XXX"));
+	        return asiento.get(0).contains("EC0" + this.diccionarioDestinos.getOrDefault(destino, "XXX"));
 	    }
 
 	    @Override
