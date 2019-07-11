@@ -3,9 +3,13 @@ package test;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.*;
+
+import dummys.OceanicDummy;
+
 import static org.mockito.Mockito.*;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 
 import modelo.*;
 
@@ -37,12 +41,22 @@ public class TestOceanic {
 		IAerolineaOceanic mockOceanic = mock(IAerolineaOceanic.class);
 		AerolineaOceanic oceanic = new AerolineaOceanic(mockOceanic);
 		UsuarioEstandar usuario = new UsuarioEstandar("Alejando","40135297");
-		Fecha fecha = new Fecha();
-		Asiento asiento = new Asiento("EC0344-42", 1000D, TipoClaseAsiento.TURISTA, TipoUbicacionAsiento.VENTANILLA, false, fecha.convertirALatinoamericano("20/06/19"), fecha.convertirALatinoamericano("21/06/19"), oceanic);
+		//Fecha fecha = new Fecha();
+		OceanicDummy asientosOceanic = new OceanicDummy();
+		System.out.println(asientosOceanic);
+		System.out.println(asientosOceanic.getAsientos().size());
+		AsientoDTO dto = asientosOceanic.getAsiento("EC0742",42);
+		System.out.println(dto);
+		Asiento asientoReserva = dto.convertirAsientoDTOAAsiento(oceanic);
+		System.out.println(asientoReserva.getCodigoAsiento());
+		//Asiento asientoReserva = dto.convertirAsientoDTOAAsiento(asientosOceanic.getAsiento("EC0344",42), oceanic);
+		//Asiento asientoReserva = ((OceanicDummy) asientosOceanic).getAsiento("EC0344-",42).convertirAsientoDTOAAsiento(asientoDTO, aerolinea);
+		//Asiento asiento = new Asiento("EC0344-42", 1000D, TipoClaseAsiento.TURISTA, TipoUbicacionAsiento.VENTANILLA, false, fecha.convertirALatinoamericano("20/06/19"), fecha.convertirALatinoamericano("21/06/19"), oceanic);
 		when(mockOceanic.estaReservado(ArgumentMatchers.anyString(), ArgumentMatchers.anyInt())).thenReturn(false);
-		oceanic.reservar(usuario, asiento);
-		System.out.println(asiento.getEstadoReservado());
-		Assert.assertTrue("No se realizo la reserva", asiento.getEstadoReservado());
+		oceanic.reservar(usuario, asientoReserva);
+		System.out.println(asientoReserva.getEstadoReservado());
+		
+		Assert.assertTrue("No se realizo la reserva", asientoReserva.getEstadoReservado());
 	}
 	@Test
 	public void comprar_() throws ParseException {

@@ -27,7 +27,7 @@ public class Buscador {
 			try {
 				asientosDisp.addAll(aerolinea.asientosDisponibles(busqueda));
 			} catch (ParseException | ExceptionDestinoInvalido| ExceptionOrigenInvalido  e) {
-				
+				e.getMessage();
 			}
 		});
 		asientosDisp.forEach(asiento -> asiento.actualizarPrecioTotal(usuario));

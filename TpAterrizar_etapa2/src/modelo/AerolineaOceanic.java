@@ -26,7 +26,7 @@ public class AerolineaOceanic extends Aerolinea{
 		ArrayList<Asiento> asientosDisponibles = new ArrayList<Asiento>();
 		disponibles.forEach(asiento -> {
 			try {
-				asientosDisponibles.add(asiento.convertirAsientoDTOAAsiento(asiento,this));
+				asientosDisponibles.add(asiento.convertirAsientoDTOAAsiento(this));
 			} catch (ParseException e) {
 				System.out.println("Error al convertir");
 			}
@@ -41,10 +41,15 @@ public class AerolineaOceanic extends Aerolinea{
 	}
 	@Override
 	public void reservar(Usuario usuario, Asiento asiento) {
+		System.out.println("entro en reservar");
+		System.out.println("estado reservado? "+oceanic.estaReservado(asiento.getVuelo(),asiento.numeroAsiento()));
+		System.out.println("estado reservar? "+oceanic.reservar(usuario.getDNI(), asiento.getVuelo(), asiento.numeroAsiento()));
 		if(oceanic.estaReservado(asiento.getVuelo(),asiento.numeroAsiento())) {
 			asientosSobreReservados.add(new AsientoReservado(asiento,usuario));
+			System.out.println("fue a sobrereserva");
 		}else {
 			if(oceanic.reservar(usuario.getDNI(), asiento.getVuelo(), asiento.numeroAsiento())) {
+				System.out.println("intento de reserva");
 				asiento.setEstadoReservado(true);
 			}
 		}

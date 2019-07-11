@@ -40,6 +40,7 @@ public class OceanicDummy implements IAerolineaOceanic{
         crearVuelo("753");
         crearVuelo("954");
         crearVuelo("742");
+        
 		
 	}
 	private void crearVuelo(String codigoVuelo) throws ParseException
@@ -48,47 +49,47 @@ public class OceanicDummy implements IAerolineaOceanic{
         {
         	for(nAsiento = 1; nAsiento <= 48 ; nAsiento+=3)
           	{
-        		AsientoDTO asiento = new AsientoDTO("EC0"+codigoVuelo, nAsiento, fecha.convertirALatinoamericano("18/06/2019"), "00:00", 35000.0D, TipoClaseAsiento.PRIMERA, TipoUbicacionAsiento.VENTANILLA, fecha.convertirALatinoamericano("25/06/2019"),"00:00");
+        		AsientoDTO asiento = new AsientoDTO("EC0"+codigoVuelo, nAsiento, fecha.convertirALatinoamericano("18/06/2019"), "00:00", 35000.0D, TipoClaseAsiento.PRIMERA, TipoUbicacionAsiento.VENTANILLA, fecha.convertirALatinoamericano("25/06/2019"),"00:00",false,false);
         		asientos.add(asiento);
           	}
         	for(nAsiento = 2; nAsiento <= 48 ; nAsiento+=3)
           	{
-        		AsientoDTO asiento = new AsientoDTO("EC0"+codigoVuelo, nAsiento, fecha.convertirALatinoamericano("18/06/2019"), "00:00", 35000.0D, TipoClaseAsiento.PRIMERA, TipoUbicacionAsiento.CENTRO, fecha.convertirALatinoamericano("25/06/2019"),"00:00");
+        		AsientoDTO asiento = new AsientoDTO("EC0"+codigoVuelo, nAsiento, fecha.convertirALatinoamericano("18/06/2019"), "00:00", 35000.0D, TipoClaseAsiento.PRIMERA, TipoUbicacionAsiento.CENTRO, fecha.convertirALatinoamericano("25/06/2019"),"00:00",false,false);
           		asientos.add(asiento);
           	}
         	for(nAsiento = 3; nAsiento <= 48 ; nAsiento+=3)
           	{
-        		AsientoDTO asiento = new AsientoDTO("EC0"+codigoVuelo, nAsiento, fecha.convertirALatinoamericano("18/06/2019"), "00:00", 35000.0D, TipoClaseAsiento.PRIMERA, TipoUbicacionAsiento.PASILLO, fecha.convertirALatinoamericano("25/06/2019"),"00:00");
+        		AsientoDTO asiento = new AsientoDTO("EC0"+codigoVuelo, nAsiento, fecha.convertirALatinoamericano("18/06/2019"), "00:00", 35000.0D, TipoClaseAsiento.PRIMERA, TipoUbicacionAsiento.PASILLO, fecha.convertirALatinoamericano("25/06/2019"),"00:00",false,false);
           		asientos.add(asiento);
           	}
         	for(nAsiento = 49; nAsiento <= 198 ; nAsiento+=3)
           	{
-        		AsientoDTO asiento = new AsientoDTO("EC0"+codigoVuelo, nAsiento, fecha.convertirALatinoamericano("18/06/2019"), "00:00", 14000.0D, TipoClaseAsiento.TURISTA, TipoUbicacionAsiento.VENTANILLA, fecha.convertirALatinoamericano("25/06/2019"),"00:00");
+        		AsientoDTO asiento = new AsientoDTO("EC0"+codigoVuelo, nAsiento, fecha.convertirALatinoamericano("18/06/2019"), "00:00", 14000.0D, TipoClaseAsiento.TURISTA, TipoUbicacionAsiento.VENTANILLA, fecha.convertirALatinoamericano("25/06/2019"),"00:00",false,false);
         		asientos.add(asiento);
           	}
         	for(nAsiento = 50; nAsiento <= 198 ; nAsiento+=3)
           	{
-        		AsientoDTO asiento = new AsientoDTO("EC0"+codigoVuelo, nAsiento, fecha.convertirALatinoamericano("18/06/2019"), "00:00", 14000.0D, TipoClaseAsiento.TURISTA, TipoUbicacionAsiento.CENTRO, fecha.convertirALatinoamericano("25/06/2019"),"00:00");
+        		AsientoDTO asiento = new AsientoDTO("EC0"+codigoVuelo, nAsiento, fecha.convertirALatinoamericano("18/06/2019"), "00:00", 14000.0D, TipoClaseAsiento.TURISTA, TipoUbicacionAsiento.CENTRO, fecha.convertirALatinoamericano("25/06/2019"),"00:00",false,false);
         		asientos.add(asiento);
           	}
         	for(nAsiento = 51; nAsiento <= 198 ; nAsiento+=3)
           	{
-        		AsientoDTO asiento = new AsientoDTO("EC0"+codigoVuelo, nAsiento, fecha.convertirALatinoamericano("18/06/2019"), "00:00", 14000.0D, TipoClaseAsiento.TURISTA, TipoUbicacionAsiento.PASILLO, fecha.convertirALatinoamericano("25/06/2019"),"00:00");
+        		AsientoDTO asiento = new AsientoDTO("EC0"+codigoVuelo, nAsiento, fecha.convertirALatinoamericano("18/06/2019"), "00:00", 14000.0D, TipoClaseAsiento.TURISTA, TipoUbicacionAsiento.PASILLO, fecha.convertirALatinoamericano("25/06/2019"),"00:00",false,false);
         		asientos.add(asiento);
           	}
         	for(nAsiento = 199; nAsiento <= 300 ; nAsiento+=3)
           	{
-        		AsientoDTO asiento = new AsientoDTO("EC0"+codigoVuelo, nAsiento, fecha.convertirALatinoamericano("18/06/2019"), "00:00", 14000.0D, TipoClaseAsiento.EJECUTIVA, TipoUbicacionAsiento.VENTANILLA, fecha.convertirALatinoamericano("25/06/2019"),"00:00");
+        		AsientoDTO asiento = new AsientoDTO("EC0"+codigoVuelo, nAsiento, fecha.convertirALatinoamericano("18/06/2019"), "00:00", 14000.0D, TipoClaseAsiento.EJECUTIVA, TipoUbicacionAsiento.VENTANILLA, fecha.convertirALatinoamericano("25/06/2019"),"00:00",false,false);
         		asientos.add(asiento);
           	}
         	for(nAsiento = 200; nAsiento <= 300 ; nAsiento+=3)
           	{
-        		AsientoDTO asiento = new AsientoDTO("EC0"+codigoVuelo, nAsiento, fecha.convertirALatinoamericano("18/06/2019"), "00:00", 14000.0D, TipoClaseAsiento.EJECUTIVA, TipoUbicacionAsiento.CENTRO, fecha.convertirALatinoamericano("25/06/2019"),"00:00");
+        		AsientoDTO asiento = new AsientoDTO("EC0"+codigoVuelo, nAsiento, fecha.convertirALatinoamericano("18/06/2019"), "00:00", 14000.0D, TipoClaseAsiento.EJECUTIVA, TipoUbicacionAsiento.CENTRO, fecha.convertirALatinoamericano("25/06/2019"),"00:00",false,false);
         		asientos.add(asiento);
           	}
         	for(nAsiento = 201; nAsiento <= 300 ; nAsiento+=3)
           	{
-        		AsientoDTO asiento = new AsientoDTO("EC0"+codigoVuelo, nAsiento, fecha.convertirALatinoamericano("18/06/2019"), "00:00", 14000.0D, TipoClaseAsiento.EJECUTIVA, TipoUbicacionAsiento.PASILLO, fecha.convertirALatinoamericano("25/06/2019"),"00:00");
+        		AsientoDTO asiento = new AsientoDTO("EC0"+codigoVuelo, nAsiento, fecha.convertirALatinoamericano("18/06/2019"), "00:00", 14000.0D, TipoClaseAsiento.EJECUTIVA, TipoUbicacionAsiento.PASILLO, fecha.convertirALatinoamericano("25/06/2019"),"00:00",false,false);
         		asientos.add(asiento);
           	}		          
           }
@@ -139,7 +140,7 @@ public class OceanicDummy implements IAerolineaOceanic{
 		}
 		return operacion;
 	}
-    private AsientoDTO getAsiento(String codigoAsiento, int numeroDeAsiento) {
+    public AsientoDTO getAsiento(String codigoAsiento, int numeroDeAsiento) {
         return this.asientos
                     .stream()
                     .filter(x ->  ( (x.getCodigoVuelo().equals(codigoAsiento)) && (x.getNumeroAsiento() == numeroDeAsiento)))

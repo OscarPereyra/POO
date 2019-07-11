@@ -17,7 +17,7 @@ public class AsientoDTO {
 	private boolean estadoCompra;
 
 	public AsientoDTO(String codigoVuelo, int numeroAsiento, Date fechaSalida, String horaSalida, Double precio,
-			TipoClaseAsiento clase, TipoUbicacionAsiento ubicacion, Date fechaLlegada,String horaLlegada) {
+			TipoClaseAsiento clase, TipoUbicacionAsiento ubicacion, Date fechaLlegada,String horaLlegada,boolean estadoReservado,boolean estadoCompra) {
 		this.codigoVuelo = codigoVuelo;
 		this.numeroAsiento = numeroAsiento;
 		this.fechaSalida = fechaSalida;
@@ -104,10 +104,10 @@ public class AsientoDTO {
 		this.estadoReservado = estadoReservado;
 	}
 
-	public Asiento convertirAsientoDTOAAsiento(AsientoDTO asientoDTO,Aerolinea aerolinea) throws ParseException {
-		if(asientoDTO.getCodigoVuelo()!="") {
-			String codigoAsiento = asientoDTO.getCodigoVuelo().concat("-"+Integer.toString(asientoDTO.getNumeroAsiento()));
-			return new Asiento(codigoAsiento,asientoDTO.getPrecio(),asientoDTO.getClase(),asientoDTO.getUbicacion(),false,asientoDTO.getFechaSalida(),asientoDTO.getFechaLlegada(),aerolinea);
+	public Asiento convertirAsientoDTOAAsiento(Aerolinea aerolinea) throws ParseException {
+		if(this.getCodigoVuelo()!="") {
+			String codigoAsiento = this.getCodigoVuelo().concat("-"+Integer.toString(this.getNumeroAsiento()));
+			return new Asiento(codigoAsiento,this.getPrecio(),this.getClase(),this.getUbicacion(),false,this.getFechaSalida(),this.getFechaLlegada(),aerolinea);
 		}else {
 			return null;		
 		}
