@@ -4,6 +4,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 //Datos de asientos = [Codigo asiento,precio asiento,clase(T-E-P),ubicacion(V-C-P),estado(R-D)]
 
+import vistas.ExceptionDestinoInvalido;
+import vistas.ExceptionOrigenInvalido;
+
 public class Buscador {
 	private static Buscador buscador = null;
 	private ArrayList<Aerolinea> aerolineas;
@@ -18,13 +21,13 @@ public class Buscador {
         return buscador;
 	}
 	
-	public ArrayList<Asiento> busqueda(Usuario usuario,Busqueda busqueda)throws ParseException {
+	public ArrayList<Asiento> busqueda(Usuario usuario,Busqueda busqueda)throws ParseException, ExceptionDestinoInvalido, ExceptionOrigenInvalido {
 		ArrayList<Asiento> asientosDisp = new ArrayList<Asiento>();
 		aerolineas.forEach(aerolinea -> {
 			try {
 				asientosDisp.addAll(aerolinea.asientosDisponibles(busqueda));
-			} catch (ParseException e) {
-				System.out.println("Error al parsear asientos");
+			} catch (ParseException | ExceptionDestinoInvalido| ExceptionOrigenInvalido  e) {
+				
 			}
 		});
 		asientosDisp.forEach(asiento -> asiento.actualizarPrecioTotal(usuario));
@@ -43,11 +46,3 @@ public class Buscador {
 		return ((asiento.getClase().equals(TipoClaseAsiento.PRIMERA) && asiento.getPrecio()<8000)||(asiento.getClase().equals(TipoClaseAsiento.EJECUTIVA) && asiento.getPrecio()<4000));
 	}	
 }
-/*
- * private ArrayList<Aerolinea> aerolineas;
-	
-	public Buscador(ArrayList<Aerolinea> aerolineas) {
-		this.aerolineas = aerolineas;
-	}
- * */
- 

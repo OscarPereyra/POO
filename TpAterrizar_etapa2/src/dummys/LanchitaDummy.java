@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import modelo.AsientoLanchitaNoDisponibleException;
+import excepciones.AsientoLanchitaNoDisponibleException;
 import modelo.IAerolineaLanchita;
 
 public class LanchitaDummy implements IAerolineaLanchita {

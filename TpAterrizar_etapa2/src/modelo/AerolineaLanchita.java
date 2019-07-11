@@ -2,6 +2,11 @@ package modelo;
 
 import java.util.Date;
 import java.util.stream.Collectors;
+
+import excepciones.AsientoLanchitaNoDisponibleException;
+import excepciones.DestinosIgualesException;
+import excepciones.ParametroVacioException;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -36,7 +41,8 @@ public class AerolineaLanchita extends Aerolinea{
 		}
 	}
 	@Override
-	public ArrayList<Asiento> asientosDisponibles(Busqueda busqueda) {
+	public ArrayList<Asiento> asientosDisponibles(Busqueda busqueda) throws ParametroVacioException, DestinosIgualesException {
+		validarParametros(busqueda);
 		ArrayList<ArrayList<String>> resultadoBusqueda = lanchita.asientosDisponibles(busqueda.getOrigen(),busqueda.getFechaSalida(),busqueda.getHoraSalida(),busqueda.getDestino(),busqueda.getFechaLlegada(),busqueda.getHoraLlegada());
 		ArrayList<Asiento> asientosDisponibles = new ArrayList<Asiento>();
 		resultadoBusqueda.forEach(asiento -> {

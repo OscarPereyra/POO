@@ -3,6 +3,9 @@ package modelo;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+import excepciones.DestinosIgualesException;
+import excepciones.ParametroVacioException;
+
 public class AerolineaOceanic extends Aerolinea{
 	public IAerolineaOceanic oceanic;
 	
@@ -53,7 +56,8 @@ public class AerolineaOceanic extends Aerolinea{
 		}
 	}
 	@Override
-	public ArrayList<Asiento> asientosDisponibles(Busqueda busqueda) throws ParseException{
+	public ArrayList<Asiento> asientosDisponibles(Busqueda busqueda) throws ParseException, ParametroVacioException, DestinosIgualesException{
+		validarParametros(busqueda);
 		ArrayList<Asiento> asientosDisponibles = new ArrayList<Asiento>();
 		ArrayList<AsientoDTO> disponibles = new ArrayList<AsientoDTO>();
 		if(busquedaSoloPorOrigen(busqueda)) {

@@ -93,8 +93,8 @@ public class Buscar extends JFrame {
 			        tableBuscar.repaint();
 			        tableBuscar.clearSelection();
 			        mod.fireTableDataChanged();
-				} catch (ParseException e) {
-					System.out.println("Error en la busqueda");
+				} catch (ParseException | ExceptionOrigenInvalido | ExceptionDestinoInvalido e) {
+					textPaneErrores.setText(e.getMessage());
 				}
 			}
 		});

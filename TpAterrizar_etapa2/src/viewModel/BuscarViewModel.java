@@ -11,6 +11,8 @@ import modelo.Buscador;
 import modelo.Busqueda;
 import modelo.Usuario;
 import vistas.AccionExitosa;
+import vistas.ExceptionDestinoInvalido;
+import vistas.ExceptionOrigenInvalido;
 import vistas.Sobrereserva;
 
 public class BuscarViewModel {
@@ -42,7 +44,7 @@ public class BuscarViewModel {
 		this.buscador = Buscador.getInstance(aerolineas);
 	}
 
-	public void buscar(String destino, String origen, String fecha) throws ParseException{
+	public void buscar(String destino, String origen, String fecha) throws ParseException, ExceptionDestinoInvalido, ExceptionOrigenInvalido{
 		Busqueda busqueda = new Busqueda(origen, fecha, "", destino, "", "", null, null, null, null);
 		this.asientos = buscador.busqueda(usuario, busqueda);
 	}

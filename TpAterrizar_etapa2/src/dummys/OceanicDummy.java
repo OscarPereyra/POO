@@ -97,7 +97,7 @@ public class OceanicDummy implements IAerolineaOceanic{
 	public ArrayList<AsientoDTO> asientosDisponiblesParaOrigen(String codigoOrigenOceanic, String fechaSalida) {
 		return (ArrayList<AsientoDTO>) this.asientos
                 .stream()
-                .filter(asiento -> (asiento.getEstadoReservado()==false))
+                .filter(asiento -> (asiento.getEstadoReservado()==false) &&(asiento.isEstadoCompra()==false))
                 .collect(Collectors.toList());
 	}
 	@Override
@@ -105,23 +105,44 @@ public class OceanicDummy implements IAerolineaOceanic{
 			String codigoDestinoOceanic) {
 		return (ArrayList<AsientoDTO>) this.asientos
                 .stream()
-                .filter(asiento -> ((asiento.getCodigoVuelo().substring(3)== codigoDestinoOceanic)&&(asiento.getEstadoReservado()==false)))
+                .filter(asiento -> ((asiento.getCodigoVuelo().substring(3,5)== codigoDestinoOceanic)&&(asiento.getEstadoReservado()==false)))
                 .collect(Collectors.toList());
 	}
 	@Override
 	public boolean estaReservado(String codigoDeVuelo, int numeroDeAsiento) {
-		// TODO Auto-generated method stub
-		return false;
+		AsientoDTO asiento = this.getAsiento(codigoDeVuelo, numeroDeAsiento);
+		return asiento.getEstadoReservado();
 	}
 	@Override
 	public boolean comprarSiHayDisponibilidad(String dni, String codigoVuelo, int numeroDeAsiento) {
-		// TODO Auto-generated method stub
-		return false;
+		AsientoDTO asiento = this.getAsiento(codigoVuelo, numeroDeAsiento);
+		AsientoDTO compra = asiento;
+		boolean operacion = false;
+		if(!asiento.isEstadoCompra()) {
+			this.asientos.remove(asiento);
+			this.asientos.add(compra);
+			operacion = true;
+		}
+		return operacion;
+		
 	}
 	@Override
 	public boolean reservar(String dni, String codigoVuelo, int numeroDeAsiento) {
-		// TODO Auto-generated method stub
-		return false;
+		AsientoDTO asiento = this.getAsiento(codigoVuelo, numeroDeAsiento);
+		AsientoDTO asientoReservado = asiento;
+		asientoReservado.setEstadoReservado(true);
+		boolean operacion = false;
+		if(!asiento.getEstadoReservado()) {
+			this.asientos.remove(asiento);
+			this.asientos.add(asientoReservado);
+			operacion = true;
+		}
+		return operacion;
 	}
-
+    private AsientoDTO getAsiento(String codigoAsiento, int numeroDeAsiento) {
+        return this.asientos
+                    .stream()
+                    .filter(x ->  ( (x.getCodigoVuelo().equals(codigoAsiento)) && (x.getNumeroAsiento() == numeroDeAsiento)))
+                    .collect(Collectors.toList()).get(0);
+    }
 }
