@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 //Datos de asientos = [Codigo asiento,precio asiento,clase(T-E-P),ubicacion(V-C-P),estado(R-D)]
 
+import excepciones.DestinosIgualesException;
 import vistas.ExceptionDestinoInvalido;
 import vistas.ExceptionOrigenInvalido;
 
@@ -26,7 +27,7 @@ public class Buscador {
 		aerolineas.forEach(aerolinea -> {
 			try {
 				asientosDisp.addAll(aerolinea.asientosDisponibles(busqueda));
-			} catch (ParseException | ExceptionDestinoInvalido| ExceptionOrigenInvalido  e) {
+			} catch (ParseException | ExceptionDestinoInvalido| ExceptionOrigenInvalido | DestinosIgualesException  e) {
 				e.getMessage();
 			}
 		});

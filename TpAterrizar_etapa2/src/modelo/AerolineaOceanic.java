@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 import excepciones.DestinosIgualesException;
-import excepciones.ParametroVacioException;
 
 public class AerolineaOceanic extends Aerolinea{
 	public IAerolineaOceanic oceanic;
@@ -48,6 +47,7 @@ public class AerolineaOceanic extends Aerolinea{
 			asientosSobreReservados.add(new AsientoReservado(asiento,usuario));
 			System.out.println("fue a sobrereserva");
 		}else {
+			System.out.println("Entro al else");
 			if(oceanic.reservar(usuario.getDNI(), asiento.getVuelo(), asiento.numeroAsiento())) {
 				System.out.println("intento de reserva");
 				asiento.setEstadoReservado(true);
@@ -61,7 +61,7 @@ public class AerolineaOceanic extends Aerolinea{
 		}
 	}
 	@Override
-	public ArrayList<Asiento> asientosDisponibles(Busqueda busqueda) throws ParseException, ParametroVacioException, DestinosIgualesException{
+	public ArrayList<Asiento> asientosDisponibles(Busqueda busqueda) throws ParseException, DestinosIgualesException{
 		validarParametros(busqueda);
 		ArrayList<Asiento> asientosDisponibles = new ArrayList<Asiento>();
 		ArrayList<AsientoDTO> disponibles = new ArrayList<AsientoDTO>();

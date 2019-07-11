@@ -45,6 +45,12 @@ public class BuscarViewModel {
 	}
 
 	public void buscar(String destino, String origen, String fecha) throws ParseException, ExceptionDestinoInvalido, ExceptionOrigenInvalido{
+		if(destino.length() == 0) {
+			destino = "";
+		}
+		if(origen.length() == 0) {
+			origen = "";
+		}
 		Busqueda busqueda = new Busqueda(origen, fecha, "", destino, "", "", null, null, null, null);
 		this.asientos = buscador.busqueda(usuario, busqueda);
 	}

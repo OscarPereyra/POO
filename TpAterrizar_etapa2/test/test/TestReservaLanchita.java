@@ -2,6 +2,9 @@ package test;
 
 import org.junit.*;
 import modelo.*;
+import vistas.ExceptionDestinoInvalido;
+import vistas.ExceptionOrigenInvalido;
+
 import org.mockito.*;
 import static org.mockito.Mockito.*;
 
@@ -13,7 +16,7 @@ import java.util.ArrayList;
 public class TestReservaLanchita {
 		
 	@Test
-	public void reservarAsiento_SeReservaUnAsientoCorrectamente() throws ParseException {
+	public void reservarAsiento_SeReservaUnAsientoCorrectamente() throws ParseException, ExceptionDestinoInvalido, ExceptionOrigenInvalido {
 		IAerolineaLanchita mockLanchita = mock(IAerolineaLanchita.class);
 		AerolineaLanchita aerolineaLanchita = new AerolineaLanchita(mockLanchita);
 		ArrayList<Aerolinea> aerolineas = new ArrayList<Aerolinea>();
@@ -30,7 +33,7 @@ public class TestReservaLanchita {
 		Asiento primerAsientoReservado = usuario.getReservas().get(0);		
 		Assert.assertTrue("El usuario no pudo reservar el asiento",primerAsientoReservado.equals(asientosEncontrados.get(0)));
 	}
-	//deveriamos probar que el primer asiento reservado es igual a nulo pero el test me queda en azul no en verde
+	
 	@Test
 	public void reservarAsiento_SeintentaReservarPeroNoSeObtieneNingunAsiento() throws Exception {
 		IAerolineaLanchita mockLanchita = mock(IAerolineaLanchita.class);

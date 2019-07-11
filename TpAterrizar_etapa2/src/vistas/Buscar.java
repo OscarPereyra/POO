@@ -21,6 +21,9 @@ import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Buscar extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -86,6 +89,7 @@ public class Buscar extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
+					destinoValido(textDestino0.getText());
 					modelo.buscar(textDestino0.getText(),textOrigen.getText(), textFecha.getText());
 					BuscarTableModel mod = new BuscarTableModel(modelo.getAsientos());
 					tableBuscar.setModel(mod);
@@ -177,5 +181,13 @@ public class Buscar extends JFrame {
             Asiento seleccionado = model.getRowAt(row);
             modelo.setAsientoSeleccionado(seleccionado);
         }
+	}
+	
+	private void destinoValido(String destino) throws ExceptionDestinoInvalido {
+		List<String> destinosPosibles = new ArrayList<String>();
+		destinosPosibles = Arrays.asList("ESP","COL","ARG","BRZ");
+		if (!destinosPosibles.contains(destino)) {
+			throw new ExceptionDestinoInvalido("Ingrese un destino valido");
+		}
 	}
 }

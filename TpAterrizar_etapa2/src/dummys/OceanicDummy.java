@@ -34,7 +34,6 @@ public class OceanicDummy implements IAerolineaOceanic{
         diccionarioDestinos.put("BRZ", "753");
         diccionarioDestinos.put("ESP", "954");
         diccionarioDestinos.put("COL", "742");
-        
 		this.asientos = new ArrayList<AsientoDTO>();
 		crearVuelo("123");
         crearVuelo("753");
@@ -129,11 +128,16 @@ public class OceanicDummy implements IAerolineaOceanic{
 	}
 	@Override
 	public boolean reservar(String dni, String codigoVuelo, int numeroDeAsiento) {
+		System.out.println("Entro a reservar");
 		AsientoDTO asiento = this.getAsiento(codigoVuelo, numeroDeAsiento);
+		System.out.println("Obtuvo el asiento");
 		AsientoDTO asientoReservado = asiento;
+		System.out.println(asiento.getEstadoReservado());
 		asientoReservado.setEstadoReservado(true);
+		System.out.println(asiento.getEstadoReservado());
 		boolean operacion = false;
 		if(!asiento.getEstadoReservado()) {
+			System.out.println("Entro al if de operacion");
 			this.asientos.remove(asiento);
 			this.asientos.add(asientoReservado);
 			operacion = true;

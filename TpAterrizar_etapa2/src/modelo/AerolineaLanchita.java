@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 import excepciones.AsientoLanchitaNoDisponibleException;
 import excepciones.DestinosIgualesException;
-import excepciones.ParametroVacioException;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -41,7 +40,7 @@ public class AerolineaLanchita extends Aerolinea{
 		}
 	}
 	@Override
-	public ArrayList<Asiento> asientosDisponibles(Busqueda busqueda) throws ParametroVacioException, DestinosIgualesException {
+	public ArrayList<Asiento> asientosDisponibles(Busqueda busqueda) throws DestinosIgualesException, ParseException {
 		validarParametros(busqueda);
 		ArrayList<ArrayList<String>> resultadoBusqueda = lanchita.asientosDisponibles(busqueda.getOrigen(),busqueda.getFechaSalida(),busqueda.getHoraSalida(),busqueda.getDestino(),busqueda.getFechaLlegada(),busqueda.getHoraLlegada());
 		ArrayList<Asiento> asientosDisponibles = new ArrayList<Asiento>();
@@ -49,7 +48,6 @@ public class AerolineaLanchita extends Aerolinea{
 			try {
 				asientosDisponibles.add(parsearAsiento(asiento));
 			} catch (ParseException e) {
-				System.out.println("Error al parsear la fecha del asiento");
 			}
 		});
 		return asientosDisponibles;

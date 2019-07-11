@@ -163,7 +163,7 @@ public class LanchitaDummy implements IAerolineaLanchita {
 	    }
 
 	    private boolean contiene(ArrayList<String> asiento, String destino) {
-	        return asiento.get(0).contains("EC0" + this.diccionarioDestinos.getOrDefault(destino, "XXX"));
+	        return (asiento.get(0).contains("EC0" + this.diccionarioDestinos.getOrDefault(destino, "XXX")) || destino.equals(""));
 	    }
 
 	    @Override

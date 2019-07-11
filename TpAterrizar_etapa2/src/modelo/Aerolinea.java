@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 import excepciones.DestinosIgualesException;
-import excepciones.ParametroVacioException;
 import vistas.ExceptionDestinoInvalido;
 import vistas.ExceptionOrigenInvalido;
 
@@ -19,7 +18,7 @@ public abstract class Aerolinea {
 	
 	public abstract void comprar(Usuario usuario,Asiento asiento)throws Exception;
 	
-	public abstract ArrayList<Asiento> asientosDisponibles(Busqueda busqueda) throws ParseException, ExceptionDestinoInvalido, ExceptionOrigenInvalido, ParametroVacioException, DestinosIgualesException;
+	public abstract ArrayList<Asiento> asientosDisponibles(Busqueda busqueda) throws ParseException, ExceptionDestinoInvalido, ExceptionOrigenInvalido, DestinosIgualesException;
 	
 	protected void limpiarSobreReservas(String codigoAsiento) {
 		asientosSobreReservados.removeIf(reserva -> reserva.getAsiento().getCodigoAsiento().equals(codigoAsiento));
@@ -76,21 +75,11 @@ public abstract class Aerolinea {
 			return null;
 		}
 	}
-	 protected void validarParametros(Busqueda busqueda) throws ParametroVacioException,  DestinosIgualesException {
+	 protected void validarParametros(Busqueda busqueda) throws DestinosIgualesException {
 	        String origen = busqueda.getOrigen();
 	        String destino = busqueda.getDestino();
-	        String fecha = busqueda.getFechaSalida();
 
-	        if(origen == null) {
-	            throw new ParametroVacioException("El origen no puede estar vacío");
-	        }
-	        if(destino == null) {
-	            throw new ParametroVacioException("El destino no puede estar vacío");
-	        }
-	        if(fecha == null || fecha.equals("")) {
-	            throw new ParametroVacioException("La fecha no puede estar vacía");
-	        }
-	        if(origen.equals(destino)) {
+	        if(origen.equals(destino) && origen!="") {
 	            throw new DestinosIgualesException("El origen y el destino deben ser distintos.");
 	        }
 	    }
