@@ -46,10 +46,12 @@ public class TestBuscador {
 		UsuarioEstandar usuario = new UsuarioEstandar("Alejando","40135297");
 		Busqueda busqueda = new Busqueda("","", "", "", "","",null,null, null, null);
 		ArrayList<Asiento> asientosEncontrados = buscador.busqueda(usuario, busqueda);
+		System.out.println(new LanchitaDummy().getAsientos().size());
+		System.out.println(asientosEncontrados.size());
 		Assert.assertEquals("La busqueda no acepta atributos nulos",new LanchitaDummy().getAsientos().size(),asientosEncontrados.size());
 	}
 	@Test
-	public void busqueda_ParaOceanicSeEnvianAtributosNullABusquedaYNoFiltraNada() throws ParseException, ExceptionDestinoInvalido, ExceptionOrigenInvalido {
+	public void busqueda_ParaOceanicSeEnvianAtributosNullABusquedaYNoRetornaAsientos() throws ParseException, ExceptionDestinoInvalido, ExceptionOrigenInvalido {
 		IAerolineaOceanic mockOceanic = mock(IAerolineaOceanic.class);
 		AerolineaOceanic aerolineaOceanic = new AerolineaOceanic(mockOceanic);
 		ArrayList<Aerolinea> aerolineas = new ArrayList<Aerolinea>();
@@ -60,9 +62,6 @@ public class TestBuscador {
 		UsuarioEstandar usuario = new UsuarioEstandar("Alejando","40135297");
 		Busqueda busqueda = new Busqueda("","", "", "", "","",null,null, null, null);
 		ArrayList<Asiento> asientosEncontrados = buscador.busqueda(usuario, busqueda);
-		System.out.println(new OceanicDummy().getAsientos().size());
-		System.out.println(asientosEncontrados.size());
-		System.out.println(asientosOceanic.size());
 		Assert.assertEquals("La busqueda no acepta atributos nulos",0,asientosEncontrados.size());
 	}
 }
